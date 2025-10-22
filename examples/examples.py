@@ -2,7 +2,6 @@ import datetime
 import os
 
 import aind_behavior_services.rig as rig
-
 from aind_behavior_services.session import AindBehaviorSessionModel
 
 from aind_behavior_just_frames.rig import AindJustFramesRig

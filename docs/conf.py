@@ -7,8 +7,6 @@ import os
 import sys
 
 import aind_behavior_just_frames.task_logic
-import erdantic as erd
-from pydantic import BaseModel
 
 import aind_behavior_just_frames.rig
 
@@ -78,4 +76,3 @@ def linkcode_resolve(domain, info):
         return None
     filename = info["module"].replace(".", "/")
     return f"{SOURCE_ROOT}/{filename}.py"
-
