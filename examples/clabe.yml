@@ -1,0 +1,10 @@
+# In order to get picked up, move this file to the root of the project or ./local
+
+data_dir: C:/Data
+allow_dirty: true
+
+default_behavior_picker:
+  config_library_dir: '\\allen\aind\scratch\AindBehavior.db\AindBehaviorJustFrames'
+
+robocopy:
+  destination: '\\allen\aind\scratch\data'
