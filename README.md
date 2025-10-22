@@ -1,6 +1,6 @@
-# Aind.Behavior.VideoEncodingBenchmarks
+# Aind.Behavior.JustFrames
 
-A repository with code for benchmarking online video acquisition/encoding pipelines
+A repository with code for a online video acquisition/encoding pipeline
 
 
 ## Getting started
