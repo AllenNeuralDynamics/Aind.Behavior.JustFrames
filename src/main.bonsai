@@ -10,8 +10,10 @@
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:p4="clr-namespace:AllenNeuralDynamics.Core;assembly=AllenNeuralDynamics.Core"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                 xmlns:p5="clr-namespace:AllenNeuralDynamics.HarpUtils;assembly=AllenNeuralDynamics.HarpUtils"
+                 xmlns:p5="clr-namespace:AllenNeuralDynamics.WhiteRabbit;assembly=AllenNeuralDynamics.WhiteRabbit"
+                 xmlns:p6="clr-namespace:AllenNeuralDynamics.HarpUtils;assembly=AllenNeuralDynamics.HarpUtils"
                  xmlns:gui="clr-namespace:Bonsai.Gui;assembly=Bonsai.Gui"
+                 xmlns:ui="clr-namespace:Bonsai.Design;assembly=Bonsai.Design"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -123,77 +125,52 @@
               <Name>HarpDevices</Name>
               <Workflow>
                 <Nodes>
-                  <Expression xsi:type="GroupWorkflow">
-                    <Name>HarpBehavior</Name>
-                    <Workflow>
-                      <Nodes>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>RigSchema</Name>
-                        </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>HarpBehavior.PortName</Selector>
-                        </Expression>
-                        <Expression xsi:type="PropertyMapping">
-                          <PropertyMappings>
-                            <Property Name="PortName" />
-                          </PropertyMappings>
-                        </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:HarpBehaviorDevice.bonsai">
-                          <PortName>COM5</PortName>
-                          <TriggerHarpReadDumpSubjectName>TriggerHarpReadDump</TriggerHarpReadDumpSubjectName>
-                        </Expression>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>HarpBehaviorEvents</Name>
-                        </Expression>
-                        <Expression xsi:type="beh:Parse">
-                          <harp:Register xsi:type="beh:TimestampedAnalogData" />
-                        </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>Seconds</Selector>
-                        </Expression>
-                        <Expression xsi:type="rx:BehaviorSubject">
-                          <Name>HarpTimestampSource</Name>
-                        </Expression>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>HarpBehaviorEvents</Name>
-                        </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="rx:Take">
-                            <rx:Count>1</rx:Count>
-                          </Combinator>
-                        </Expression>
-                        <Expression xsi:type="beh:CreateMessage">
-                          <harp:MessageType>Write</harp:MessageType>
-                          <harp:Payload xsi:type="beh:CreateEventEnablePayload">
-                            <beh:EventEnable>PortDI PortDIO AnalogData Camera0 Camera1</beh:EventEnable>
-                          </harp:Payload>
-                        </Expression>
-                        <Expression xsi:type="MulticastSubject">
-                          <Name>HarpBehaviorCommands</Name>
-                        </Expression>
-                      </Nodes>
-                      <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
-                        <Edge From="1" To="2" Label="Source1" />
-                        <Edge From="2" To="3" Label="Source1" />
-                        <Edge From="4" To="5" Label="Source1" />
-                        <Edge From="5" To="6" Label="Source1" />
-                        <Edge From="6" To="7" Label="Source1" />
-                        <Edge From="8" To="9" Label="Source1" />
-                        <Edge From="9" To="10" Label="Source1" />
-                        <Edge From="10" To="11" Label="Source1" />
-                      </Edges>
-                    </Workflow>
-                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\HarpBehavior.bonsai" />
                   <Expression xsi:type="SubscribeSubject">
                     <Name>StartExperiment</Name>
                   </Expression>
                   <Expression xsi:type="rx:PublishSubject">
                     <Name>TriggerHarpReadDump</Name>
                   </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>RigSchema</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>HarpWhiteRabbit</Selector>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>PortName</Selector>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="PortName" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:HarpWhiteRabbit.bonsai">
+                    <PortName>COMx</PortName>
+                    <TriggerHarpReadDumpSubjectName>TriggerHarpReadDump</TriggerHarpReadDumpSubjectName>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>RigSchema</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>HarpWhiteRabbit</Selector>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:FilterNotNull.bonsai" />
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:SubscribeWhen" />
+                  </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="11" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source2" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -629,17 +606,67 @@
                             <Property Name="Modality" />
                           </PropertyMappings>
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:LogHarpDevice.bonsai">
-                          <SubjectName>LoggingRootPath</SubjectName>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HarpBehaviorGetMetadata.bonsai" />
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="DeviceMetadata" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:LogHarpDeviceWithMetadata.bonsai">
+                          <DeviceMetadata />
                           <Modality>Behavior</Modality>
-                          <DeviceName />
-                          <HarpDeviceName />
+                          <DeviceName>Behavior</DeviceName>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>HarpWhiteRabbitEvents</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p5:GetMetadata" />
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="DeviceMetadata" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:LogHarpDeviceWithMetadata.bonsai">
+                          <DeviceMetadata />
+                          <Modality>Behavior</Modality>
+                          <DeviceName>ClockGenerator</DeviceName>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>RigSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>HarpWhiteRabbit</Selector>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:FilterNotNull.bonsai" />
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:SubscribeWhen" />
                         </Expression>
                       </Nodes>
                       <Edges>
-                        <Edge From="0" To="3" Label="Source1" />
+                        <Edge From="0" To="5" Label="Source1" />
                         <Edge From="1" To="2" Label="Source1" />
-                        <Edge From="2" To="3" Label="Source2" />
+                        <Edge From="2" To="5" Label="Source2" />
+                        <Edge From="3" To="4" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source3" />
+                        <Edge From="6" To="11" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source1" />
+                        <Edge From="8" To="11" Label="Source2" />
+                        <Edge From="9" To="10" Label="Source1" />
+                        <Edge From="10" To="11" Label="Source3" />
+                        <Edge From="11" To="15" Label="Source1" />
+                        <Edge From="12" To="13" Label="Source1" />
+                        <Edge From="13" To="14" Label="Source1" />
+                        <Edge From="14" To="15" Label="Source2" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -669,9 +696,9 @@
                           <Combinator xsi:type="rx:WithLatestFrom" />
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p5:ModifyMessage">
-                            <p5:Address xsi:nil="true" />
-                            <p5:MessageTypeModified xsi:nil="true" />
+                          <Combinator xsi:type="p6:ModifyMessage">
+                            <p6:Address xsi:nil="true" />
+                            <p6:MessageTypeModified xsi:nil="true" />
                           </Combinator>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
@@ -682,11 +709,62 @@
                             <Property Name="Modality" />
                           </PropertyMappings>
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:LogHarpDevice.bonsai">
-                          <SubjectName>LoggingRootPath</SubjectName>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HarpBehaviorGetMetadata.bonsai" />
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="DeviceMetadata" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:LogHarpDeviceWithMetadata.bonsai">
+                          <DeviceMetadata />
                           <Modality>Behavior</Modality>
-                          <DeviceName />
-                          <HarpDeviceName />
+                          <DeviceName>HarpCommands/Behavior</DeviceName>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>HarpWhiteRabbitCommands</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>HarpTimestampSource</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:WithLatestFrom" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p6:ModifyMessage">
+                            <p6:Address xsi:nil="true" />
+                            <p6:MessageTypeModified xsi:nil="true" />
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p5:GetMetadata" />
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="DeviceMetadata" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:LogHarpDeviceWithMetadata.bonsai">
+                          <DeviceMetadata />
+                          <Modality>Behavior</Modality>
+                          <DeviceName>HarpCommands/ClockGenerator</DeviceName>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>RigSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>HarpWhiteRabbit</Selector>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:FilterNotNull.bonsai" />
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:SubscribeWhen" />
                         </Expression>
                       </Nodes>
                       <Edges>
@@ -695,9 +773,23 @@
                         <Edge From="3" To="5" Label="Source1" />
                         <Edge From="4" To="5" Label="Source2" />
                         <Edge From="5" To="6" Label="Source1" />
-                        <Edge From="6" To="9" Label="Source1" />
+                        <Edge From="6" To="11" Label="Source1" />
                         <Edge From="7" To="8" Label="Source1" />
-                        <Edge From="8" To="9" Label="Source2" />
+                        <Edge From="8" To="11" Label="Source2" />
+                        <Edge From="9" To="10" Label="Source1" />
+                        <Edge From="10" To="11" Label="Source3" />
+                        <Edge From="12" To="14" Label="Source1" />
+                        <Edge From="13" To="14" Label="Source2" />
+                        <Edge From="14" To="15" Label="Source1" />
+                        <Edge From="15" To="20" Label="Source1" />
+                        <Edge From="16" To="17" Label="Source1" />
+                        <Edge From="17" To="20" Label="Source2" />
+                        <Edge From="18" To="19" Label="Source1" />
+                        <Edge From="19" To="20" Label="Source3" />
+                        <Edge From="20" To="24" Label="Source1" />
+                        <Edge From="21" To="22" Label="Source1" />
+                        <Edge From="22" To="23" Label="Source1" />
+                        <Edge From="23" To="24" Label="Source2" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -762,30 +854,11 @@
                               <Expression xsi:type="MulticastSubject">
                                 <Name>SoftwareEvent</Name>
                               </Expression>
-                              <Expression xsi:type="SubscribeSubject">
-                                <Name>Repository</Name>
-                              </Expression>
-                              <Expression xsi:type="Combinator">
-                                <Combinator xsi:type="p2:IsRepositoryClean">
-                                  <p2:IgnoreUntracked>false</p2:IgnoreUntracked>
-                                </Combinator>
-                              </Expression>
-                              <Expression xsi:type="Combinator">
-                                <Combinator xsi:type="p4:CreateSoftwareEvent">
-                                  <p4:EventName>IsRepositoryClean</p4:EventName>
-                                </Combinator>
-                              </Expression>
-                              <Expression xsi:type="MulticastSubject">
-                                <Name>SoftwareEvent</Name>
-                              </Expression>
                             </Nodes>
                             <Edges>
                               <Edge From="0" To="1" Label="Source1" />
                               <Edge From="1" To="2" Label="Source1" />
                               <Edge From="2" To="3" Label="Source1" />
-                              <Edge From="4" To="5" Label="Source1" />
-                              <Edge From="5" To="6" Label="Source1" />
-                              <Edge From="6" To="7" Label="Source1" />
                             </Edges>
                           </Workflow>
                         </Expression>
@@ -1039,7 +1112,7 @@
                                 <SubjectName>LoggingRootPath</SubjectName>
                                 <Modality xsi:nil="true" />
                                 <DeviceName />
-                                <LogName>endsession</LogName>
+                                <LogName>EndSession</LogName>
                               </Expression>
                             </Nodes>
                             <Edges>
@@ -1413,6 +1486,13 @@
         <gui:Visible>true</gui:Visible>
         <gui:Font>Microsoft Sans Serif, 16pt</gui:Font>
       </Expression>
+      <Expression xsi:type="ui:VisualizerWindow">
+        <ui:Text>JustFrames</ui:Text>
+        <ui:Visible>true</ui:Visible>
+        <ui:Location xsi:nil="true" />
+        <ui:Size xsi:nil="true" />
+        <ui:WindowState xsi:nil="true" />
+      </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>EndExperiment</Name>
       </Expression>
@@ -1463,10 +1543,11 @@
       <Edge From="18" To="21" Label="Source2" />
       <Edge From="19" To="20" Label="Source1" />
       <Edge From="20" To="21" Label="Source3" />
-      <Edge From="22" To="23" Label="Source1" />
+      <Edge From="21" To="22" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
       <Edge From="24" To="25" Label="Source1" />
       <Edge From="25" To="26" Label="Source1" />
+      <Edge From="26" To="27" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

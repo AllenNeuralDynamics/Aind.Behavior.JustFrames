@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.5"
+<WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -22,6 +22,9 @@
         <PortName>COM5</PortName>
         <TriggerHarpReadDumpSubjectName>TriggerHarpReadDump</TriggerHarpReadDumpSubjectName>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>HarpBehaviorEvents</Name>
+      </Expression>
       <Expression xsi:type="beh:Parse">
         <harp:Register xsi:type="beh:TimestampedAnalogData" />
       </Expression>
@@ -31,7 +34,6 @@
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>HarpTimestampSource</Name>
       </Expression>
-      <Expression xsi:type="WorkflowOutput" />
       <Expression xsi:type="SubscribeSubject">
         <Name>HarpBehaviorEvents</Name>
       </Expression>
@@ -54,7 +56,6 @@
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
