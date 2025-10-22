@@ -5,13 +5,543 @@
 //----------------------
 
 
-namespace AindVideoEncodingBenchmarksSchemas.Rig
+namespace AindJustFramesSchemas
 {
     #pragma warning disable // Disable all warnings
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class AindBehaviorSessionModel
+    {
+    
+        private string _aindBehaviorServicesPkgVersion;
+    
+        private string _version;
+    
+        private string _experiment;
+    
+        private System.Collections.Generic.List<string> _experimenter;
+    
+        private System.DateTimeOffset _date;
+    
+        private string _rootPath;
+    
+        private string _sessionName;
+    
+        private string _subject;
+    
+        private string _experimentVersion;
+    
+        private string _notes;
+    
+        private string _commitHash;
+    
+        private bool _allowDirtyRepo;
+    
+        private bool _skipHardwareValidation;
+    
+        public AindBehaviorSessionModel()
+        {
+            _aindBehaviorServicesPkgVersion = "0.12.3";
+            _version = "0.12.3";
+            _experimenter = new System.Collections.Generic.List<string>();
+            _experimentVersion = "";
+            _allowDirtyRepo = false;
+            _skipHardwareValidation = false;
+        }
+    
+        protected AindBehaviorSessionModel(AindBehaviorSessionModel other)
+        {
+            _aindBehaviorServicesPkgVersion = other._aindBehaviorServicesPkgVersion;
+            _version = other._version;
+            _experiment = other._experiment;
+            _experimenter = other._experimenter;
+            _date = other._date;
+            _rootPath = other._rootPath;
+            _sessionName = other._sessionName;
+            _subject = other._subject;
+            _experimentVersion = other._experimentVersion;
+            _notes = other._notes;
+            _commitHash = other._commitHash;
+            _allowDirtyRepo = other._allowDirtyRepo;
+            _skipHardwareValidation = other._skipHardwareValidation;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
+        public string AindBehaviorServicesPkgVersion
+        {
+            get
+            {
+                return _aindBehaviorServicesPkgVersion;
+            }
+            set
+            {
+                _aindBehaviorServicesPkgVersion = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("version")]
+        public string Version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                _version = value;
+            }
+        }
+    
+        /// <summary>
+        /// Name of the experiment
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("experiment")]
+        [System.ComponentModel.DescriptionAttribute("Name of the experiment")]
+        public string Experiment
+        {
+            get
+            {
+                return _experiment;
+            }
+            set
+            {
+                _experiment = value;
+            }
+        }
+    
+        /// <summary>
+        /// Name of the experimenter
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("experimenter")]
+        [System.ComponentModel.DescriptionAttribute("Name of the experimenter")]
+        public System.Collections.Generic.List<string> Experimenter
+        {
+            get
+            {
+                return _experimenter;
+            }
+            set
+            {
+                _experimenter = value;
+            }
+        }
+    
+        /// <summary>
+        /// Date of the experiment
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("date")]
+        [System.ComponentModel.DescriptionAttribute("Date of the experiment")]
+        public System.DateTimeOffset Date
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                _date = value;
+            }
+        }
+    
+        /// <summary>
+        /// Root path where data will be logged
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("root_path", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Root path where data will be logged")]
+        public string RootPath
+        {
+            get
+            {
+                return _rootPath;
+            }
+            set
+            {
+                _rootPath = value;
+            }
+        }
+    
+        /// <summary>
+        /// Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("session_name")]
+        [System.ComponentModel.DescriptionAttribute("Name of the session. This will be used to create a folder in the root path. If no" +
+            "t provided, it will be generated using subject and date.")]
+        public string SessionName
+        {
+            get
+            {
+                return _sessionName;
+            }
+            set
+            {
+                _sessionName = value;
+            }
+        }
+    
+        /// <summary>
+        /// Name of the subject
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("subject", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Name of the subject")]
+        public string Subject
+        {
+            get
+            {
+                return _subject;
+            }
+            set
+            {
+                _subject = value;
+            }
+        }
+    
+        /// <summary>
+        /// Version of the experiment
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("experiment_version")]
+        [System.ComponentModel.DescriptionAttribute("Version of the experiment")]
+        public string ExperimentVersion
+        {
+            get
+            {
+                return _experimentVersion;
+            }
+            set
+            {
+                _experimentVersion = value;
+            }
+        }
+    
+        /// <summary>
+        /// Notes about the experiment
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("notes")]
+        [System.ComponentModel.DescriptionAttribute("Notes about the experiment")]
+        public string Notes
+        {
+            get
+            {
+                return _notes;
+            }
+            set
+            {
+                _notes = value;
+            }
+        }
+    
+        /// <summary>
+        /// Commit hash of the repository
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commit_hash")]
+        [System.ComponentModel.DescriptionAttribute("Commit hash of the repository")]
+        public string CommitHash
+        {
+            get
+            {
+                return _commitHash;
+            }
+            set
+            {
+                _commitHash = value;
+            }
+        }
+    
+        /// <summary>
+        /// Allow running from a dirty repository
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("allow_dirty_repo")]
+        [System.ComponentModel.DescriptionAttribute("Allow running from a dirty repository")]
+        public bool AllowDirtyRepo
+        {
+            get
+            {
+                return _allowDirtyRepo;
+            }
+            set
+            {
+                _allowDirtyRepo = value;
+            }
+        }
+    
+        /// <summary>
+        /// Skip hardware validation
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("skip_hardware_validation")]
+        [System.ComponentModel.DescriptionAttribute("Skip hardware validation")]
+        public bool SkipHardwareValidation
+        {
+            get
+            {
+                return _skipHardwareValidation;
+            }
+            set
+            {
+                _skipHardwareValidation = value;
+            }
+        }
+    
+        public System.IObservable<AindBehaviorSessionModel> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindBehaviorSessionModel(this)));
+        }
+    
+        public System.IObservable<AindBehaviorSessionModel> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new AindBehaviorSessionModel(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("AindBehaviorServicesPkgVersion = " + _aindBehaviorServicesPkgVersion + ", ");
+            stringBuilder.Append("Version = " + _version + ", ");
+            stringBuilder.Append("Experiment = " + _experiment + ", ");
+            stringBuilder.Append("Experimenter = " + _experimenter + ", ");
+            stringBuilder.Append("Date = " + _date + ", ");
+            stringBuilder.Append("RootPath = " + _rootPath + ", ");
+            stringBuilder.Append("SessionName = " + _sessionName + ", ");
+            stringBuilder.Append("Subject = " + _subject + ", ");
+            stringBuilder.Append("ExperimentVersion = " + _experimentVersion + ", ");
+            stringBuilder.Append("Notes = " + _notes + ", ");
+            stringBuilder.Append("CommitHash = " + _commitHash + ", ");
+            stringBuilder.Append("AllowDirtyRepo = " + _allowDirtyRepo + ", ");
+            stringBuilder.Append("SkipHardwareValidation = " + _skipHardwareValidation);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class AindJustFramesRig
+    {
+    
+        private string _aindBehaviorServicesPkgVersion;
+    
+        private string _version;
+    
+        private string _computerName;
+    
+        private string _rigName;
+    
+        private CameraControllerSpinnakerCamera _triggeredCameraController0;
+    
+        private CameraControllerSpinnakerCamera _triggeredCameraController1;
+    
+        private HarpBehavior _harpBehavior;
+    
+        private HarpWhiteRabbit _harpWhiteRabbit;
+    
+        public AindJustFramesRig()
+        {
+            _aindBehaviorServicesPkgVersion = "0.12.3";
+            _version = "0.5.0-rc0";
+            _harpBehavior = new HarpBehavior();
+        }
+    
+        protected AindJustFramesRig(AindJustFramesRig other)
+        {
+            _aindBehaviorServicesPkgVersion = other._aindBehaviorServicesPkgVersion;
+            _version = other._version;
+            _computerName = other._computerName;
+            _rigName = other._rigName;
+            _triggeredCameraController0 = other._triggeredCameraController0;
+            _triggeredCameraController1 = other._triggeredCameraController1;
+            _harpBehavior = other._harpBehavior;
+            _harpWhiteRabbit = other._harpWhiteRabbit;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
+        public string AindBehaviorServicesPkgVersion
+        {
+            get
+            {
+                return _aindBehaviorServicesPkgVersion;
+            }
+            set
+            {
+                _aindBehaviorServicesPkgVersion = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("version")]
+        public string Version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                _version = value;
+            }
+        }
+    
+        /// <summary>
+        /// Computer name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("computer_name")]
+        [System.ComponentModel.DescriptionAttribute("Computer name")]
+        public string ComputerName
+        {
+            get
+            {
+                return _computerName;
+            }
+            set
+            {
+                _computerName = value;
+            }
+        }
+    
+        /// <summary>
+        /// Rig name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rig_name", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Rig name")]
+        public string RigName
+        {
+            get
+            {
+                return _rigName;
+            }
+            set
+            {
+                _rigName = value;
+            }
+        }
+    
+        /// <summary>
+        /// Camera controller to triggered cameras. Will use Camera0 register as a trigger.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_0")]
+        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera0 register as a trigger.")]
+        public CameraControllerSpinnakerCamera TriggeredCameraController0
+        {
+            get
+            {
+                return _triggeredCameraController0;
+            }
+            set
+            {
+                _triggeredCameraController0 = value;
+            }
+        }
+    
+        /// <summary>
+        /// Camera controller to triggered cameras. Will use Camera1 register as a trigger.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_1")]
+        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera1 register as a trigger.")]
+        public CameraControllerSpinnakerCamera TriggeredCameraController1
+        {
+            get
+            {
+                return _triggeredCameraController1;
+            }
+            set
+            {
+                _triggeredCameraController1 = value;
+            }
+        }
+    
+        /// <summary>
+        /// Harp behavior board. Will be the source of triggers for the two camera controllers.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("harp_behavior", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Harp behavior board. Will be the source of triggers for the two camera controller" +
+            "s.")]
+        public HarpBehavior HarpBehavior
+        {
+            get
+            {
+                return _harpBehavior;
+            }
+            set
+            {
+                _harpBehavior = value;
+            }
+        }
+    
+        /// <summary>
+        /// Harp White Rabbit for time synchronization.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("harp_white_rabbit")]
+        [System.ComponentModel.DescriptionAttribute("Harp White Rabbit for time synchronization.")]
+        public HarpWhiteRabbit HarpWhiteRabbit
+        {
+            get
+            {
+                return _harpWhiteRabbit;
+            }
+            set
+            {
+                _harpWhiteRabbit = value;
+            }
+        }
+    
+        public System.IObservable<AindJustFramesRig> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindJustFramesRig(this)));
+        }
+    
+        public System.IObservable<AindJustFramesRig> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new AindJustFramesRig(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("AindBehaviorServicesPkgVersion = " + _aindBehaviorServicesPkgVersion + ", ");
+            stringBuilder.Append("Version = " + _version + ", ");
+            stringBuilder.Append("ComputerName = " + _computerName + ", ");
+            stringBuilder.Append("RigName = " + _rigName + ", ");
+            stringBuilder.Append("TriggeredCameraController0 = " + _triggeredCameraController0 + ", ");
+            stringBuilder.Append("TriggeredCameraController1 = " + _triggeredCameraController1 + ", ");
+            stringBuilder.Append("HarpBehavior = " + _harpBehavior + ", ");
+            stringBuilder.Append("HarpWhiteRabbit = " + _harpWhiteRabbit);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class BaseModel
     {
     
@@ -23,12 +553,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         {
         }
     
-        public System.IObservable<BaseModel> Process()
+        public System.IObservable<BaseModel> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new BaseModel(this)));
         }
     
-        public System.IObservable<BaseModel> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<BaseModel> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new BaseModel(this));
         }
@@ -53,29 +583,34 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class CameraControllerSpinnakerCamera
     {
     
-        private string _deviceType = "CameraController";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private BaseModel _additionalSettings;
     
         private BaseModel _calibration;
     
-        private System.Collections.Generic.IDictionary<string, SpinnakerCamera> _cameras = new System.Collections.Generic.Dictionary<string, SpinnakerCamera>();
+        private System.Collections.Generic.Dictionary<string, SpinnakerCamera> _cameras;
     
         private int? _frameRate;
     
         public CameraControllerSpinnakerCamera()
         {
+            _deviceType = "CameraController";
+            _cameras = new System.Collections.Generic.Dictionary<string, SpinnakerCamera>();
         }
     
         protected CameraControllerSpinnakerCamera(CameraControllerSpinnakerCamera other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _cameras = other._cameras;
@@ -92,6 +627,23 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -137,7 +689,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("cameras", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Cameras to be instantiated")]
-        public System.Collections.Generic.IDictionary<string, SpinnakerCamera> Cameras
+        public System.Collections.Generic.Dictionary<string, SpinnakerCamera> Cameras
         {
             get
             {
@@ -167,23 +719,24 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
-        public System.IObservable<CameraControllerSpinnakerCamera> Process()
+        public System.IObservable<CameraControllerSpinnakerCamera> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new CameraControllerSpinnakerCamera(this)));
         }
     
-        public System.IObservable<CameraControllerSpinnakerCamera> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<CameraControllerSpinnakerCamera> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new CameraControllerSpinnakerCamera(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("cameras = " + _cameras + ", ");
-            stringBuilder.Append("frame_rate = " + _frameRate);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("Cameras = " + _cameras + ", ");
+            stringBuilder.Append("FrameRate = " + _frameRate);
             return true;
         }
     
@@ -202,19 +755,107 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class ConnectedClockOutput
+    {
+    
+        private string _targetDevice;
+    
+        private int _outputChannel;
+    
+        public ConnectedClockOutput()
+        {
+        }
+    
+        protected ConnectedClockOutput(ConnectedClockOutput other)
+        {
+            _targetDevice = other._targetDevice;
+            _outputChannel = other._outputChannel;
+        }
+    
+        /// <summary>
+        /// Optional device name to provide user additional information
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("target_device")]
+        [System.ComponentModel.DescriptionAttribute("Optional device name to provide user additional information")]
+        public string TargetDevice
+        {
+            get
+            {
+                return _targetDevice;
+            }
+            set
+            {
+                _targetDevice = value;
+            }
+        }
+    
+        /// <summary>
+        /// Output channel
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("output_channel", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Output channel")]
+        public int OutputChannel
+        {
+            get
+            {
+                return _outputChannel;
+            }
+            set
+            {
+                _outputChannel = value;
+            }
+        }
+    
+        public System.IObservable<ConnectedClockOutput> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new ConnectedClockOutput(this)));
+        }
+    
+        public System.IObservable<ConnectedClockOutput> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new ConnectedClockOutput(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("TargetDevice = " + _targetDevice + ", ");
+            stringBuilder.Append("OutputChannel = " + _outputChannel);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class HarpBehavior
     {
     
-        private string _deviceType = "Behavior";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private BaseModel _additionalSettings;
     
         private BaseModel _calibration;
     
-        private int _whoAmI = 1216;
+        private int _whoAmI;
     
         private string _serialNumber;
     
@@ -222,11 +863,14 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         public HarpBehavior()
         {
+            _deviceType = "Behavior";
+            _whoAmI = 1216;
         }
     
         protected HarpBehavior(HarpBehavior other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _whoAmI = other._whoAmI;
@@ -244,6 +888,23 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -330,24 +991,25 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
-        public System.IObservable<HarpBehavior> Process()
+        public System.IObservable<HarpBehavior> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HarpBehavior(this)));
         }
     
-        public System.IObservable<HarpBehavior> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<HarpBehavior> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new HarpBehavior(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("who_am_i = " + _whoAmI + ", ");
-            stringBuilder.Append("serial_number = " + _serialNumber + ", ");
-            stringBuilder.Append("port_name = " + _portName);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("WhoAmI = " + _whoAmI + ", ");
+            stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
+            stringBuilder.Append("PortName = " + _portName);
             return true;
         }
     
@@ -366,22 +1028,236 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class HarpWhiteRabbit
+    {
+    
+        private string _deviceType;
+    
+        private string _deviceName;
+    
+        private BaseModel _additionalSettings;
+    
+        private BaseModel _calibration;
+    
+        private int _whoAmI;
+    
+        private string _serialNumber;
+    
+        private string _portName;
+    
+        private System.Collections.Generic.List<ConnectedClockOutput> _connectedClockOutputs;
+    
+        public HarpWhiteRabbit()
+        {
+            _deviceType = "WhiteRabbit";
+            _whoAmI = 1404;
+            _connectedClockOutputs = new System.Collections.Generic.List<ConnectedClockOutput>();
+        }
+    
+        protected HarpWhiteRabbit(HarpWhiteRabbit other)
+        {
+            _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
+            _additionalSettings = other._additionalSettings;
+            _calibration = other._calibration;
+            _whoAmI = other._whoAmI;
+            _serialNumber = other._serialNumber;
+            _portName = other._portName;
+            _connectedClockOutputs = other._connectedClockOutputs;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("device_type")]
+        public string DeviceType
+        {
+            get
+            {
+                return _deviceType;
+            }
+            set
+            {
+                _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
+            }
+        }
+    
+        /// <summary>
+        /// Additional settings
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("additional_settings")]
+        [System.ComponentModel.DescriptionAttribute("Additional settings")]
+        public BaseModel AdditionalSettings
+        {
+            get
+            {
+                return _additionalSettings;
+            }
+            set
+            {
+                _additionalSettings = value;
+            }
+        }
+    
+        /// <summary>
+        /// Calibration
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("calibration")]
+        [System.ComponentModel.DescriptionAttribute("Calibration")]
+        public BaseModel Calibration
+        {
+            get
+            {
+                return _calibration;
+            }
+            set
+            {
+                _calibration = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("who_am_i")]
+        public int WhoAmI
+        {
+            get
+            {
+                return _whoAmI;
+            }
+            set
+            {
+                _whoAmI = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device serial number
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("serial_number")]
+        [System.ComponentModel.DescriptionAttribute("Device serial number")]
+        public string SerialNumber
+        {
+            get
+            {
+                return _serialNumber;
+            }
+            set
+            {
+                _serialNumber = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device port name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("port_name", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Device port name")]
+        public string PortName
+        {
+            get
+            {
+                return _portName;
+            }
+            set
+            {
+                _portName = value;
+            }
+        }
+    
+        /// <summary>
+        /// Connected clock outputs
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("connected_clock_outputs")]
+        [System.ComponentModel.DescriptionAttribute("Connected clock outputs")]
+        public System.Collections.Generic.List<ConnectedClockOutput> ConnectedClockOutputs
+        {
+            get
+            {
+                return _connectedClockOutputs;
+            }
+            set
+            {
+                _connectedClockOutputs = value;
+            }
+        }
+    
+        public System.IObservable<HarpWhiteRabbit> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HarpWhiteRabbit(this)));
+        }
+    
+        public System.IObservable<HarpWhiteRabbit> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new HarpWhiteRabbit(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("WhoAmI = " + _whoAmI + ", ");
+            stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
+            stringBuilder.Append("PortName = " + _portName + ", ");
+            stringBuilder.Append("ConnectedClockOutputs = " + _connectedClockOutputs);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class Rect
     {
     
-        private int _x = 0;
+        private int _x;
     
-        private int _y = 0;
+        private int _y;
     
-        private int _width = 0;
+        private int _width;
     
-        private int _height = 0;
+        private int _height;
     
         public Rect()
         {
+            _x = 0;
+            _y = 0;
+            _width = 0;
+            _height = 0;
         }
     
         protected Rect(Rect other)
@@ -460,22 +1336,22 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
-        public System.IObservable<Rect> Process()
+        public System.IObservable<Rect> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Rect(this)));
         }
     
-        public System.IObservable<Rect> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<Rect> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new Rect(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("x = " + _x + ", ");
-            stringBuilder.Append("y = " + _y + ", ");
-            stringBuilder.Append("width = " + _width + ", ");
-            stringBuilder.Append("height = " + _height);
+            stringBuilder.Append("X = " + _x + ", ");
+            stringBuilder.Append("Y = " + _y + ", ");
+            stringBuilder.Append("Width = " + _width + ", ");
+            stringBuilder.Append("Height = " + _height);
             return true;
         }
     
@@ -494,13 +1370,15 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class SpinnakerCamera
     {
     
-        private string _deviceType = "SpinnakerCamera";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private BaseModel _additionalSettings;
     
@@ -508,19 +1386,19 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private string _serialNumber;
     
-        private int _binning = 1;
+        private int _binning;
     
-        private SpinnakerCameraColorProcessing _colorProcessing = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraColorProcessing.Default;
+        private SpinnakerCameraColorProcessing _colorProcessing;
     
-        private int _exposure = 1000;
+        private int _exposure;
     
-        private double _gain = 0D;
+        private double _gain;
     
         private double? _gamma;
     
-        private SpinnakerCameraAdcBitDepth? _adcBitDepth = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
+        private SpinnakerCameraAdcBitDepth? _adcBitDepth;
     
-        private SpinnakerCameraPixelFormat? _pixelFormat = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraPixelFormat.Mono8;
+        private SpinnakerCameraPixelFormat? _pixelFormat;
     
         private Rect _regionOfInterest;
     
@@ -528,11 +1406,20 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         public SpinnakerCamera()
         {
+            _deviceType = "SpinnakerCamera";
+            _binning = 1;
+            _colorProcessing = AindJustFramesSchemas.SpinnakerCameraColorProcessing.Default;
+            _exposure = 1000;
+            _gain = 0D;
+            _adcBitDepth = AindJustFramesSchemas.SpinnakerCameraAdcBitDepth.Adc8bit;
+            _pixelFormat = AindJustFramesSchemas.SpinnakerCameraPixelFormat.Mono8;
+            _regionOfInterest = new Rect();
         }
     
         protected SpinnakerCamera(SpinnakerCamera other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _serialNumber = other._serialNumber;
@@ -561,6 +1448,23 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -776,31 +1680,32 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
-        public System.IObservable<SpinnakerCamera> Process()
+        public System.IObservable<SpinnakerCamera> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new SpinnakerCamera(this)));
         }
     
-        public System.IObservable<SpinnakerCamera> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<SpinnakerCamera> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new SpinnakerCamera(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("serial_number = " + _serialNumber + ", ");
-            stringBuilder.Append("binning = " + _binning + ", ");
-            stringBuilder.Append("color_processing = " + _colorProcessing + ", ");
-            stringBuilder.Append("exposure = " + _exposure + ", ");
-            stringBuilder.Append("gain = " + _gain + ", ");
-            stringBuilder.Append("gamma = " + _gamma + ", ");
-            stringBuilder.Append("adc_bit_depth = " + _adcBitDepth + ", ");
-            stringBuilder.Append("pixel_format = " + _pixelFormat + ", ");
-            stringBuilder.Append("region_of_interest = " + _regionOfInterest + ", ");
-            stringBuilder.Append("video_writer = " + _videoWriter);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
+            stringBuilder.Append("Binning = " + _binning + ", ");
+            stringBuilder.Append("ColorProcessing = " + _colorProcessing + ", ");
+            stringBuilder.Append("Exposure = " + _exposure + ", ");
+            stringBuilder.Append("Gain = " + _gain + ", ");
+            stringBuilder.Append("Gamma = " + _gamma + ", ");
+            stringBuilder.Append("AdcBitDepth = " + _adcBitDepth + ", ");
+            stringBuilder.Append("PixelFormat = " + _pixelFormat + ", ");
+            stringBuilder.Append("RegionOfInterest = " + _regionOfInterest + ", ");
+            stringBuilder.Append("VideoWriter = " + _videoWriter);
             return true;
         }
     
@@ -819,7 +1724,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     public enum SpinnakerCameraAdcBitDepth
     {
     
@@ -834,7 +1739,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     public enum SpinnakerCameraPixelFormat
     {
     
@@ -1272,12 +2177,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "video_writer_type")]
     [JsonInheritanceAttribute("FFMPEG", typeof(VideoWriterFfmpeg))]
     [JsonInheritanceAttribute("OPENCV", typeof(VideoWriterOpenCv))]
-    [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriter
     {
     
@@ -1289,12 +2194,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         {
         }
     
-        public System.IObservable<VideoWriter> Process()
+        public System.IObservable<VideoWriter> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VideoWriter(this)));
         }
     
-        public System.IObservable<VideoWriter> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<VideoWriter> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new VideoWriter(this));
         }
@@ -1319,22 +2224,26 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriterFfmpeg : VideoWriter
     {
     
-        private int _frameRate = 30;
+        private int _frameRate;
     
-        private string _containerExtension = "mp4";
+        private string _containerExtension;
     
-        private string _outputArguments = "-vf \"scale=out_color_matrix=bt709:out_range=full,format=bgr24,scale=out_range=full\" -c:v h264_nvenc -pix_fmt yuv420p -color_range full -colorspace bt709 -color_trc linear -tune hq -preset p4 -rc vbr -cq 12 -b:v 0M -metadata author=\"Allen Institute for Neural Dynamics\" -maxrate 700M -bufsize 350M";
+        private string _outputArguments;
     
-        private string _inputArguments = "-colorspace bt709 -color_primaries bt709 -color_range full -color_trc linear";
+        private string _inputArguments;
     
         public VideoWriterFfmpeg()
         {
+            _frameRate = 30;
+            _containerExtension = "mp4";
+            _outputArguments = "-vf \"scale=out_color_matrix=bt709:out_range=full,format=bgr24,scale=out_range=full\" -c:v h264_nvenc -pix_fmt yuv420p -color_range full -colorspace bt709 -color_trc linear -tune hq -preset p4 -rc vbr -cq 12 -b:v 0M -metadata author=\"Allen Institute for Neural Dynamics\" -maxrate 700M -bufsize 350M";
+            _inputArguments = "-colorspace bt709 -color_primaries bt709 -color_range full -color_trc linear";
         }
     
         protected VideoWriterFfmpeg(VideoWriterFfmpeg other) : 
@@ -1414,12 +2323,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
-        public System.IObservable<VideoWriterFfmpeg> Process()
+        public System.IObservable<VideoWriterFfmpeg> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VideoWriterFfmpeg(this)));
         }
     
-        public System.IObservable<VideoWriterFfmpeg> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<VideoWriterFfmpeg> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new VideoWriterFfmpeg(this));
         }
@@ -1430,29 +2339,32 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             {
                 stringBuilder.Append(", ");
             }
-            stringBuilder.Append("frame_rate = " + _frameRate + ", ");
-            stringBuilder.Append("container_extension = " + _containerExtension + ", ");
-            stringBuilder.Append("output_arguments = " + _outputArguments + ", ");
-            stringBuilder.Append("input_arguments = " + _inputArguments);
+            stringBuilder.Append("FrameRate = " + _frameRate + ", ");
+            stringBuilder.Append("ContainerExtension = " + _containerExtension + ", ");
+            stringBuilder.Append("OutputArguments = " + _outputArguments + ", ");
+            stringBuilder.Append("InputArguments = " + _inputArguments);
             return true;
         }
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriterOpenCv : VideoWriter
     {
     
-        private int _frameRate = 30;
+        private int _frameRate;
     
-        private string _containerExtension = "avi";
+        private string _containerExtension;
     
-        private string _fourCc = "FMP4";
+        private string _fourCc;
     
         public VideoWriterOpenCv()
         {
+            _frameRate = 30;
+            _containerExtension = "avi";
+            _fourCc = "FMP4";
         }
     
         protected VideoWriterOpenCv(VideoWriterOpenCv other) : 
@@ -1514,12 +2426,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
-        public System.IObservable<VideoWriterOpenCv> Process()
+        public System.IObservable<VideoWriterOpenCv> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VideoWriterOpenCv(this)));
         }
     
-        public System.IObservable<VideoWriterOpenCv> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<VideoWriterOpenCv> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new VideoWriterOpenCv(this));
         }
@@ -1530,202 +2442,15 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             {
                 stringBuilder.Append(", ");
             }
-            stringBuilder.Append("frame_rate = " + _frameRate + ", ");
-            stringBuilder.Append("container_extension = " + _containerExtension + ", ");
-            stringBuilder.Append("four_cc = " + _fourCc);
+            stringBuilder.Append("FrameRate = " + _frameRate + ", ");
+            stringBuilder.Append("ContainerExtension = " + _containerExtension + ", ");
+            stringBuilder.Append("FourCc = " + _fourCc);
             return true;
         }
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
-    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    public partial class AindVideoEncodingBenchmarksRig
-    {
-    
-        private string _aindBehaviorServicesPkgVersion = "0.10.2";
-    
-        private string _version = "0.2.1";
-    
-        private string _computerName;
-    
-        private string _rigName;
-    
-        private CameraControllerSpinnakerCamera _triggeredCameraController0;
-    
-        private CameraControllerSpinnakerCamera _triggeredCameraController1;
-    
-        private HarpBehavior _harpBehavior = new HarpBehavior();
-    
-        public AindVideoEncodingBenchmarksRig()
-        {
-        }
-    
-        protected AindVideoEncodingBenchmarksRig(AindVideoEncodingBenchmarksRig other)
-        {
-            _aindBehaviorServicesPkgVersion = other._aindBehaviorServicesPkgVersion;
-            _version = other._version;
-            _computerName = other._computerName;
-            _rigName = other._rigName;
-            _triggeredCameraController0 = other._triggeredCameraController0;
-            _triggeredCameraController1 = other._triggeredCameraController1;
-            _harpBehavior = other._harpBehavior;
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
-        public string AindBehaviorServicesPkgVersion
-        {
-            get
-            {
-                return _aindBehaviorServicesPkgVersion;
-            }
-            set
-            {
-                _aindBehaviorServicesPkgVersion = value;
-            }
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("version")]
-        public string Version
-        {
-            get
-            {
-                return _version;
-            }
-            set
-            {
-                _version = value;
-            }
-        }
-    
-        /// <summary>
-        /// Computer name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("computer_name")]
-        [System.ComponentModel.DescriptionAttribute("Computer name")]
-        public string ComputerName
-        {
-            get
-            {
-                return _computerName;
-            }
-            set
-            {
-                _computerName = value;
-            }
-        }
-    
-        /// <summary>
-        /// Rig name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("rig_name", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Rig name")]
-        public string RigName
-        {
-            get
-            {
-                return _rigName;
-            }
-            set
-            {
-                _rigName = value;
-            }
-        }
-    
-        /// <summary>
-        /// Camera controller to triggered cameras. Will use Camera0 register as a trigger.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_0")]
-        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera0 register as a trigger.")]
-        public CameraControllerSpinnakerCamera TriggeredCameraController0
-        {
-            get
-            {
-                return _triggeredCameraController0;
-            }
-            set
-            {
-                _triggeredCameraController0 = value;
-            }
-        }
-    
-        /// <summary>
-        /// Camera controller to triggered cameras. Will use Camera1 register as a trigger.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_1")]
-        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera1 register as a trigger.")]
-        public CameraControllerSpinnakerCamera TriggeredCameraController1
-        {
-            get
-            {
-                return _triggeredCameraController1;
-            }
-            set
-            {
-                _triggeredCameraController1 = value;
-            }
-        }
-    
-        /// <summary>
-        /// Harp behavior board. Will be the source of triggers for the two camera controllers.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("harp_behavior", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Harp behavior board. Will be the source of triggers for the two camera controller" +
-            "s.")]
-        public HarpBehavior HarpBehavior
-        {
-            get
-            {
-                return _harpBehavior;
-            }
-            set
-            {
-                _harpBehavior = value;
-            }
-        }
-    
-        public System.IObservable<AindVideoEncodingBenchmarksRig> Process()
-        {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindVideoEncodingBenchmarksRig(this)));
-        }
-    
-        public System.IObservable<AindVideoEncodingBenchmarksRig> Process<TSource>(System.IObservable<TSource> source)
-        {
-            return System.Reactive.Linq.Observable.Select(source, _ => new AindVideoEncodingBenchmarksRig(this));
-        }
-    
-        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
-        {
-            stringBuilder.Append("aind_behavior_services_pkg_version = " + _aindBehaviorServicesPkgVersion + ", ");
-            stringBuilder.Append("version = " + _version + ", ");
-            stringBuilder.Append("computer_name = " + _computerName + ", ");
-            stringBuilder.Append("rig_name = " + _rigName + ", ");
-            stringBuilder.Append("triggered_camera_controller_0 = " + _triggeredCameraController0 + ", ");
-            stringBuilder.Append("triggered_camera_controller_1 = " + _triggeredCameraController1 + ", ");
-            stringBuilder.Append("harp_behavior = " + _harpBehavior);
-            return true;
-        }
-    
-        public override string ToString()
-        {
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append(GetType().Name);
-            stringBuilder.Append(" { ");
-            if (PrintMembers(stringBuilder))
-            {
-                stringBuilder.Append(" ");
-            }
-            stringBuilder.Append("}");
-            return stringBuilder.ToString();
-        }
-    }
-
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum SpinnakerCameraColorProcessing
     {
@@ -1875,7 +2600,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Combinator)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
@@ -1919,16 +2644,29 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     /// <summary>
     /// Serializes a sequence of data model objects into JSON strings.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Serializes a sequence of data model objects into JSON strings.")]
-    [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
+    [Bonsai.CombinatorAttribute()]
     public partial class SerializeToJson
     {
     
+        public Newtonsoft.Json.Formatting Formatting { get; set; }
+
         private System.IObservable<string> Process<T>(System.IObservable<T> source)
         {
-            return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value));
+            var formatting = Formatting;
+            return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value, formatting));
+        }
+
+        public System.IObservable<string> Process(System.IObservable<AindBehaviorSessionModel> source)
+        {
+            return Process<AindBehaviorSessionModel>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<AindJustFramesRig> source)
+        {
+            return Process<AindJustFramesRig>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<BaseModel> source)
@@ -1941,9 +2679,19 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             return Process<CameraControllerSpinnakerCamera>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<ConnectedClockOutput> source)
+        {
+            return Process<ConnectedClockOutput>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<HarpBehavior> source)
         {
             return Process<HarpBehavior>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<HarpWhiteRabbit> source)
+        {
+            return Process<HarpWhiteRabbit>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<Rect> source)
@@ -1970,36 +2718,34 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         {
             return Process<VideoWriterOpenCv>(source);
         }
-
-        public System.IObservable<string> Process(System.IObservable<AindVideoEncodingBenchmarksRig> source)
-        {
-            return Process<AindVideoEncodingBenchmarksRig>(source);
-        }
     }
 
 
     /// <summary>
     /// Deserializes a sequence of JSON strings into data model objects.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AindBehaviorSessionModel>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AindJustFramesRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<BaseModel>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<CameraControllerSpinnakerCamera>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ConnectedClockOutput>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpBehavior>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpWhiteRabbit>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Rect>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterOpenCv>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AindVideoEncodingBenchmarksRig>))]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
     {
     
         public DeserializeFromJson()
         {
-            Type = new Bonsai.Expressions.TypeMapping<AindVideoEncodingBenchmarksRig>();
+            Type = new Bonsai.Expressions.TypeMapping<AindBehaviorSessionModel>();
         }
 
         public Bonsai.Expressions.TypeMapping Type { get; set; }

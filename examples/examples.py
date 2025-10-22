@@ -2,12 +2,13 @@ import datetime
 import os
 
 import aind_behavior_services.rig as rig
-from aind_behavior_services.session import AindBehaviorSessionModel
-from aind_behavior_video_encoding_benchmarks.rig import AindVideoEncodingBenchmarksRig
-from aind_behavior_video_encoding_benchmarks.task_logic import (
+from aind_behavior_just_frames.task_logic import (
     AindVideoEncodingBenchmarksTaskLogic,
     AindVideoEncodingBenchmarksTaskParameters,
 )
+from aind_behavior_services.session import AindBehaviorSessionModel
+
+from aind_behavior_just_frames.rig import AindVideoEncodingBenchmarksRig
 
 
 def main(path_seed: str = "./local/{schema}.json"):

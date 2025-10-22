@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:p1="clr-namespace:AindVideoEncodingBenchmarksSchemas.Session;assembly=Extensions"
+                 xmlns:p1="clr-namespace:AindJustFramesSchemas;assembly=Extensions"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:p2="clr-namespace:AindVideoEncodingBenchmarksSchemas.Rig;assembly=Extensions"
-                 xmlns:p3="clr-namespace:AindVideoEncodingBenchmarksSchemas.TaskLogic;assembly=Extensions"
+                 xmlns:p2="clr-namespace:AindJustFramesSchemas;assembly=Extensions"
+                 xmlns:p3="clr-namespace:AindJustFramesSchemas.TaskLogic;assembly=Extensions"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>

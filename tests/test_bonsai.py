@@ -4,13 +4,14 @@ import unittest
 from pathlib import Path
 from typing import Generic, List, Optional, TypeVar, Union
 
-from aind_behavior_services.session import AindBehaviorSessionModel
-from aind_behavior_services.utils import run_bonsai_process
-from aind_behavior_video_encoding_benchmarks.rig import AindVideoEncodingBenchmarksRig
-from aind_behavior_video_encoding_benchmarks.task_logic import (
+from aind_behavior_just_frames.task_logic import (
     AindVideoEncodingBenchmarksTaskLogic,
 )
+from aind_behavior_services.session import AindBehaviorSessionModel
+from aind_behavior_services.utils import run_bonsai_process
 from pydantic import ValidationError
+
+from aind_behavior_just_frames.rig import AindVideoEncodingBenchmarksRig
 
 sys.path.append(".")
 from examples import examples  # isort:skip # pylint: disable=wrong-import-position

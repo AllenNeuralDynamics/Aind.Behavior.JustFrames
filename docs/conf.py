@@ -6,13 +6,14 @@
 import os
 import sys
 
-import aind_behavior_video_encoding_benchmarks.rig
-import aind_behavior_video_encoding_benchmarks.task_logic
+import aind_behavior_just_frames.task_logic
 import erdantic as erd
 from pydantic import BaseModel
 
+import aind_behavior_just_frames.rig
+
 sys.path.insert(0, os.path.abspath("../src/DataSchemas"))
-import aind_behavior_video_encoding_benchmarks
+import aind_behavior_just_frames
 
 SOURCE_ROOT = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VideoEncodingBenchmarks/tree/main/src/DataSchemas/"
 
@@ -22,7 +23,7 @@ SOURCE_ROOT = "https://github.com/AllenNeuralDynamics/Aind.Behavior.VideoEncodin
 project = "AIND Video Encoding Benchmarks project"
 copyright = "2024, Allen Institute for Neural Dynamics"
 author = "Bruno Cruz"
-release = aind_behavior_video_encoding_benchmarks.__version__
+release = aind_behavior_just_frames.__semver__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

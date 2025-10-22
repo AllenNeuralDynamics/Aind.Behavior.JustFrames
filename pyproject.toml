@@ -1,51 +1,48 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.8.22"]
+build-backend = "uv_build"
 
 [project]
-name = "aind-behavior-video-encoding-benchmarks"
+name = "aind-behavior-just_frames"
 description = "A library for benchmarking online video acquisition/encoding pipelines"
+authors = [ {name = "Bruno Cruz", email = "bruno.cruz@alleninstitute.org"}]
 license = {text = "MIT"}
 requires-python = ">=3.11"
 classifiers = [
-    "Programming Language :: Python :: 3"
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: Microsoft :: Windows",
 ]
-readme = "README.md"
-dynamic = ["version"]
+version = "0.5.0rc0"
+readme = {file = "README.md", content-type = "text/markdown"}
 
 dependencies = [
-  "aind_behavior_services>=0.10, <0.11",
+  "aind_behavior_services>=0.12, <0.13",
+  "pydantic-settings"
 ]
 
 [project.optional-dependencies]
 
-launcher = ["aind_behavior_experiment_launcher[aind-services]"]
+launcher = ["aind-clabe[aind-services] >= 0.8.2 ,<0.9.0"]
 
-dev = ["aind_behavior_video_encoding_benchmarks[launcher]",
+
+[dependency-groups]
+
+dev = ["aind_behavior_just_frames[launcher]",
     "ruff",
     "codespell"
 ]
 
-
 docs = [
-    'Sphinx<7.3',
+    'Sphinx',
     'furo',
     'sphinx-jinja',
     'autodoc_pydantic[erdantic]',
     'myst_parser',
-    'sphinx-jsonschema'
+    'sphinx-jsonschema',
 ]
 
 [project.scripts]
-clabe = "aind_behavior_video_encoding_benchmarks.launcher:main"
-regenerate = "aind_behavior_video_encoding_benchmarks.regenerate:main"
-
-[tool.setuptools.packages.find]
-where = ["src/DataSchemas"]
-
-[tool.setuptools.dynamic]
-version = {attr = "aind_behavior_video_encoding_benchmarks.__version__"}
-readme = {file = ["README.md"]}
+just-frames = "aind_behavior_just_frames.cli:main"
 
 [tool.ruff]
 line-length = 120
@@ -60,3 +57,7 @@ pydocstyle = { convention = 'google' }
 [tool.codespell]
 skip = '.git,*.pdf,*.svg'
 ignore-words-list = 'nd'
+
+[tool.uv]
+default-groups = ['dev']
+required-version = '>=0.8.4'
