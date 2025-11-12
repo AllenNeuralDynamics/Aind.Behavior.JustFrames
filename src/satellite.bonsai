@@ -27,7 +27,7 @@
               <Name>RawRigSchema</Name>
             </Expression>
             <Expression xsi:type="p1:DeserializeFromJson">
-              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:AindJustFramesRig" />
+              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:SatelliteRig" />
             </Expression>
             <Expression xsi:type="rx:AsyncSubject">
               <Name>RigSchema</Name>

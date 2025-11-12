@@ -5,7 +5,7 @@
 //----------------------
 
 
-namespace AindJustFramesSchemas
+namespace AindJustFramesSchemas.MessageProtocol
 {
     #pragma warning disable // Disable all warnings
 
@@ -330,260 +330,6 @@ namespace AindJustFramesSchemas
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
-    public partial class AindJustFramesRig
-    {
-    
-        private string _aindBehaviorServicesPkgVersion;
-    
-        private string _version;
-    
-        private string _computerName;
-    
-        private string _rigName;
-    
-        private CameraControllerSpinnakerCamera _triggeredCameraController0;
-    
-        private CameraControllerSpinnakerCamera _triggeredCameraController1;
-    
-        private HarpBehavior _harpBehavior;
-    
-        private System.Collections.Generic.List<SatelliteRig> _satelliteRigs;
-    
-        private bool _isSatellite;
-    
-        private ZmqPubSub _zmqConnection;
-    
-        public AindJustFramesRig()
-        {
-            _aindBehaviorServicesPkgVersion = "0.12.3";
-            _version = "0.5.0-rc0";
-            _harpBehavior = new HarpBehavior();
-            _satelliteRigs = new System.Collections.Generic.List<SatelliteRig>();
-            _isSatellite = false;
-            _zmqConnection = new ZmqPubSub();
-        }
-    
-        protected AindJustFramesRig(AindJustFramesRig other)
-        {
-            _aindBehaviorServicesPkgVersion = other._aindBehaviorServicesPkgVersion;
-            _version = other._version;
-            _computerName = other._computerName;
-            _rigName = other._rigName;
-            _triggeredCameraController0 = other._triggeredCameraController0;
-            _triggeredCameraController1 = other._triggeredCameraController1;
-            _harpBehavior = other._harpBehavior;
-            _satelliteRigs = other._satelliteRigs;
-            _isSatellite = other._isSatellite;
-            _zmqConnection = other._zmqConnection;
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
-        public string AindBehaviorServicesPkgVersion
-        {
-            get
-            {
-                return _aindBehaviorServicesPkgVersion;
-            }
-            set
-            {
-                _aindBehaviorServicesPkgVersion = value;
-            }
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("version")]
-        public string Version
-        {
-            get
-            {
-                return _version;
-            }
-            set
-            {
-                _version = value;
-            }
-        }
-    
-        /// <summary>
-        /// Computer name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("computer_name")]
-        [System.ComponentModel.DescriptionAttribute("Computer name")]
-        public string ComputerName
-        {
-            get
-            {
-                return _computerName;
-            }
-            set
-            {
-                _computerName = value;
-            }
-        }
-    
-        /// <summary>
-        /// Rig name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("rig_name", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Rig name")]
-        public string RigName
-        {
-            get
-            {
-                return _rigName;
-            }
-            set
-            {
-                _rigName = value;
-            }
-        }
-    
-        /// <summary>
-        /// Camera controller to triggered cameras. Will use Camera0 register as a trigger.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_0")]
-        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera0 register as a trigger.")]
-        public CameraControllerSpinnakerCamera TriggeredCameraController0
-        {
-            get
-            {
-                return _triggeredCameraController0;
-            }
-            set
-            {
-                _triggeredCameraController0 = value;
-            }
-        }
-    
-        /// <summary>
-        /// Camera controller to triggered cameras. Will use Camera1 register as a trigger.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_1")]
-        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera1 register as a trigger.")]
-        public CameraControllerSpinnakerCamera TriggeredCameraController1
-        {
-            get
-            {
-                return _triggeredCameraController1;
-            }
-            set
-            {
-                _triggeredCameraController1 = value;
-            }
-        }
-    
-        /// <summary>
-        /// Harp behavior board. Will be the source of triggers for the two camera controllers.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("harp_behavior", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Harp behavior board. Will be the source of triggers for the two camera controller" +
-            "s.")]
-        public HarpBehavior HarpBehavior
-        {
-            get
-            {
-                return _harpBehavior;
-            }
-            set
-            {
-                _harpBehavior = value;
-            }
-        }
-    
-        /// <summary>
-        /// List of satellite rigs.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("satellite_rigs")]
-        [System.ComponentModel.DescriptionAttribute("List of satellite rigs.")]
-        public System.Collections.Generic.List<SatelliteRig> SatelliteRigs
-        {
-            get
-            {
-                return _satelliteRigs;
-            }
-            set
-            {
-                _satelliteRigs = value;
-            }
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("is_satellite")]
-        public bool IsSatellite
-        {
-            get
-            {
-                return _isSatellite;
-            }
-            set
-            {
-                _isSatellite = value;
-            }
-        }
-    
-        /// <summary>
-        /// ZMQ connection for communication.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("zmq_connection", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("ZMQ connection for communication.")]
-        public ZmqPubSub ZmqConnection
-        {
-            get
-            {
-                return _zmqConnection;
-            }
-            set
-            {
-                _zmqConnection = value;
-            }
-        }
-    
-        public System.IObservable<AindJustFramesRig> Generate()
-        {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindJustFramesRig(this)));
-        }
-    
-        public System.IObservable<AindJustFramesRig> Generate<TSource>(System.IObservable<TSource> source)
-        {
-            return System.Reactive.Linq.Observable.Select(source, _ => new AindJustFramesRig(this));
-        }
-    
-        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
-        {
-            stringBuilder.Append("AindBehaviorServicesPkgVersion = " + _aindBehaviorServicesPkgVersion + ", ");
-            stringBuilder.Append("Version = " + _version + ", ");
-            stringBuilder.Append("ComputerName = " + _computerName + ", ");
-            stringBuilder.Append("RigName = " + _rigName + ", ");
-            stringBuilder.Append("TriggeredCameraController0 = " + _triggeredCameraController0 + ", ");
-            stringBuilder.Append("TriggeredCameraController1 = " + _triggeredCameraController1 + ", ");
-            stringBuilder.Append("HarpBehavior = " + _harpBehavior + ", ");
-            stringBuilder.Append("SatelliteRigs = " + _satelliteRigs + ", ");
-            stringBuilder.Append("IsSatellite = " + _isSatellite + ", ");
-            stringBuilder.Append("ZmqConnection = " + _zmqConnection);
-            return true;
-        }
-    
-        public override string ToString()
-        {
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append(GetType().Name);
-            stringBuilder.Append(" { ");
-            if (PrintMembers(stringBuilder))
-            {
-                stringBuilder.Append(" ");
-            }
-            stringBuilder.Append("}");
-            return stringBuilder.ToString();
-        }
-    }
-
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class BaseModel
     {
     
@@ -797,175 +543,538 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// Payload for heartbeat messages indicating system health status.
+    ///
+    ///Heartbeat messages are used to monitor the health and availability
+    ///of system components. They include a status indicator and optional
+    ///context information.
+    ///
+    ///Attributes:
+    ///    context: Optional additional data about the system state
+    ///    status: Current health status of the component
+    ///
+    ///Examples:
+    ///    ```python
+    ///    heartbeat = HeartbeatPayload(
+    ///        status=HeartbeatStatus.OK,
+    ///        context={"cpu_usage": 0.25, "memory_usage": 0.60}
+    ///    )
+    ///    print(heartbeat.status)  # HeartbeatStatus.OK
+    ///
+    ///    warning_heartbeat = HeartbeatPayload(
+    ///        status=HeartbeatStatus.WARNING,
+    ///        context={"disk_space_low": True}
+    ///    )
+    ///    ```
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute(@"Payload for heartbeat messages indicating system health status.
+
+    Heartbeat messages are used to monitor the health and availability
+    of system components. They include a status indicator and optional
+    context information.
+
+    Attributes:
+        context: Optional additional data about the system state
+        status: Current health status of the component
+
+    Examples:
+        ```python
+        heartbeat = HeartbeatPayload(
+            status=HeartbeatStatus.OK,
+            context={""cpu_usage"": 0.25, ""memory_usage"": 0.60}
+        )
+        print(heartbeat.status)  # HeartbeatStatus.OK
+
+        warning_heartbeat = HeartbeatPayload(
+            status=HeartbeatStatus.WARNING,
+            context={""disk_space_low"": True}
+        )
+        ```")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class HeartbeatPayload : RegisteredPayload
+    {
+    
+        private object _context;
+    
+        private HeartbeatStatus _status;
+    
+        public HeartbeatPayload()
+        {
+        }
+    
+        protected HeartbeatPayload(HeartbeatPayload other) : 
+                base(other)
+        {
+            _context = other._context;
+            _status = other._status;
+        }
+    
+        /// <summary>
+        /// Additional context for the heartbeat message.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("context")]
+        [System.ComponentModel.DescriptionAttribute("Additional context for the heartbeat message.")]
+        public object Context
+        {
+            get
+            {
+                return _context;
+            }
+            set
+            {
+                _context = value;
+            }
+        }
+    
+        /// <summary>
+        /// The status of the heartbeat message
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("status", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("The status of the heartbeat message")]
+        public HeartbeatStatus Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+            }
+        }
+    
+        public System.IObservable<HeartbeatPayload> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HeartbeatPayload(this)));
+        }
+    
+        public System.IObservable<HeartbeatPayload> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new HeartbeatPayload(this));
+        }
+    
+        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            if (base.PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(", ");
+            }
+            stringBuilder.Append("Context = " + _context + ", ");
+            stringBuilder.Append("Status = " + _status);
+            return true;
+        }
+    }
+
+
+    /// <summary>
+    /// Enumeration of possible heartbeat status values.
+    ///
+    ///Represents the health status of a system component,
+    ///with higher values indicating more severe issues.
+    ///
+    ///Examples:
+    ///    ```python
+    ///    HeartbeatStatus.OK                            # <HeartbeatStatus.OK: 0>
+    ///    HeartbeatStatus.CRITICAL > HeartbeatStatus.WARNING  # True
+    ///    int(HeartbeatStatus.ERROR)                    # 2
+    ///    ```
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    public enum HeartbeatStatus
+    {
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="0")]
+        Ok = 0,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="1")]
+        Warning = 1,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="2")]
+        Error = 2,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="3")]
+        Critical = 3,
+    }
+
+
+    /// <summary>
+    /// Enumeration of log levels for the logging system.
+    ///
+    ///Follows standard Python logging levels with integer values
+    ///that allow for easy comparison and filtering.
+    ///
+    ///Examples:
+    ///    ```python
+    ///    LogLevel.ERROR > LogLevel.WARNING  # True
+    ///    LogLevel.DEBUG.value               # 10
+    ///    str(LogLevel.INFO)                 # 'LogLevel.INFO'
+    ///    ```
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    public enum LogLevel
+    {
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="50")]
+        Critical = 50,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="40")]
+        Error = 40,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="30")]
+        Warning = 30,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="20")]
+        Info = 20,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="10")]
+        Debug = 10,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="0")]
+        Notset = 0,
+    }
+
+
+    /// <summary>
+    /// Payload for log messages containing logging information.
+    ///
+    ///This payload carries log data including the message content,
+    ///severity level, optional context, and application version.
+    ///
+    ///Attributes:
+    ///    message: The actual log message text
+    ///    level: Severity level of the log entry
+    ///    context: Optional additional data related to the log
+    ///    application_version: Version of the application generating the log
+    ///
+    ///Examples:
+    ///    ```python
+    ///    log_payload = LogPayload(
+    ///        message="System startup complete",
+    ///        level=LogLevel.INFO,
+    ///        context={"operator": "John Doe"},
+    ///        application_version="1.0.0"
+    ///    )
+    ///    print(log_payload.level)  # LogLevel.INFO
+    ///    ```
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute(@"Payload for log messages containing logging information.
+
+    This payload carries log data including the message content,
+    severity level, optional context, and application version.
+
+    Attributes:
+        message: The actual log message text
+        level: Severity level of the log entry
+        context: Optional additional data related to the log
+        application_version: Version of the application generating the log
+
+    Examples:
+        ```python
+        log_payload = LogPayload(
+            message=""System startup complete"",
+            level=LogLevel.INFO,
+            context={""operator"": ""John Doe""},
+            application_version=""1.0.0""
+        )
+        print(log_payload.level)  # LogLevel.INFO
+        ```")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class LogPayload : RegisteredPayload
+    {
+    
+        private string _message;
+    
+        private LogLevel _level;
+    
+        private object _context;
+    
+        private string _applicationVersion;
+    
+        public LogPayload()
+        {
+            _level = AindJustFramesSchemas.MessageProtocol.LogLevel.Debug;
+        }
+    
+        protected LogPayload(LogPayload other) : 
+                base(other)
+        {
+            _message = other._message;
+            _level = other._level;
+            _context = other._context;
+            _applicationVersion = other._applicationVersion;
+        }
+    
+        /// <summary>
+        /// The message of the log
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("message", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("The message of the log")]
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+            set
+            {
+                _message = value;
+            }
+        }
+    
+        /// <summary>
+        /// The level of the log message
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("level")]
+        [System.ComponentModel.DescriptionAttribute("The level of the log message")]
+        public LogLevel Level
+        {
+            get
+            {
+                return _level;
+            }
+            set
+            {
+                _level = value;
+            }
+        }
+    
+        /// <summary>
+        /// Additional context for the log message
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("context")]
+        [System.ComponentModel.DescriptionAttribute("Additional context for the log message")]
+        public object Context
+        {
+            get
+            {
+                return _context;
+            }
+            set
+            {
+                _context = value;
+            }
+        }
+    
+        /// <summary>
+        /// The version of the application
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("application_version")]
+        [System.ComponentModel.DescriptionAttribute("The version of the application")]
+        public string ApplicationVersion
+        {
+            get
+            {
+                return _applicationVersion;
+            }
+            set
+            {
+                _applicationVersion = value;
+            }
+        }
+    
+        public System.IObservable<LogPayload> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new LogPayload(this)));
+        }
+    
+        public System.IObservable<LogPayload> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new LogPayload(this));
+        }
+    
+        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            if (base.PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(", ");
+            }
+            stringBuilder.Append("Message = " + _message + ", ");
+            stringBuilder.Append("Level = " + _level + ", ");
+            stringBuilder.Append("Context = " + _context + ", ");
+            stringBuilder.Append("ApplicationVersion = " + _applicationVersion);
+            return true;
+        }
+    }
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
-    public partial class HarpBehavior
+    public partial class Message
     {
     
-        private string _deviceType;
+        private MessageType _messageType;
     
-        private string _deviceName;
+        private int _protocolVersion;
     
-        private BaseModel _additionalSettings;
+        private System.DateTimeOffset? _timestamp;
     
-        private BaseModel _calibration;
+        private object _payload;
     
-        private int _whoAmI;
+        private string _processId;
     
-        private string _serialNumber;
+        private string _hostname;
     
-        private string _portName;
+        private string _rigName;
     
-        public HarpBehavior()
+        public Message()
         {
-            _deviceType = "Behavior";
-            _whoAmI = 1216;
+            _protocolVersion = 0;
         }
     
-        protected HarpBehavior(HarpBehavior other)
+        protected Message(Message other)
         {
-            _deviceType = other._deviceType;
-            _deviceName = other._deviceName;
-            _additionalSettings = other._additionalSettings;
-            _calibration = other._calibration;
-            _whoAmI = other._whoAmI;
-            _serialNumber = other._serialNumber;
-            _portName = other._portName;
+            _messageType = other._messageType;
+            _protocolVersion = other._protocolVersion;
+            _timestamp = other._timestamp;
+            _payload = other._payload;
+            _processId = other._processId;
+            _hostname = other._hostname;
+            _rigName = other._rigName;
         }
     
-        [Newtonsoft.Json.JsonPropertyAttribute("device_type")]
-        public string DeviceType
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("message_type", Required=Newtonsoft.Json.Required.Always)]
+        public MessageType MessageType
         {
             get
             {
-                return _deviceType;
+                return _messageType;
             }
             set
             {
-                _deviceType = value;
+                _messageType = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("protocol_version")]
+        public int ProtocolVersion
+        {
+            get
+            {
+                return _protocolVersion;
+            }
+            set
+            {
+                _protocolVersion = value;
             }
         }
     
         /// <summary>
-        /// Device name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
-        [System.ComponentModel.DescriptionAttribute("Device name")]
-        public string DeviceName
-        {
-            get
-            {
-                return _deviceName;
-            }
-            set
-            {
-                _deviceName = value;
-            }
-        }
-    
-        /// <summary>
-        /// Additional settings
+        /// The timestamp of the message
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("additional_settings")]
-        [System.ComponentModel.DescriptionAttribute("Additional settings")]
-        public BaseModel AdditionalSettings
+        [Newtonsoft.Json.JsonPropertyAttribute("timestamp", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("The timestamp of the message")]
+        public System.DateTimeOffset? Timestamp
         {
             get
             {
-                return _additionalSettings;
+                return _timestamp;
             }
             set
             {
-                _additionalSettings = value;
+                _timestamp = value;
             }
         }
     
         /// <summary>
-        /// Calibration
+        /// The payload of the message
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("calibration")]
-        [System.ComponentModel.DescriptionAttribute("Calibration")]
-        public BaseModel Calibration
+        [Newtonsoft.Json.JsonPropertyAttribute("payload", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("The payload of the message")]
+        public object Payload
         {
             get
             {
-                return _calibration;
+                return _payload;
             }
             set
             {
-                _calibration = value;
-            }
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("who_am_i")]
-        public int WhoAmI
-        {
-            get
-            {
-                return _whoAmI;
-            }
-            set
-            {
-                _whoAmI = value;
+                _payload = value;
             }
         }
     
         /// <summary>
-        /// Device serial number
+        /// Process that created the message
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("serial_number")]
-        [System.ComponentModel.DescriptionAttribute("Device serial number")]
-        public string SerialNumber
+        [Newtonsoft.Json.JsonPropertyAttribute("process_id", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("Process that created the message")]
+        public string ProcessId
         {
             get
             {
-                return _serialNumber;
+                return _processId;
             }
             set
             {
-                _serialNumber = value;
+                _processId = value;
             }
         }
     
         /// <summary>
-        /// Device port name
+        /// Hostname that created the message
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("port_name", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Device port name")]
-        public string PortName
+        [Newtonsoft.Json.JsonPropertyAttribute("hostname", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("Hostname that created the message")]
+        public string Hostname
         {
             get
             {
-                return _portName;
+                return _hostname;
             }
             set
             {
-                _portName = value;
+                _hostname = value;
             }
         }
     
-        public System.IObservable<HarpBehavior> Generate()
+        /// <summary>
+        /// Rig name that created the message
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rig_name", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("Rig name that created the message")]
+        public string RigName
         {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HarpBehavior(this)));
+            get
+            {
+                return _rigName;
+            }
+            set
+            {
+                _rigName = value;
+            }
         }
     
-        public System.IObservable<HarpBehavior> Generate<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<Message> Generate()
         {
-            return System.Reactive.Linq.Observable.Select(source, _ => new HarpBehavior(this));
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Message(this)));
+        }
+    
+        public System.IObservable<Message> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new Message(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
-            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
-            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
-            stringBuilder.Append("Calibration = " + _calibration + ", ");
-            stringBuilder.Append("WhoAmI = " + _whoAmI + ", ");
-            stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
-            stringBuilder.Append("PortName = " + _portName);
+            stringBuilder.Append("MessageType = " + _messageType + ", ");
+            stringBuilder.Append("ProtocolVersion = " + _protocolVersion + ", ");
+            stringBuilder.Append("Timestamp = " + _timestamp + ", ");
+            stringBuilder.Append("Payload = " + _payload + ", ");
+            stringBuilder.Append("ProcessId = " + _processId + ", ");
+            stringBuilder.Append("Hostname = " + _hostname + ", ");
+            stringBuilder.Append("RigName = " + _rigName);
             return true;
         }
     
@@ -981,6 +1090,32 @@ namespace AindJustFramesSchemas
             stringBuilder.Append("}");
             return stringBuilder.ToString();
         }
+    }
+
+
+    /// <summary>
+    /// Enumeration of possible message types in the protocol.
+    ///
+    ///Examples:
+    ///    ```python
+    ///    MessageType.REQUEST  # 'request'
+    ///    MessageType.REPLY    # 'reply'
+    ///    MessageType.EVENT    # 'event'
+    ///    ```
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    public enum MessageType
+    {
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="request")]
+        Request = 0,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="reply")]
+        Reply = 1,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="event")]
+        Event = 2,
     }
 
 
@@ -1099,6 +1234,232 @@ namespace AindJustFramesSchemas
             stringBuilder.Append("Width = " + _width + ", ");
             stringBuilder.Append("Height = " + _height);
             return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class RegisteredMessages
+    {
+    
+        private MessageType _messageType;
+    
+        private int _protocolVersion;
+    
+        private System.DateTimeOffset? _timestamp;
+    
+        private RegisteredPayload _payload;
+    
+        private string _processId;
+    
+        private string _hostname;
+    
+        private string _rigName;
+    
+        public RegisteredMessages()
+        {
+            _protocolVersion = 0;
+        }
+    
+        protected RegisteredMessages(RegisteredMessages other)
+        {
+            _messageType = other._messageType;
+            _protocolVersion = other._protocolVersion;
+            _timestamp = other._timestamp;
+            _payload = other._payload;
+            _processId = other._processId;
+            _hostname = other._hostname;
+            _rigName = other._rigName;
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("message_type", Required=Newtonsoft.Json.Required.Always)]
+        public MessageType MessageType
+        {
+            get
+            {
+                return _messageType;
+            }
+            set
+            {
+                _messageType = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("protocol_version")]
+        public int ProtocolVersion
+        {
+            get
+            {
+                return _protocolVersion;
+            }
+            set
+            {
+                _protocolVersion = value;
+            }
+        }
+    
+        /// <summary>
+        /// The timestamp of the message
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("timestamp", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("The timestamp of the message")]
+        public System.DateTimeOffset? Timestamp
+        {
+            get
+            {
+                return _timestamp;
+            }
+            set
+            {
+                _timestamp = value;
+            }
+        }
+    
+        /// <summary>
+        /// The payload of the message
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("payload", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("The payload of the message")]
+        public RegisteredPayload Payload
+        {
+            get
+            {
+                return _payload;
+            }
+            set
+            {
+                _payload = value;
+            }
+        }
+    
+        /// <summary>
+        /// Process that created the message
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("process_id", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("Process that created the message")]
+        public string ProcessId
+        {
+            get
+            {
+                return _processId;
+            }
+            set
+            {
+                _processId = value;
+            }
+        }
+    
+        /// <summary>
+        /// Hostname that created the message
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("hostname", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("Hostname that created the message")]
+        public string Hostname
+        {
+            get
+            {
+                return _hostname;
+            }
+            set
+            {
+                _hostname = value;
+            }
+        }
+    
+        /// <summary>
+        /// Rig name that created the message
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rig_name", Required=Newtonsoft.Json.Required.AllowNull)]
+        [System.ComponentModel.DescriptionAttribute("Rig name that created the message")]
+        public string RigName
+        {
+            get
+            {
+                return _rigName;
+            }
+            set
+            {
+                _rigName = value;
+            }
+        }
+    
+        public System.IObservable<RegisteredMessages> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new RegisteredMessages(this)));
+        }
+    
+        public System.IObservable<RegisteredMessages> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new RegisteredMessages(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("MessageType = " + _messageType + ", ");
+            stringBuilder.Append("ProtocolVersion = " + _protocolVersion + ", ");
+            stringBuilder.Append("Timestamp = " + _timestamp + ", ");
+            stringBuilder.Append("Payload = " + _payload + ", ");
+            stringBuilder.Append("ProcessId = " + _processId + ", ");
+            stringBuilder.Append("Hostname = " + _hostname + ", ");
+            stringBuilder.Append("RigName = " + _rigName);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "payload_type")]
+    [JsonInheritanceAttribute("HeartbeatPayload", typeof(HeartbeatPayload))]
+    [JsonInheritanceAttribute("LogPayload", typeof(LogPayload))]
+    [JsonInheritanceAttribute("Start", typeof(StartPayload))]
+    [JsonInheritanceAttribute("Stop", typeof(StopPayload))]
+    [JsonInheritanceAttribute("SatelliteRig", typeof(SatelliteRigPayload))]
+    [JsonInheritanceAttribute("SatelliteSession", typeof(SatelliteSessionPayload))]
+    public abstract partial class RegisteredPayload
+    {
+    
+        protected RegisteredPayload()
+        {
+        }
+    
+        protected RegisteredPayload(RegisteredPayload other)
+        {
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            return false;
         }
     
         public override string ToString()
@@ -1326,6 +1687,124 @@ namespace AindJustFramesSchemas
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class SatelliteRigPayload : RegisteredPayload
+    {
+    
+        private SatelliteRig _rig;
+    
+        public SatelliteRigPayload()
+        {
+            _rig = new SatelliteRig();
+        }
+    
+        protected SatelliteRigPayload(SatelliteRigPayload other) : 
+                base(other)
+        {
+            _rig = other._rig;
+        }
+    
+        /// <summary>
+        /// Satellite Rig configuration.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("rig", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Satellite Rig configuration.")]
+        public SatelliteRig Rig
+        {
+            get
+            {
+                return _rig;
+            }
+            set
+            {
+                _rig = value;
+            }
+        }
+    
+        public System.IObservable<SatelliteRigPayload> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new SatelliteRigPayload(this)));
+        }
+    
+        public System.IObservable<SatelliteRigPayload> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new SatelliteRigPayload(this));
+        }
+    
+        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            if (base.PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(", ");
+            }
+            stringBuilder.Append("Rig = " + _rig);
+            return true;
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class SatelliteSessionPayload : RegisteredPayload
+    {
+    
+        private AindBehaviorSessionModel _session;
+    
+        public SatelliteSessionPayload()
+        {
+            _session = new AindBehaviorSessionModel();
+        }
+    
+        protected SatelliteSessionPayload(SatelliteSessionPayload other) : 
+                base(other)
+        {
+            _session = other._session;
+        }
+    
+        /// <summary>
+        /// Satellite session configuration.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("session", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Satellite session configuration.")]
+        public AindBehaviorSessionModel Session
+        {
+            get
+            {
+                return _session;
+            }
+            set
+            {
+                _session = value;
+            }
+        }
+    
+        public System.IObservable<SatelliteSessionPayload> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new SatelliteSessionPayload(this)));
+        }
+    
+        public System.IObservable<SatelliteSessionPayload> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new SatelliteSessionPayload(this));
+        }
+    
+        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            if (base.PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(", ");
+            }
+            stringBuilder.Append("Session = " + _session);
+            return true;
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class SpinnakerCamera
     {
     
@@ -1361,11 +1840,11 @@ namespace AindJustFramesSchemas
         {
             _deviceType = "SpinnakerCamera";
             _binning = 1;
-            _colorProcessing = AindJustFramesSchemas.SpinnakerCameraColorProcessing.Default;
+            _colorProcessing = AindJustFramesSchemas.MessageProtocol.SpinnakerCameraColorProcessing.Default;
             _exposure = 1000;
             _gain = 0D;
-            _adcBitDepth = AindJustFramesSchemas.SpinnakerCameraAdcBitDepth.Adc8bit;
-            _pixelFormat = AindJustFramesSchemas.SpinnakerCameraPixelFormat.Mono8;
+            _adcBitDepth = AindJustFramesSchemas.MessageProtocol.SpinnakerCameraAdcBitDepth.Adc8bit;
+            _pixelFormat = AindJustFramesSchemas.MessageProtocol.SpinnakerCameraPixelFormat.Mono8;
             _regionOfInterest = new Rect();
         }
     
@@ -2131,6 +2610,70 @@ namespace AindJustFramesSchemas
 
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class StartPayload : RegisteredPayload
+    {
+    
+        public StartPayload()
+        {
+        }
+    
+        protected StartPayload(StartPayload other) : 
+                base(other)
+        {
+        }
+    
+        public System.IObservable<StartPayload> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new StartPayload(this)));
+        }
+    
+        public System.IObservable<StartPayload> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new StartPayload(this));
+        }
+    
+        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            return base.PrintMembers(stringBuilder);
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class StopPayload : RegisteredPayload
+    {
+    
+        public StopPayload()
+        {
+        }
+    
+        protected StopPayload(StopPayload other) : 
+                base(other)
+        {
+        }
+    
+        public System.IObservable<StopPayload> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new StopPayload(this)));
+        }
+    
+        public System.IObservable<StopPayload> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new StopPayload(this));
+        }
+    
+        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            return base.PrintMembers(stringBuilder);
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "video_writer_type")]
     [JsonInheritanceAttribute("FFMPEG", typeof(VideoWriterFfmpeg))]
     [JsonInheritanceAttribute("OPENCV", typeof(VideoWriterOpenCv))]
@@ -2730,6 +3273,51 @@ namespace AindJustFramesSchemas
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Combinator)]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HeartbeatPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<LogPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<StartPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<StopPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SatelliteRigPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SatelliteSessionPayload>))]
+    public partial class MatchRegisteredPayload : Bonsai.Expressions.SingleArgumentExpressionBuilder
+    {
+    
+        public Bonsai.Expressions.TypeMapping Type { get; set; }
+
+        public override System.Linq.Expressions.Expression Build(System.Collections.Generic.IEnumerable<System.Linq.Expressions.Expression> arguments)
+        {
+            var typeMapping = Type;
+            var returnType = typeMapping != null ? typeMapping.GetType().GetGenericArguments()[0] : typeof(RegisteredPayload);
+            return System.Linq.Expressions.Expression.Call(
+                typeof(MatchRegisteredPayload),
+                "Process",
+                new System.Type[] { returnType },
+                System.Linq.Enumerable.Single(arguments));
+        }
+
+    
+        private static System.IObservable<TResult> Process<TResult>(System.IObservable<RegisteredPayload> source)
+            where TResult : RegisteredPayload
+        {
+            return System.Reactive.Linq.Observable.Create<TResult>(observer =>
+            {
+                var sourceObserver = System.Reactive.Observer.Create<RegisteredPayload>(
+                    value =>
+                    {
+                        var match = value as TResult;
+                        if (match != null) observer.OnNext(match);
+                    },
+                    observer.OnError,
+                    observer.OnCompleted);
+                return System.ObservableExtensions.SubscribeSafe(source, sourceObserver);
+            });
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DefaultPropertyAttribute("Type")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Combinator)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterOpenCv>))]
     public partial class MatchVideoWriter : Bonsai.Expressions.SingleArgumentExpressionBuilder
@@ -2791,11 +3379,6 @@ namespace AindJustFramesSchemas
             return Process<AindBehaviorSessionModel>(source);
         }
 
-        public System.IObservable<string> Process(System.IObservable<AindJustFramesRig> source)
-        {
-            return Process<AindJustFramesRig>(source);
-        }
-
         public System.IObservable<string> Process(System.IObservable<BaseModel> source)
         {
             return Process<BaseModel>(source);
@@ -2806,9 +3389,19 @@ namespace AindJustFramesSchemas
             return Process<CameraControllerSpinnakerCamera>(source);
         }
 
-        public System.IObservable<string> Process(System.IObservable<HarpBehavior> source)
+        public System.IObservable<string> Process(System.IObservable<HeartbeatPayload> source)
         {
-            return Process<HarpBehavior>(source);
+            return Process<HeartbeatPayload>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<LogPayload> source)
+        {
+            return Process<LogPayload>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<Message> source)
+        {
+            return Process<Message>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<Rect> source)
@@ -2816,14 +3409,44 @@ namespace AindJustFramesSchemas
             return Process<Rect>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<RegisteredMessages> source)
+        {
+            return Process<RegisteredMessages>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<RegisteredPayload> source)
+        {
+            return Process<RegisteredPayload>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<SatelliteRig> source)
         {
             return Process<SatelliteRig>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<SatelliteRigPayload> source)
+        {
+            return Process<SatelliteRigPayload>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<SatelliteSessionPayload> source)
+        {
+            return Process<SatelliteSessionPayload>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<SpinnakerCamera> source)
         {
             return Process<SpinnakerCamera>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<StartPayload> source)
+        {
+            return Process<StartPayload>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<StopPayload> source)
+        {
+            return Process<StopPayload>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<VideoWriter> source)
@@ -2861,13 +3484,20 @@ namespace AindJustFramesSchemas
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AindBehaviorSessionModel>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AindJustFramesRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<BaseModel>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<CameraControllerSpinnakerCamera>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpBehavior>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HeartbeatPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<LogPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Message>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Rect>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegisteredMessages>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegisteredPayload>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SatelliteRig>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SatelliteRigPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SatelliteSessionPayload>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SpinnakerCamera>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<StartPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<StopPayload>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterOpenCv>))]

@@ -6,6 +6,7 @@ from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_services.utils import BonsaiSgenSerializers, convert_pydantic_to_bonsai
 
 from aind_behavior_just_frames.rig import AindJustFramesRig
+from aind_behavior_just_frames.message_protocol import MessageProtocol
 
 SCHEMA_ROOT = Path("./src/DataSchemas/")
 EXTENSIONS_ROOT = Path("./src/Extensions/")
@@ -28,6 +29,17 @@ def main():
         cs_output_dir=EXTENSIONS_ROOT,
         cs_serializer=[BonsaiSgenSerializers.JSON],
     )
+
+    convert_pydantic_to_bonsai(
+        MessageProtocol,
+        model_name="aind_physiology_fip_message_protocol",
+        root_element="Root",
+        cs_namespace=NAMESPACE_PREFIX + ".MessageProtocol",
+        json_schema_output_dir=SCHEMA_ROOT,
+        cs_output_dir=EXTENSIONS_ROOT,
+        cs_serializer=[BonsaiSgenSerializers.JSON],
+    )
+
 
 
 if __name__ == "__main__":
