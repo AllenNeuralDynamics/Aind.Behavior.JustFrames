@@ -3,14 +3,14 @@
     "AindBehaviorSessionModel": {
       "properties": {
         "aind_behavior_services_pkg_version": {
-          "default": "0.12.3",
+          "default": "0.13.0-rc0",
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
           "title": "aind_behavior_services package version",
           "type": "string"
         },
         "version": {
-          "const": "0.12.3",
-          "default": "0.12.3",
+          "const": "0.13.0-rc0",
+          "default": "0.13.0-rc0",
           "title": "Version",
           "type": "string"
         },
@@ -42,11 +42,6 @@
           "title": "Date",
           "type": "string"
         },
-        "root_path": {
-          "description": "Root path where data will be logged",
-          "title": "Root Path",
-          "type": "string"
-        },
         "session_name": {
           "default": null,
           "description": "Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.",
@@ -63,13 +58,6 @@
         "subject": {
           "description": "Name of the subject",
           "title": "Subject",
-          "type": "string"
-        },
-        "experiment_version": {
-          "default": "",
-          "deprecated": true,
-          "description": "Version of the experiment",
-          "title": "Experiment Version",
           "type": "string"
         },
         "notes": {
@@ -112,7 +100,6 @@
         }
       },
       "required": [
-        "root_path",
         "subject"
       ],
       "title": "AindBehaviorSessionModel",
@@ -121,7 +108,7 @@
     "AindJustFramesRig": {
       "properties": {
         "aind_behavior_services_pkg_version": {
-          "default": "0.12.3",
+          "default": "0.13.0-rc0",
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
           "title": "aind_behavior_services package version",
           "type": "string"
@@ -140,6 +127,12 @@
         "rig_name": {
           "description": "Rig name",
           "title": "Rig Name",
+          "type": "string"
+        },
+        "data_directory": {
+          "description": "Directory where data will be saved to",
+          "format": "path",
+          "title": "Data Directory",
           "type": "string"
         },
         "triggered_camera_controller_0": {
@@ -191,6 +184,7 @@
       },
       "required": [
         "rig_name",
+        "data_directory",
         "harp_behavior",
         "zmq_connection"
       ],
@@ -210,34 +204,14 @@
           "title": "Device Type",
           "type": "string"
         },
-        "device_name": {
-          "default": null,
+        "name": {
           "description": "Device name",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Device Name"
-        },
-        "additional_settings": {
-          "default": null,
-          "description": "Additional settings",
-          "oneOf": [
-            {
-              "$ref": "#/$defs/BaseModel"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "title": "Name",
+          "type": "string"
         },
         "calibration": {
           "default": null,
-          "description": "Calibration",
+          "description": "Calibration for the device.",
           "oneOf": [
             {
               "$ref": "#/$defs/BaseModel"
@@ -271,6 +245,7 @@
         }
       },
       "required": [
+        "name",
         "cameras"
       ],
       "title": "CameraController[SpinnakerCamera]",
@@ -284,34 +259,14 @@
           "title": "Device Type",
           "type": "string"
         },
-        "device_name": {
-          "default": null,
+        "name": {
           "description": "Device name",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Device Name"
-        },
-        "additional_settings": {
-          "default": null,
-          "description": "Additional settings",
-          "oneOf": [
-            {
-              "$ref": "#/$defs/BaseModel"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "title": "Name",
+          "type": "string"
         },
         "calibration": {
           "default": null,
-          "description": "Calibration",
+          "description": "Calibration for the device.",
           "oneOf": [
             {
               "$ref": "#/$defs/BaseModel"
@@ -347,12 +302,14 @@
         }
       },
       "required": [
+        "name",
         "port_name"
       ],
       "title": "HarpBehavior",
       "type": "object"
     },
     "Rect": {
+      "description": "Represents a rectangle defined by its top-left corner, width, and height.",
       "properties": {
         "x": {
           "default": 0,
@@ -389,7 +346,7 @@
     "SatelliteRig": {
       "properties": {
         "aind_behavior_services_pkg_version": {
-          "default": "0.12.3",
+          "default": "0.13.0-rc0",
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
           "title": "aind_behavior_services package version",
           "type": "string"
@@ -408,6 +365,12 @@
         "rig_name": {
           "description": "Rig name",
           "title": "Rig Name",
+          "type": "string"
+        },
+        "data_directory": {
+          "description": "Directory where data will be saved to",
+          "format": "path",
+          "title": "Data Directory",
           "type": "string"
         },
         "zmq_connection": {
@@ -447,48 +410,29 @@
       "required": [
         "computer_name",
         "rig_name",
+        "data_directory",
         "zmq_connection"
       ],
       "title": "SatelliteRig",
       "type": "object"
     },
     "SpinnakerCamera": {
+      "description": "Spinnaker camera device configuration.",
       "properties": {
         "device_type": {
           "const": "SpinnakerCamera",
           "default": "SpinnakerCamera",
-          "description": "Device type",
           "title": "Device Type",
           "type": "string"
         },
-        "device_name": {
-          "default": null,
+        "name": {
           "description": "Device name",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Device Name"
-        },
-        "additional_settings": {
-          "default": null,
-          "description": "Additional settings",
-          "oneOf": [
-            {
-              "$ref": "#/$defs/BaseModel"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "title": "Name",
+          "type": "string"
         },
         "calibration": {
           "default": null,
-          "description": "Calibration",
+          "description": "Calibration for the device.",
           "oneOf": [
             {
               "$ref": "#/$defs/BaseModel"
@@ -596,12 +540,14 @@
         }
       },
       "required": [
+        "name",
         "serial_number"
       ],
       "title": "SpinnakerCamera",
       "type": "object"
     },
     "SpinnakerCameraAdcBitDepth": {
+      "description": "ADC bit depth options for Spinnaker cameras.",
       "enum": [
         0,
         1,
@@ -616,6 +562,7 @@
       ]
     },
     "SpinnakerCameraPixelFormat": {
+      "description": "Pixel format options for Spinnaker cameras.",
       "enum": [
         0,
         1,
@@ -929,6 +876,7 @@
       ]
     },
     "VideoWriterFfmpeg": {
+      "description": "FFMPEG video writer configuration.",
       "properties": {
         "video_writer_type": {
           "const": "FFMPEG",
@@ -966,6 +914,7 @@
       "type": "object"
     },
     "VideoWriterOpenCv": {
+      "description": "OpenCV video writer configuration.",
       "properties": {
         "video_writer_type": {
           "const": "OPENCV",

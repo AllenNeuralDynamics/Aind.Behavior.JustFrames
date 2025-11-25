@@ -25,13 +25,9 @@ namespace AindJustFramesSchemas
     
         private System.DateTimeOffset _date;
     
-        private string _rootPath;
-    
         private string _sessionName;
     
         private string _subject;
-    
-        private string _experimentVersion;
     
         private string _notes;
     
@@ -43,10 +39,9 @@ namespace AindJustFramesSchemas
     
         public AindBehaviorSessionModel()
         {
-            _aindBehaviorServicesPkgVersion = "0.12.3";
-            _version = "0.12.3";
+            _aindBehaviorServicesPkgVersion = "0.13.0-rc0";
+            _version = "0.13.0-rc0";
             _experimenter = new System.Collections.Generic.List<string>();
-            _experimentVersion = "";
             _allowDirtyRepo = false;
             _skipHardwareValidation = false;
         }
@@ -58,10 +53,8 @@ namespace AindJustFramesSchemas
             _experiment = other._experiment;
             _experimenter = other._experimenter;
             _date = other._date;
-            _rootPath = other._rootPath;
             _sessionName = other._sessionName;
             _subject = other._subject;
-            _experimentVersion = other._experimentVersion;
             _notes = other._notes;
             _commitHash = other._commitHash;
             _allowDirtyRepo = other._allowDirtyRepo;
@@ -148,23 +141,6 @@ namespace AindJustFramesSchemas
         }
     
         /// <summary>
-        /// Root path where data will be logged
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("root_path", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Root path where data will be logged")]
-        public string RootPath
-        {
-            get
-            {
-                return _rootPath;
-            }
-            set
-            {
-                _rootPath = value;
-            }
-        }
-    
-        /// <summary>
         /// Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("session_name")]
@@ -196,23 +172,6 @@ namespace AindJustFramesSchemas
             set
             {
                 _subject = value;
-            }
-        }
-    
-        /// <summary>
-        /// Version of the experiment
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("experiment_version")]
-        [System.ComponentModel.DescriptionAttribute("Version of the experiment")]
-        public string ExperimentVersion
-        {
-            get
-            {
-                return _experimentVersion;
-            }
-            set
-            {
-                _experimentVersion = value;
             }
         }
     
@@ -301,10 +260,8 @@ namespace AindJustFramesSchemas
             stringBuilder.Append("Experiment = " + _experiment + ", ");
             stringBuilder.Append("Experimenter = " + _experimenter + ", ");
             stringBuilder.Append("Date = " + _date + ", ");
-            stringBuilder.Append("RootPath = " + _rootPath + ", ");
             stringBuilder.Append("SessionName = " + _sessionName + ", ");
             stringBuilder.Append("Subject = " + _subject + ", ");
-            stringBuilder.Append("ExperimentVersion = " + _experimentVersion + ", ");
             stringBuilder.Append("Notes = " + _notes + ", ");
             stringBuilder.Append("CommitHash = " + _commitHash + ", ");
             stringBuilder.Append("AllowDirtyRepo = " + _allowDirtyRepo + ", ");
@@ -341,6 +298,8 @@ namespace AindJustFramesSchemas
     
         private string _rigName;
     
+        private string _dataDirectory;
+    
         private CameraControllerSpinnakerCamera _triggeredCameraController0;
     
         private CameraControllerSpinnakerCamera _triggeredCameraController1;
@@ -355,7 +314,7 @@ namespace AindJustFramesSchemas
     
         public AindJustFramesRig()
         {
-            _aindBehaviorServicesPkgVersion = "0.12.3";
+            _aindBehaviorServicesPkgVersion = "0.13.0-rc0";
             _version = "0.5.0-rc0";
             _harpBehavior = new HarpBehavior();
             _satelliteRigs = new System.Collections.Generic.List<SatelliteRig>();
@@ -369,6 +328,7 @@ namespace AindJustFramesSchemas
             _version = other._version;
             _computerName = other._computerName;
             _rigName = other._rigName;
+            _dataDirectory = other._dataDirectory;
             _triggeredCameraController0 = other._triggeredCameraController0;
             _triggeredCameraController1 = other._triggeredCameraController1;
             _harpBehavior = other._harpBehavior;
@@ -434,6 +394,23 @@ namespace AindJustFramesSchemas
             set
             {
                 _rigName = value;
+            }
+        }
+    
+        /// <summary>
+        /// Directory where data will be saved to
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("data_directory", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Directory where data will be saved to")]
+        public string DataDirectory
+        {
+            get
+            {
+                return _dataDirectory;
+            }
+            set
+            {
+                _dataDirectory = value;
             }
         }
     
@@ -557,6 +534,7 @@ namespace AindJustFramesSchemas
             stringBuilder.Append("Version = " + _version + ", ");
             stringBuilder.Append("ComputerName = " + _computerName + ", ");
             stringBuilder.Append("RigName = " + _rigName + ", ");
+            stringBuilder.Append("DataDirectory = " + _dataDirectory + ", ");
             stringBuilder.Append("TriggeredCameraController0 = " + _triggeredCameraController0 + ", ");
             stringBuilder.Append("TriggeredCameraController1 = " + _triggeredCameraController1 + ", ");
             stringBuilder.Append("HarpBehavior = " + _harpBehavior + ", ");
@@ -633,9 +611,7 @@ namespace AindJustFramesSchemas
     
         private string _deviceType;
     
-        private string _deviceName;
-    
-        private BaseModel _additionalSettings;
+        private string _name;
     
         private BaseModel _calibration;
     
@@ -652,8 +628,7 @@ namespace AindJustFramesSchemas
         protected CameraControllerSpinnakerCamera(CameraControllerSpinnakerCamera other)
         {
             _deviceType = other._deviceType;
-            _deviceName = other._deviceName;
-            _additionalSettings = other._additionalSettings;
+            _name = other._name;
             _calibration = other._calibration;
             _cameras = other._cameras;
             _frameRate = other._frameRate;
@@ -675,44 +650,26 @@ namespace AindJustFramesSchemas
         /// <summary>
         /// Device name
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [Newtonsoft.Json.JsonPropertyAttribute("name", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Device name")]
-        public string DeviceName
+        public string Name
         {
             get
             {
-                return _deviceName;
+                return _name;
             }
             set
             {
-                _deviceName = value;
+                _name = value;
             }
         }
     
         /// <summary>
-        /// Additional settings
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("additional_settings")]
-        [System.ComponentModel.DescriptionAttribute("Additional settings")]
-        public BaseModel AdditionalSettings
-        {
-            get
-            {
-                return _additionalSettings;
-            }
-            set
-            {
-                _additionalSettings = value;
-            }
-        }
-    
-        /// <summary>
-        /// Calibration
+        /// Calibration for the device.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("calibration")]
-        [System.ComponentModel.DescriptionAttribute("Calibration")]
+        [System.ComponentModel.DescriptionAttribute("Calibration for the device.")]
         public BaseModel Calibration
         {
             get
@@ -774,8 +731,7 @@ namespace AindJustFramesSchemas
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("DeviceType = " + _deviceType + ", ");
-            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
-            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Name = " + _name + ", ");
             stringBuilder.Append("Calibration = " + _calibration + ", ");
             stringBuilder.Append("Cameras = " + _cameras + ", ");
             stringBuilder.Append("FrameRate = " + _frameRate);
@@ -805,9 +761,7 @@ namespace AindJustFramesSchemas
     
         private string _deviceType;
     
-        private string _deviceName;
-    
-        private BaseModel _additionalSettings;
+        private string _name;
     
         private BaseModel _calibration;
     
@@ -826,8 +780,7 @@ namespace AindJustFramesSchemas
         protected HarpBehavior(HarpBehavior other)
         {
             _deviceType = other._deviceType;
-            _deviceName = other._deviceName;
-            _additionalSettings = other._additionalSettings;
+            _name = other._name;
             _calibration = other._calibration;
             _whoAmI = other._whoAmI;
             _serialNumber = other._serialNumber;
@@ -850,44 +803,26 @@ namespace AindJustFramesSchemas
         /// <summary>
         /// Device name
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [Newtonsoft.Json.JsonPropertyAttribute("name", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Device name")]
-        public string DeviceName
+        public string Name
         {
             get
             {
-                return _deviceName;
+                return _name;
             }
             set
             {
-                _deviceName = value;
+                _name = value;
             }
         }
     
         /// <summary>
-        /// Additional settings
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("additional_settings")]
-        [System.ComponentModel.DescriptionAttribute("Additional settings")]
-        public BaseModel AdditionalSettings
-        {
-            get
-            {
-                return _additionalSettings;
-            }
-            set
-            {
-                _additionalSettings = value;
-            }
-        }
-    
-        /// <summary>
-        /// Calibration
+        /// Calibration for the device.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("calibration")]
-        [System.ComponentModel.DescriptionAttribute("Calibration")]
+        [System.ComponentModel.DescriptionAttribute("Calibration for the device.")]
         public BaseModel Calibration
         {
             get
@@ -960,8 +895,7 @@ namespace AindJustFramesSchemas
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("DeviceType = " + _deviceType + ", ");
-            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
-            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Name = " + _name + ", ");
             stringBuilder.Append("Calibration = " + _calibration + ", ");
             stringBuilder.Append("WhoAmI = " + _whoAmI + ", ");
             stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
@@ -984,7 +918,11 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// Represents a rectangle defined by its top-left corner, width, and height.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute("Represents a rectangle defined by its top-left corner, width, and height.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class Rect
@@ -1130,6 +1068,8 @@ namespace AindJustFramesSchemas
     
         private string _rigName;
     
+        private string _dataDirectory;
+    
         private ZmqPubSub _zmqConnection;
     
         private CameraControllerSpinnakerCamera _triggeredCameraController0;
@@ -1140,7 +1080,7 @@ namespace AindJustFramesSchemas
     
         public SatelliteRig()
         {
-            _aindBehaviorServicesPkgVersion = "0.12.3";
+            _aindBehaviorServicesPkgVersion = "0.13.0-rc0";
             _version = "0.5.0-rc0";
             _zmqConnection = new ZmqPubSub();
             _isSatellite = true;
@@ -1152,6 +1092,7 @@ namespace AindJustFramesSchemas
             _version = other._version;
             _computerName = other._computerName;
             _rigName = other._rigName;
+            _dataDirectory = other._dataDirectory;
             _zmqConnection = other._zmqConnection;
             _triggeredCameraController0 = other._triggeredCameraController0;
             _triggeredCameraController1 = other._triggeredCameraController1;
@@ -1215,6 +1156,23 @@ namespace AindJustFramesSchemas
             set
             {
                 _rigName = value;
+            }
+        }
+    
+        /// <summary>
+        /// Directory where data will be saved to
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("data_directory", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Directory where data will be saved to")]
+        public string DataDirectory
+        {
+            get
+            {
+                return _dataDirectory;
+            }
+            set
+            {
+                _dataDirectory = value;
             }
         }
     
@@ -1301,6 +1259,7 @@ namespace AindJustFramesSchemas
             stringBuilder.Append("Version = " + _version + ", ");
             stringBuilder.Append("ComputerName = " + _computerName + ", ");
             stringBuilder.Append("RigName = " + _rigName + ", ");
+            stringBuilder.Append("DataDirectory = " + _dataDirectory + ", ");
             stringBuilder.Append("ZmqConnection = " + _zmqConnection + ", ");
             stringBuilder.Append("TriggeredCameraController0 = " + _triggeredCameraController0 + ", ");
             stringBuilder.Append("TriggeredCameraController1 = " + _triggeredCameraController1 + ", ");
@@ -1323,7 +1282,11 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// Spinnaker camera device configuration.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute("Spinnaker camera device configuration.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class SpinnakerCamera
@@ -1331,9 +1294,7 @@ namespace AindJustFramesSchemas
     
         private string _deviceType;
     
-        private string _deviceName;
-    
-        private BaseModel _additionalSettings;
+        private string _name;
     
         private BaseModel _calibration;
     
@@ -1372,8 +1333,7 @@ namespace AindJustFramesSchemas
         protected SpinnakerCamera(SpinnakerCamera other)
         {
             _deviceType = other._deviceType;
-            _deviceName = other._deviceName;
-            _additionalSettings = other._additionalSettings;
+            _name = other._name;
             _calibration = other._calibration;
             _serialNumber = other._serialNumber;
             _binning = other._binning;
@@ -1387,11 +1347,7 @@ namespace AindJustFramesSchemas
             _videoWriter = other._videoWriter;
         }
     
-        /// <summary>
-        /// Device type
-        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("device_type")]
-        [System.ComponentModel.DescriptionAttribute("Device type")]
         public string DeviceType
         {
             get
@@ -1407,44 +1363,26 @@ namespace AindJustFramesSchemas
         /// <summary>
         /// Device name
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [Newtonsoft.Json.JsonPropertyAttribute("name", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Device name")]
-        public string DeviceName
+        public string Name
         {
             get
             {
-                return _deviceName;
+                return _name;
             }
             set
             {
-                _deviceName = value;
+                _name = value;
             }
         }
     
         /// <summary>
-        /// Additional settings
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("additional_settings")]
-        [System.ComponentModel.DescriptionAttribute("Additional settings")]
-        public BaseModel AdditionalSettings
-        {
-            get
-            {
-                return _additionalSettings;
-            }
-            set
-            {
-                _additionalSettings = value;
-            }
-        }
-    
-        /// <summary>
-        /// Calibration
+        /// Calibration for the device.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("calibration")]
-        [System.ComponentModel.DescriptionAttribute("Calibration")]
+        [System.ComponentModel.DescriptionAttribute("Calibration for the device.")]
         public BaseModel Calibration
         {
             get
@@ -1646,8 +1584,7 @@ namespace AindJustFramesSchemas
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("DeviceType = " + _deviceType + ", ");
-            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
-            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Name = " + _name + ", ");
             stringBuilder.Append("Calibration = " + _calibration + ", ");
             stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
             stringBuilder.Append("Binning = " + _binning + ", ");
@@ -1677,6 +1614,9 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// ADC bit depth options for Spinnaker cameras.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     public enum SpinnakerCameraAdcBitDepth
     {
@@ -1692,6 +1632,9 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// Pixel format options for Spinnaker cameras.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     public enum SpinnakerCameraPixelFormat
     {
@@ -2130,10 +2073,14 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// FFMPEG video writer configuration.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "video_writer_type")]
     [JsonInheritanceAttribute("FFMPEG", typeof(VideoWriterFfmpeg))]
     [JsonInheritanceAttribute("OPENCV", typeof(VideoWriterOpenCv))]
+    [System.ComponentModel.DescriptionAttribute("FFMPEG video writer configuration.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriter
@@ -2177,7 +2124,11 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// FFMPEG video writer configuration.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute("FFMPEG video writer configuration.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriterFfmpeg : VideoWriter
@@ -2301,7 +2252,11 @@ namespace AindJustFramesSchemas
     }
 
 
+    /// <summary>
+    /// OpenCV video writer configuration.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.ComponentModel.DescriptionAttribute("OpenCV video writer configuration.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriterOpenCv : VideoWriter

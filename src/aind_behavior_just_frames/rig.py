@@ -44,7 +44,6 @@ class AindJustFramesRig(AindBehaviorRigModel):
         description="Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
     )
     harp_behavior: rig.harp.HarpBehavior = Field(
-        ...,
         description="Harp behavior board. Will be the source of triggers for the two camera controllers.",
     )
     satellite_rigs: list[SatelliteRig] = Field(
