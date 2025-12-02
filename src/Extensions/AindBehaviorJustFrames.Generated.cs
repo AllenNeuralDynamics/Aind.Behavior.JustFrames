@@ -319,7 +319,6 @@ namespace AindJustFramesSchemas
             _harpBehavior = new HarpBehavior();
             _satelliteRigs = new System.Collections.Generic.List<SatelliteRig>();
             _isSatellite = false;
-            _zmqConnection = new ZmqPubSub();
         }
     
         protected AindJustFramesRig(AindJustFramesRig other)
@@ -504,7 +503,7 @@ namespace AindJustFramesSchemas
         /// ZMQ connection for communication.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("zmq_connection", Required=Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonPropertyAttribute("zmq_connection")]
         [System.ComponentModel.DescriptionAttribute("ZMQ connection for communication.")]
         public ZmqPubSub ZmqConnection
         {
@@ -611,8 +610,6 @@ namespace AindJustFramesSchemas
     
         private string _deviceType;
     
-        private string _name;
-    
         private BaseModel _calibration;
     
         private System.Collections.Generic.Dictionary<string, SpinnakerCamera> _cameras;
@@ -628,7 +625,6 @@ namespace AindJustFramesSchemas
         protected CameraControllerSpinnakerCamera(CameraControllerSpinnakerCamera other)
         {
             _deviceType = other._deviceType;
-            _name = other._name;
             _calibration = other._calibration;
             _cameras = other._cameras;
             _frameRate = other._frameRate;
@@ -644,23 +640,6 @@ namespace AindJustFramesSchemas
             set
             {
                 _deviceType = value;
-            }
-        }
-    
-        /// <summary>
-        /// Device name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Device name")]
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
             }
         }
     
@@ -731,7 +710,6 @@ namespace AindJustFramesSchemas
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("DeviceType = " + _deviceType + ", ");
-            stringBuilder.Append("Name = " + _name + ", ");
             stringBuilder.Append("Calibration = " + _calibration + ", ");
             stringBuilder.Append("Cameras = " + _cameras + ", ");
             stringBuilder.Append("FrameRate = " + _frameRate);
@@ -761,8 +739,6 @@ namespace AindJustFramesSchemas
     
         private string _deviceType;
     
-        private string _name;
-    
         private BaseModel _calibration;
     
         private int _whoAmI;
@@ -780,7 +756,6 @@ namespace AindJustFramesSchemas
         protected HarpBehavior(HarpBehavior other)
         {
             _deviceType = other._deviceType;
-            _name = other._name;
             _calibration = other._calibration;
             _whoAmI = other._whoAmI;
             _serialNumber = other._serialNumber;
@@ -797,23 +772,6 @@ namespace AindJustFramesSchemas
             set
             {
                 _deviceType = value;
-            }
-        }
-    
-        /// <summary>
-        /// Device name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Device name")]
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
             }
         }
     
@@ -895,7 +853,6 @@ namespace AindJustFramesSchemas
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("DeviceType = " + _deviceType + ", ");
-            stringBuilder.Append("Name = " + _name + ", ");
             stringBuilder.Append("Calibration = " + _calibration + ", ");
             stringBuilder.Append("WhoAmI = " + _whoAmI + ", ");
             stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
@@ -1294,8 +1251,6 @@ namespace AindJustFramesSchemas
     
         private string _deviceType;
     
-        private string _name;
-    
         private BaseModel _calibration;
     
         private string _serialNumber;
@@ -1333,7 +1288,6 @@ namespace AindJustFramesSchemas
         protected SpinnakerCamera(SpinnakerCamera other)
         {
             _deviceType = other._deviceType;
-            _name = other._name;
             _calibration = other._calibration;
             _serialNumber = other._serialNumber;
             _binning = other._binning;
@@ -1357,23 +1311,6 @@ namespace AindJustFramesSchemas
             set
             {
                 _deviceType = value;
-            }
-        }
-    
-        /// <summary>
-        /// Device name
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Device name")]
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
             }
         }
     
@@ -1584,7 +1521,6 @@ namespace AindJustFramesSchemas
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("DeviceType = " + _deviceType + ", ");
-            stringBuilder.Append("Name = " + _name + ", ");
             stringBuilder.Append("Calibration = " + _calibration + ", ");
             stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
             stringBuilder.Append("Binning = " + _binning + ", ");

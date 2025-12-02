@@ -2,7 +2,7 @@ from typing import Literal, Optional
 
 import aind_behavior_services.rig as rig
 from aind_behavior_services.rig import AindBehaviorRigModel
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 from . import __semver__
 
@@ -10,6 +10,7 @@ from . import __semver__
 class ZmqPubSub(BaseModel):
     pub: rig.network.ZmqConnection = Field(description="ZMQ Publisher")
     sub: rig.network.ZmqConnection = Field(description="ZMQ Subscriber")
+
 
 class SatelliteRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
@@ -50,4 +51,13 @@ class AindJustFramesRig(AindBehaviorRigModel):
         default_factory=list, min_length=1, description="List of satellite rigs."
     )
     is_satellite: bool = Field(default=False)
-    zmq_connection: ZmqPubSub = Field(description="ZMQ connection for communication.")
+    zmq_connection: Optional[ZmqPubSub] = Field(default=None, description="ZMQ connection for communication.")
+
+    @model_validator(mode="after")
+    def verify_zmq_nullability(self):
+        if self.zmq_connection is None:
+            if self.is_satellite:
+                raise ValueError("Satellite rigs must define a ZMQ connection.")
+            if len(self.satellite_rigs) > 0:
+                raise ValueError("Master rigs with satellite rigs must define a ZMQ connection.")
+        return self

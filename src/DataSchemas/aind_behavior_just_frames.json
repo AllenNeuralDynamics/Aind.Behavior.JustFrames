@@ -178,15 +178,22 @@
           "type": "boolean"
         },
         "zmq_connection": {
-          "$ref": "#/$defs/ZmqPubSub",
-          "description": "ZMQ connection for communication."
+          "default": null,
+          "description": "ZMQ connection for communication.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ZmqPubSub"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
         "rig_name",
         "data_directory",
-        "harp_behavior",
-        "zmq_connection"
+        "harp_behavior"
       ],
       "title": "AindJustFramesRig",
       "type": "object"
@@ -202,11 +209,6 @@
           "const": "CameraController",
           "default": "CameraController",
           "title": "Device Type",
-          "type": "string"
-        },
-        "name": {
-          "description": "Device name",
-          "title": "Name",
           "type": "string"
         },
         "calibration": {
@@ -245,7 +247,6 @@
         }
       },
       "required": [
-        "name",
         "cameras"
       ],
       "title": "CameraController[SpinnakerCamera]",
@@ -257,11 +258,6 @@
           "const": "Behavior",
           "default": "Behavior",
           "title": "Device Type",
-          "type": "string"
-        },
-        "name": {
-          "description": "Device name",
-          "title": "Name",
           "type": "string"
         },
         "calibration": {
@@ -302,7 +298,6 @@
         }
       },
       "required": [
-        "name",
         "port_name"
       ],
       "title": "HarpBehavior",
@@ -425,11 +420,6 @@
           "title": "Device Type",
           "type": "string"
         },
-        "name": {
-          "description": "Device name",
-          "title": "Name",
-          "type": "string"
-        },
         "calibration": {
           "default": null,
           "description": "Calibration for the device.",
@@ -540,7 +530,6 @@
         }
       },
       "required": [
-        "name",
         "serial_number"
       ],
       "title": "SpinnakerCamera",

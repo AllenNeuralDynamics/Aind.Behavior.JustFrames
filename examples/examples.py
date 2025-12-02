@@ -1,5 +1,6 @@
 import datetime
 import os
+from pathlib import Path
 
 import aind_behavior_services.rig as rig
 from aind_behavior_services.session import AindBehaviorSessionModel
@@ -11,10 +12,8 @@ def main(path_seed: str = "./local/{schema}.json"):
     this_session = AindBehaviorSessionModel(
         date=datetime.datetime.now(tz=datetime.timezone.utc),
         experiment="AindVideoEncodingBenchmarks",
-        root_path="c://",
         subject="Test",
         notes="test session",
-        experiment_version="0.0.0",
         allow_dirty_repo=False,
         skip_hardware_validation=False,
         experimenter=["Foo", "Bar"],
@@ -27,6 +26,7 @@ def main(path_seed: str = "./local/{schema}.json"):
     )
 
     this_rig = AindJustFramesRig(
+        data_directory=Path("C:/Data"),
         rig_name="this_rig",
         triggered_camera_controller_0=rig.cameras.CameraController[rig.cameras.SpinnakerCamera](
             frame_rate=120,
