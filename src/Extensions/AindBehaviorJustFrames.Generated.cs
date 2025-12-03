@@ -321,6 +321,7 @@ namespace AindJustFramesSchemas
             _harpBehavior = new HarpBehavior();
             _satelliteRigs = new System.Collections.Generic.List<SatelliteRig>();
             _isSatellite = false;
+            _zmqProtocolConfig = new NetworkConfig();
         }
     
         protected AindJustFramesRig(AindJustFramesRig other)

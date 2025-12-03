@@ -3,12 +3,11 @@ from typing import Literal, Optional
 import aind_behavior_services.rig as rig
 from aind_behavior_services.rig import AindBehaviorRigModel
 from pydantic import BaseModel, Field, field_validator, model_validator
-from ipaddress import IPv4Address
 
 from . import __semver__
 
 class NetworkConfig(BaseModel):
-    address: IPv4Address = Field(description="Address for ZMQ connection.")
+    address: str = Field(description="Address for ZMQ connection.")
     port: int = Field(description="Port for ZMQ connection.", ge=1, le=65535)
 
 class SatelliteRig(AindBehaviorRigModel):
@@ -48,23 +47,28 @@ class AindJustFramesRig(AindBehaviorRigModel):
     )
     satellite_rigs: list[SatelliteRig] = Field(default_factory=list, description="List of satellite rigs.")
     is_satellite: bool = Field(default=False)
-    zmq_protocol_config: Optional[NetworkConfig] = Field(default=None, description="ZMQ connection for communication.")
+    zmq_protocol_config: NetworkConfig = Field(default=NetworkConfig(address="localhost", port=5555), description="ZMQ connection for communication.", validate_default=True)
     zmq_trigger_config: Optional[NetworkConfig] = Field(
         default=None, description="ZMQ connection for trigger communication."
     )
 
     @model_validator(mode="after")
     def verify_zmq_nullability(self):
-        if self.zmq_protocol_config is None:
-            if self.is_satellite:
-                raise ValueError("Satellite rigs must define a ZMQ connection.")
-            if len(self.satellite_rigs) > 0:
-                raise ValueError("Master rigs with satellite rigs must define a ZMQ connection.")
+        if len(self.satellite_rigs) > 0:
+            if self.zmq_trigger_config is None:
+                raise ValueError("zmq_trigger_config cannot be None when satellite_rigs are defined.")
+            for _r in self.satellite_rigs:
+                _r.zmq_trigger_config = self.zmq_trigger_config
         return self
 
     @model_validator(mode="after")
     def verify_satellite_rigs(self):
+        seen = set()
         for _r in self.satellite_rigs:
             if not _r.is_satellite:
                 raise ValueError("All rigs in satellite_rigs must have is_satellite=True.")
+            addr_port = (_r.zmq_protocol_config.address, _r.zmq_protocol_config.port)
+            if addr_port in seen:
+                raise ValueError(f"Duplicate address:port found in satellite_rigs: {addr_port}")
+            seen.add(addr_port)
         return self
