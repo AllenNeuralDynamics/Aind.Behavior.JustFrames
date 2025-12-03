@@ -76,7 +76,7 @@ docs = [
 requires-dist = [
     { name = "aind-behavior-just-frames", extras = ["data"], marker = "extra == 'launcher'" },
     { name = "aind-behavior-services", git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=0bb8b68c83a4d97b5d972a8595cbef05c7ba4f39" },
-    { name = "aind-clabe", extras = ["aind-services"], marker = "extra == 'launcher'", specifier = ">=0.9,<0.10.0" },
+    { name = "aind-clabe", extras = ["aind-services"], marker = "extra == 'launcher'", git = "https://github.com/AllenNeuralDynamics/clabe?rev=test-services-13" },
     { name = "contraqctor", marker = "extra == 'data'", specifier = ">=0.5.3,<0.6.0" },
     { name = "pydantic-settings" },
 ]
@@ -100,7 +100,7 @@ docs = [
 [[package]]
 name = "aind-behavior-services"
 version = "0.13.0rc0"
-source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=0bb8b68c83a4d97b5d972a8595cbef05c7ba4f39#0bb8b68c83a4d97b5d972a8595cbef05c7ba4f39" }
+source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=feat-update-session#0bb8b68c83a4d97b5d972a8595cbef05c7ba4f39" }
 dependencies = [
     { name = "aind-behavior-curriculum" },
     { name = "gitpython" },
@@ -111,8 +111,8 @@ dependencies = [
 
 [[package]]
 name = "aind-clabe"
-version = "0.9.0"
-source = { registry = "https://pypi.org/simple" }
+version = "0.9.1rc1"
+source = { git = "https://github.com/AllenNeuralDynamics/clabe?rev=test-services-13#1e05a67bfa706e948f0fbd960a037b2a1e16d318" }
 dependencies = [
     { name = "aind-behavior-services" },
     { name = "gitpython" },
@@ -123,15 +123,12 @@ dependencies = [
     { name = "rich" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/75/c1/77cbabec001fa93b558eee34530a0c88eb7f959e10cdfcaacea93496b0e4/aind_clabe-0.9.0.tar.gz", hash = "sha256:732c68e664a84ca933085c44fccb6db782411dacc31d433e2d86c43030b08179", size = 68200, upload-time = "2025-11-18T02:12:32.817Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/25/cc/975079dd0910d40ada6e4d1f40093ef2d5a18ff8f25df243138ad84076c3/aind_clabe-0.9.0-py3-none-any.whl", hash = "sha256:e09e6f23c421fcd2f68e86639fe1adff84a5cdf46fa9fe6ee36e4840a6c0e036", size = 91335, upload-time = "2025-11-18T02:12:31.731Z" },
-]
 
 [package.optional-dependencies]
 aind-services = [
     { name = "aind-data-schema" },
     { name = "aind-data-transfer-service" },
+    { name = "aind-watchdog-service" },
     { name = "cryptography" },
     { name = "ldap3", marker = "sys_platform == 'win32'" },
     { name = "ms-active-directory" },
@@ -183,6 +180,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e3/59/280af29afa129f6a58c43e9bb0f1dfc2654f24759b278940e0a5508b56af/aind_data_transfer_service-1.22.0.tar.gz", hash = "sha256:e7ec917fd3df1ee52979a4b78a74f24ae3fd3a5f4294dbf00c1d08a62bceab68", size = 38564, upload-time = "2025-11-24T23:39:06.299Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/43/f9/6256bb5b80bc7e51120a038a34a22b8368b6f76f0a340e55408d21c497fb/aind_data_transfer_service-1.22.0-py3-none-any.whl", hash = "sha256:436276434634aecbc4afa0fe25ba4b384151394824e57263d0b9f4f73f8d6a0b", size = 23972, upload-time = "2025-11-24T23:39:05.249Z" },
+]
+
+[[package]]
+name = "aind-watchdog-service"
+version = "0.1.6.dev8"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aind-data-transfer-service" },
+    { name = "pyyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ce/7a/133583e96793c98b46ed06e7e591b7364bdb96a557b5a647dee4294961c3/aind_watchdog_service-0.1.6.dev8.tar.gz", hash = "sha256:5636372fba8504ab3679678319183a39361c655593d3f6d5c919ca41ace7f8ab", size = 392177, upload-time = "2025-11-25T17:20:21.887Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b8/cd/3607a1b5bfa8af2cc33f5b44a56c16337a09571d6ee29fbb61fef75d3cd7/aind_watchdog_service-0.1.6.dev8-py3-none-any.whl", hash = "sha256:8f15baf43a2ced64384075d7d3eb88a2a8f96460db020dbd38353a1ee4a2fb4c", size = 48580, upload-time = "2025-11-25T17:20:20.575Z" },
 ]
 
 [[package]]
@@ -2376,14 +2386,18 @@ wheels = [
 
 [[package]]
 name = "winkerberos"
-version = "0.12.2"
+version = "0.13.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/2d/75/86d470935167eb1c40d53498993e14cc021d9611a539d61c9b4202c291ab/winkerberos-0.12.2.tar.gz", hash = "sha256:ff91daed04727a0362892802ee093d8da11f08536393526bdf3bc64e04079faa", size = 35672, upload-time = "2025-04-02T14:41:48.274Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ca/6c/455f043bc28694a278125d1fc2ab7cbf0ce0953c97bbe1021f08fd19c7b8/winkerberos-0.13.0.tar.gz", hash = "sha256:f3fbb67346fe8ed697e125724b0699d5c2a15b9a5f9151d25a1be88df8dac427", size = 35677, upload-time = "2025-12-03T14:17:29.882Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/91/12/23b29d359dee9f7a8243cb0040ea1834acd1af8cbc38cfe1c7ca82ab4ec0/winkerberos-0.12.2-cp311-cp311-win32.whl", hash = "sha256:ff2b2ec9b9246bbc05f0d4e6fe5f3f3563237357b9b35eaa58ec1a9ddf349ab8", size = 25332, upload-time = "2025-04-02T14:41:38.671Z" },
-    { url = "https://files.pythonhosted.org/packages/23/d2/2bfa1dcdb4a47b7f989a9e758c892bd7393a156b0e1f0df63eca8304e892/winkerberos-0.12.2-cp311-cp311-win_amd64.whl", hash = "sha256:e6ac2b2cc329a68502821905f6ffe48e109d54a46aba7414ea231a30c75bb2d9", size = 27671, upload-time = "2025-04-02T14:41:40.104Z" },
-    { url = "https://files.pythonhosted.org/packages/4f/01/26c5b1435654596c07b314653183ffe42b64ea07041c328f0fd4c68fe9f9/winkerberos-0.12.2-cp312-cp312-win32.whl", hash = "sha256:46dac1300e20738cbaf6c17c2e4832062ed7faee346c7a96f0e57f8bbe279c25", size = 25396, upload-time = "2025-04-02T14:41:41.6Z" },
-    { url = "https://files.pythonhosted.org/packages/64/b1/6c4a1e4e50553798eb44dbb0d71ba6af48e2a62a0eb01bd0d4e2b41914e3/winkerberos-0.12.2-cp312-cp312-win_amd64.whl", hash = "sha256:2c5c7a70c0d4a43546b20d5654e7e7e5e5e96f42084a7f293864f7ad0fb1e953", size = 27710, upload-time = "2025-04-02T14:41:42.656Z" },
-    { url = "https://files.pythonhosted.org/packages/5f/91/cff6750c7c3b2a9f35e12cd7c4df901251fc3be985edef707a3458c43e9a/winkerberos-0.12.2-cp313-cp313-win32.whl", hash = "sha256:482a72500b7822cc8f941d0c6eed668a24c030ac145c97732e175b51441bebbf", size = 25391, upload-time = "2025-04-02T14:41:43.938Z" },
-    { url = "https://files.pythonhosted.org/packages/2a/98/defb037ad127c4006c4e992dd55ce0df92059626d3df5f5f4c5fc8502c26/winkerberos-0.12.2-cp313-cp313-win_amd64.whl", hash = "sha256:efd65ba54534512070916cb9c91ef9798a0f9fb0b04e12732c9631e71553fd69", size = 27704, upload-time = "2025-04-02T14:41:45.203Z" },
+    { url = "https://files.pythonhosted.org/packages/ce/09/05c4d2fb93f5478fd1b6146c4fa3fbb80839576a34062e5677f2dec3a430/winkerberos-0.13.0-cp311-cp311-win32.whl", hash = "sha256:a23c83854650416545000c4630e94b16fa14c7b400bd5f08a79718e04eff9135", size = 25642, upload-time = "2025-12-03T14:17:17.42Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/5b/bafa1cfb9f047be139ffae330f6eafa0487f8bf82164ead756e0bc2bc047/winkerberos-0.13.0-cp311-cp311-win_amd64.whl", hash = "sha256:6bc03e66a737bfd11964e6cdc5f03a8cd0baed798f991b1467075c65980c4157", size = 27931, upload-time = "2025-12-03T14:17:18.708Z" },
+    { url = "https://files.pythonhosted.org/packages/3a/fa/02de79d7dbec9122a6778678ed432ebffb228c48b16cfba3007c45a6e8fd/winkerberos-0.13.0-cp312-cp312-win32.whl", hash = "sha256:3454b8bb9c11091e4775a8bd692dfbe45f2eab12f3a4837b820c2505088dfdd2", size = 25675, upload-time = "2025-12-03T14:17:20.052Z" },
+    { url = "https://files.pythonhosted.org/packages/52/c2/ff9074cf423d82bdfb48ac89e64f360533ba4e2079e8485be8377a8c54fe/winkerberos-0.13.0-cp312-cp312-win_amd64.whl", hash = "sha256:59f01879c62adcda5af857fd78d2b2dfdfd99cf6179b92d38e2f2bd12db75bf7", size = 27946, upload-time = "2025-12-03T14:17:21.22Z" },
+    { url = "https://files.pythonhosted.org/packages/92/83/b1f52594cc2c3ce18c67a04aecb0cb4fb3f4769c268d194cc5f4863150fa/winkerberos-0.13.0-cp313-cp313-win32.whl", hash = "sha256:38fefdfc77a7f82c3cc9f83c7d1b6f242e6d3ea200bfde9b640f7dfe9fdf9bda", size = 25671, upload-time = "2025-12-03T14:17:23.235Z" },
+    { url = "https://files.pythonhosted.org/packages/9c/26/b17649b0707e4d8cd9d0d4ceadcef06eff2fc76fcb444cb187763158ae63/winkerberos-0.13.0-cp313-cp313-win_amd64.whl", hash = "sha256:c45e84a35a3b87b88d0e6d7b55d40712dc021f80af3cb9e81091651e6a73510d", size = 27941, upload-time = "2025-12-03T14:17:24.627Z" },
+    { url = "https://files.pythonhosted.org/packages/80/d9/d12d310fdf9ace70f7469ecfd9f112dc39cb7e1f77348228c06a6bd72c57/winkerberos-0.13.0-cp314-cp314-win32.whl", hash = "sha256:46cc29fa95744076a0dd2a167158574826509a5e4aa052b81a2b535aab4af14a", size = 26185, upload-time = "2025-12-03T14:17:25.63Z" },
+    { url = "https://files.pythonhosted.org/packages/97/7c/5a418e8d292e3fea1012ccf029b38fae430542fab1beaf6fc60cf138cc08/winkerberos-0.13.0-cp314-cp314-win_amd64.whl", hash = "sha256:5d5add54d10e31671f7c28c90ccafe98b45cec6d7519949ba30add51e34aee9a", size = 28476, upload-time = "2025-12-03T14:17:26.629Z" },
+    { url = "https://files.pythonhosted.org/packages/29/ba/cd8186479046b7a749cee8d4d9fd50e3ce3330d8ea611efe4b8b741f0c3b/winkerberos-0.13.0-cp314-cp314t-win32.whl", hash = "sha256:5bc5e40a816d94d4a5abd665fe62088c1ee91ee9a1f5d787032a63004842fedf", size = 26500, upload-time = "2025-12-03T14:17:27.873Z" },
+    { url = "https://files.pythonhosted.org/packages/e7/a6/cc5f24b3f1a46a826b7e30ef56fdc1fe22315fef96de8e22afbdd5d98e7a/winkerberos-0.13.0-cp314-cp314t-win_amd64.whl", hash = "sha256:441884c0bda4bee0125fdbd7fee6a232dab58b4a64be8950eb17a8a7404a5440", size = 28715, upload-time = "2025-12-03T14:17:28.813Z" },
 ]
