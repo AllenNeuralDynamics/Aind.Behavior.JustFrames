@@ -176,12 +176,24 @@
           "title": "Is Satellite",
           "type": "boolean"
         },
-        "zmq_connection": {
+        "zmq_protocol_config": {
           "default": null,
           "description": "ZMQ connection for communication.",
           "oneOf": [
             {
-              "$ref": "#/$defs/ZmqPubSub"
+              "$ref": "#/$defs/NetworkConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "zmq_trigger_config": {
+          "default": null,
+          "description": "ZMQ connection for trigger communication.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NetworkConfig"
             },
             {
               "type": "null"
@@ -302,6 +314,29 @@
       "title": "HarpBehavior",
       "type": "object"
     },
+    "NetworkConfig": {
+      "properties": {
+        "address": {
+          "description": "Address for ZMQ connection.",
+          "format": "ipv4",
+          "title": "Address",
+          "type": "string"
+        },
+        "port": {
+          "description": "Port for ZMQ connection.",
+          "maximum": 65535,
+          "minimum": 1,
+          "title": "Port",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "address",
+        "port"
+      ],
+      "title": "NetworkConfig",
+      "type": "object"
+    },
     "Rect": {
       "description": "Represents a rectangle defined by its top-left corner, width, and height.",
       "properties": {
@@ -367,9 +402,13 @@
           "title": "Data Directory",
           "type": "string"
         },
-        "zmq_connection": {
-          "$ref": "#/$defs/ZmqPubSub",
+        "zmq_protocol_config": {
+          "$ref": "#/$defs/NetworkConfig",
           "description": "ZMQ connection for communication."
+        },
+        "zmq_trigger_config": {
+          "$ref": "#/$defs/NetworkConfig",
+          "description": "ZMQ connection for trigger communication."
         },
         "triggered_camera_controller_0": {
           "default": null,
@@ -404,7 +443,8 @@
       "required": [
         "rig_name",
         "data_directory",
-        "zmq_connection"
+        "zmq_protocol_config",
+        "zmq_trigger_config"
       ],
       "title": "SatelliteRig",
       "type": "object"
@@ -930,77 +970,6 @@
         }
       },
       "title": "VideoWriterOpenCv",
-      "type": "object"
-    },
-    "ZmqConnection": {
-      "properties": {
-        "protocol": {
-          "const": "Tcp",
-          "default": "Tcp",
-          "description": "The protocol to use for the ZMQ connection.",
-          "title": "Protocol",
-          "type": "string"
-        },
-        "address": {
-          "default": "localhost",
-          "description": "The address of the ZMQ socket.",
-          "title": "Address",
-          "type": "string"
-        },
-        "port": {
-          "default": 5556,
-          "description": "The port of the ZMQ socket.",
-          "title": "Port",
-          "type": "integer"
-        },
-        "action": {
-          "default": null,
-          "description": "Whether to bind or connect the socket.",
-          "oneOf": [
-            {
-              "enum": [
-                "bind",
-                "connect"
-              ],
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Action"
-        },
-        "connection_string": {
-          "default": "",
-          "description": "The connection string for the ZMQ socket.",
-          "title": "Connection String",
-          "type": "string"
-        },
-        "topic": {
-          "default": "",
-          "title": "Topic",
-          "type": "string"
-        }
-      },
-      "title": "ZmqConnection",
-      "type": "object"
-    },
-    "ZmqPubSub": {
-      "properties": {
-        "pub": {
-          "$ref": "#/$defs/ZmqConnection",
-          "description": "ZMQ Publisher"
-        },
-        "sub": {
-          "$ref": "#/$defs/ZmqConnection",
-          "description": "ZMQ Subscriber"
-        }
-      },
-      "required": [
-        "pub",
-        "sub"
-      ],
-      "title": "ZmqPubSub",
       "type": "object"
     }
   }

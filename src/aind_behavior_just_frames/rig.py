@@ -3,17 +3,18 @@ from typing import Literal, Optional
 import aind_behavior_services.rig as rig
 from aind_behavior_services.rig import AindBehaviorRigModel
 from pydantic import BaseModel, Field, field_validator, model_validator
+from ipaddress import IPv4Address
 
 from . import __semver__
 
-
-class ZmqPubSub(BaseModel):
-    pub: rig.network.ZmqConnection = Field(description="ZMQ Publisher")
-    sub: rig.network.ZmqConnection = Field(description="ZMQ Subscriber")
+class NetworkConfig(BaseModel):
+    address: IPv4Address = Field(description="Address for ZMQ connection.")
+    port: int = Field(description="Port for ZMQ connection.", ge=1, le=65535)
 
 class SatelliteRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
-    zmq_connection: ZmqPubSub = Field(description="ZMQ connection for communication.")
+    zmq_protocol_config: NetworkConfig = Field(description="ZMQ connection for communication.")
+    zmq_trigger_config: NetworkConfig = Field(description="ZMQ connection for trigger communication.")
     triggered_camera_controller_0: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
@@ -24,9 +25,9 @@ class SatelliteRig(AindBehaviorRigModel):
     )
     is_satellite: bool = Field(default=True)
 
-    @field_validator("zmq_connection", mode="after")
+    @field_validator("zmq_protocol_config", mode="after")
     @classmethod
-    def validate_zmq_connection(cls, value: rig.network.ZmqConnection):
+    def validate_zmq_protocol_config(cls, value: rig.network.ZmqConnection):
         if isinstance(value, rig.network.ZmqConnection):
             value.topic = ""
         return value
@@ -47,11 +48,14 @@ class AindJustFramesRig(AindBehaviorRigModel):
     )
     satellite_rigs: list[SatelliteRig] = Field(default_factory=list, description="List of satellite rigs.")
     is_satellite: bool = Field(default=False)
-    zmq_connection: Optional[ZmqPubSub] = Field(default=None, description="ZMQ connection for communication.")
+    zmq_protocol_config: Optional[NetworkConfig] = Field(default=None, description="ZMQ connection for communication.")
+    zmq_trigger_config: Optional[NetworkConfig] = Field(
+        default=None, description="ZMQ connection for trigger communication."
+    )
 
     @model_validator(mode="after")
     def verify_zmq_nullability(self):
-        if self.zmq_connection is None:
+        if self.zmq_protocol_config is None:
             if self.is_satellite:
                 raise ValueError("Satellite rigs must define a ZMQ connection.")
             if len(self.satellite_rigs) > 0:

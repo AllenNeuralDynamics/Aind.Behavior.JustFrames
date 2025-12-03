@@ -310,7 +310,9 @@ namespace AindJustFramesSchemas
     
         private bool _isSatellite;
     
-        private ZmqPubSub _zmqConnection;
+        private NetworkConfig _zmqProtocolConfig;
+    
+        private NetworkConfig _zmqTriggerConfig;
     
         public AindJustFramesRig()
         {
@@ -333,7 +335,8 @@ namespace AindJustFramesSchemas
             _harpBehavior = other._harpBehavior;
             _satelliteRigs = other._satelliteRigs;
             _isSatellite = other._isSatellite;
-            _zmqConnection = other._zmqConnection;
+            _zmqProtocolConfig = other._zmqProtocolConfig;
+            _zmqTriggerConfig = other._zmqTriggerConfig;
         }
     
         [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
@@ -503,17 +506,35 @@ namespace AindJustFramesSchemas
         /// ZMQ connection for communication.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("zmq_connection")]
+        [Newtonsoft.Json.JsonPropertyAttribute("zmq_protocol_config")]
         [System.ComponentModel.DescriptionAttribute("ZMQ connection for communication.")]
-        public ZmqPubSub ZmqConnection
+        public NetworkConfig ZmqProtocolConfig
         {
             get
             {
-                return _zmqConnection;
+                return _zmqProtocolConfig;
             }
             set
             {
-                _zmqConnection = value;
+                _zmqProtocolConfig = value;
+            }
+        }
+    
+        /// <summary>
+        /// ZMQ connection for trigger communication.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("zmq_trigger_config")]
+        [System.ComponentModel.DescriptionAttribute("ZMQ connection for trigger communication.")]
+        public NetworkConfig ZmqTriggerConfig
+        {
+            get
+            {
+                return _zmqTriggerConfig;
+            }
+            set
+            {
+                _zmqTriggerConfig = value;
             }
         }
     
@@ -539,7 +560,8 @@ namespace AindJustFramesSchemas
             stringBuilder.Append("HarpBehavior = " + _harpBehavior + ", ");
             stringBuilder.Append("SatelliteRigs = " + _satelliteRigs + ", ");
             stringBuilder.Append("IsSatellite = " + _isSatellite + ", ");
-            stringBuilder.Append("ZmqConnection = " + _zmqConnection);
+            stringBuilder.Append("ZmqProtocolConfig = " + _zmqProtocolConfig + ", ");
+            stringBuilder.Append("ZmqTriggerConfig = " + _zmqTriggerConfig);
             return true;
         }
     
@@ -875,6 +897,92 @@ namespace AindJustFramesSchemas
     }
 
 
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class NetworkConfig
+    {
+    
+        private string _address;
+    
+        private int _port;
+    
+        public NetworkConfig()
+        {
+        }
+    
+        protected NetworkConfig(NetworkConfig other)
+        {
+            _address = other._address;
+            _port = other._port;
+        }
+    
+        /// <summary>
+        /// Address for ZMQ connection.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("address", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Address for ZMQ connection.")]
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                _address = value;
+            }
+        }
+    
+        /// <summary>
+        /// Port for ZMQ connection.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("port", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Port for ZMQ connection.")]
+        public int Port
+        {
+            get
+            {
+                return _port;
+            }
+            set
+            {
+                _port = value;
+            }
+        }
+    
+        public System.IObservable<NetworkConfig> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new NetworkConfig(this)));
+        }
+    
+        public System.IObservable<NetworkConfig> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new NetworkConfig(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Address = " + _address + ", ");
+            stringBuilder.Append("Port = " + _port);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
     /// <summary>
     /// Represents a rectangle defined by its top-left corner, width, and height.
     /// </summary>
@@ -1027,7 +1135,9 @@ namespace AindJustFramesSchemas
     
         private string _dataDirectory;
     
-        private ZmqPubSub _zmqConnection;
+        private NetworkConfig _zmqProtocolConfig;
+    
+        private NetworkConfig _zmqTriggerConfig;
     
         private CameraControllerSpinnakerCamera _triggeredCameraController0;
     
@@ -1039,7 +1149,8 @@ namespace AindJustFramesSchemas
         {
             _aindBehaviorServicesPkgVersion = "0.13.0-rc0";
             _version = "0.5.0-rc0";
-            _zmqConnection = new ZmqPubSub();
+            _zmqProtocolConfig = new NetworkConfig();
+            _zmqTriggerConfig = new NetworkConfig();
             _isSatellite = true;
         }
     
@@ -1050,7 +1161,8 @@ namespace AindJustFramesSchemas
             _computerName = other._computerName;
             _rigName = other._rigName;
             _dataDirectory = other._dataDirectory;
-            _zmqConnection = other._zmqConnection;
+            _zmqProtocolConfig = other._zmqProtocolConfig;
+            _zmqTriggerConfig = other._zmqTriggerConfig;
             _triggeredCameraController0 = other._triggeredCameraController0;
             _triggeredCameraController1 = other._triggeredCameraController1;
             _isSatellite = other._isSatellite;
@@ -1137,17 +1249,35 @@ namespace AindJustFramesSchemas
         /// ZMQ connection for communication.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("zmq_connection", Required=Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonPropertyAttribute("zmq_protocol_config", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("ZMQ connection for communication.")]
-        public ZmqPubSub ZmqConnection
+        public NetworkConfig ZmqProtocolConfig
         {
             get
             {
-                return _zmqConnection;
+                return _zmqProtocolConfig;
             }
             set
             {
-                _zmqConnection = value;
+                _zmqProtocolConfig = value;
+            }
+        }
+    
+        /// <summary>
+        /// ZMQ connection for trigger communication.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("zmq_trigger_config", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("ZMQ connection for trigger communication.")]
+        public NetworkConfig ZmqTriggerConfig
+        {
+            get
+            {
+                return _zmqTriggerConfig;
+            }
+            set
+            {
+                _zmqTriggerConfig = value;
             }
         }
     
@@ -1217,7 +1347,8 @@ namespace AindJustFramesSchemas
             stringBuilder.Append("ComputerName = " + _computerName + ", ");
             stringBuilder.Append("RigName = " + _rigName + ", ");
             stringBuilder.Append("DataDirectory = " + _dataDirectory + ", ");
-            stringBuilder.Append("ZmqConnection = " + _zmqConnection + ", ");
+            stringBuilder.Append("ZmqProtocolConfig = " + _zmqProtocolConfig + ", ");
+            stringBuilder.Append("ZmqTriggerConfig = " + _zmqTriggerConfig + ", ");
             stringBuilder.Append("TriggeredCameraController0 = " + _triggeredCameraController0 + ", ");
             stringBuilder.Append("TriggeredCameraController1 = " + _triggeredCameraController1 + ", ");
             stringBuilder.Append("IsSatellite = " + _isSatellite);
@@ -2295,268 +2426,6 @@ namespace AindJustFramesSchemas
 
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    [Bonsai.CombinatorAttribute(MethodName="Generate")]
-    public partial class ZmqConnection
-    {
-    
-        private string _protocol;
-    
-        private string _address;
-    
-        private int _port;
-    
-        private Action? _action;
-    
-        private string _connectionString;
-    
-        private string _topic;
-    
-        public ZmqConnection()
-        {
-            _protocol = "Tcp";
-            _address = "localhost";
-            _port = 5556;
-            _connectionString = "";
-            _topic = "";
-        }
-    
-        protected ZmqConnection(ZmqConnection other)
-        {
-            _protocol = other._protocol;
-            _address = other._address;
-            _port = other._port;
-            _action = other._action;
-            _connectionString = other._connectionString;
-            _topic = other._topic;
-        }
-    
-        /// <summary>
-        /// The protocol to use for the ZMQ connection.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("protocol")]
-        [System.ComponentModel.DescriptionAttribute("The protocol to use for the ZMQ connection.")]
-        public string Protocol
-        {
-            get
-            {
-                return _protocol;
-            }
-            set
-            {
-                _protocol = value;
-            }
-        }
-    
-        /// <summary>
-        /// The address of the ZMQ socket.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("address")]
-        [System.ComponentModel.DescriptionAttribute("The address of the ZMQ socket.")]
-        public string Address
-        {
-            get
-            {
-                return _address;
-            }
-            set
-            {
-                _address = value;
-            }
-        }
-    
-        /// <summary>
-        /// The port of the ZMQ socket.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("port")]
-        [System.ComponentModel.DescriptionAttribute("The port of the ZMQ socket.")]
-        public int Port
-        {
-            get
-            {
-                return _port;
-            }
-            set
-            {
-                _port = value;
-            }
-        }
-    
-        /// <summary>
-        /// Whether to bind or connect the socket.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("action")]
-        [System.ComponentModel.DescriptionAttribute("Whether to bind or connect the socket.")]
-        public Action? Action
-        {
-            get
-            {
-                return _action;
-            }
-            set
-            {
-                _action = value;
-            }
-        }
-    
-        /// <summary>
-        /// The connection string for the ZMQ socket.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("connection_string")]
-        [System.ComponentModel.DescriptionAttribute("The connection string for the ZMQ socket.")]
-        public string ConnectionString
-        {
-            get
-            {
-                return _connectionString;
-            }
-            set
-            {
-                _connectionString = value;
-            }
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("topic")]
-        public string Topic
-        {
-            get
-            {
-                return _topic;
-            }
-            set
-            {
-                _topic = value;
-            }
-        }
-    
-        public System.IObservable<ZmqConnection> Generate()
-        {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new ZmqConnection(this)));
-        }
-    
-        public System.IObservable<ZmqConnection> Generate<TSource>(System.IObservable<TSource> source)
-        {
-            return System.Reactive.Linq.Observable.Select(source, _ => new ZmqConnection(this));
-        }
-    
-        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
-        {
-            stringBuilder.Append("Protocol = " + _protocol + ", ");
-            stringBuilder.Append("Address = " + _address + ", ");
-            stringBuilder.Append("Port = " + _port + ", ");
-            stringBuilder.Append("Action = " + _action + ", ");
-            stringBuilder.Append("ConnectionString = " + _connectionString + ", ");
-            stringBuilder.Append("Topic = " + _topic);
-            return true;
-        }
-    
-        public override string ToString()
-        {
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append(GetType().Name);
-            stringBuilder.Append(" { ");
-            if (PrintMembers(stringBuilder))
-            {
-                stringBuilder.Append(" ");
-            }
-            stringBuilder.Append("}");
-            return stringBuilder.ToString();
-        }
-    }
-
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    [Bonsai.CombinatorAttribute(MethodName="Generate")]
-    public partial class ZmqPubSub
-    {
-    
-        private ZmqConnection _pub;
-    
-        private ZmqConnection _sub;
-    
-        public ZmqPubSub()
-        {
-            _pub = new ZmqConnection();
-            _sub = new ZmqConnection();
-        }
-    
-        protected ZmqPubSub(ZmqPubSub other)
-        {
-            _pub = other._pub;
-            _sub = other._sub;
-        }
-    
-        /// <summary>
-        /// ZMQ Publisher
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("pub", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("ZMQ Publisher")]
-        public ZmqConnection Pub
-        {
-            get
-            {
-                return _pub;
-            }
-            set
-            {
-                _pub = value;
-            }
-        }
-    
-        /// <summary>
-        /// ZMQ Subscriber
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("sub", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("ZMQ Subscriber")]
-        public ZmqConnection Sub
-        {
-            get
-            {
-                return _sub;
-            }
-            set
-            {
-                _sub = value;
-            }
-        }
-    
-        public System.IObservable<ZmqPubSub> Generate()
-        {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new ZmqPubSub(this)));
-        }
-    
-        public System.IObservable<ZmqPubSub> Generate<TSource>(System.IObservable<TSource> source)
-        {
-            return System.Reactive.Linq.Observable.Select(source, _ => new ZmqPubSub(this));
-        }
-    
-        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
-        {
-            stringBuilder.Append("Pub = " + _pub + ", ");
-            stringBuilder.Append("Sub = " + _sub);
-            return true;
-        }
-    
-        public override string ToString()
-        {
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append(GetType().Name);
-            stringBuilder.Append(" { ");
-            if (PrintMembers(stringBuilder))
-            {
-                stringBuilder.Append(" ");
-            }
-            stringBuilder.Append("}");
-            return stringBuilder.ToString();
-        }
-    }
-
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum SpinnakerCameraColorProcessing
     {
@@ -2566,19 +2435,6 @@ namespace AindJustFramesSchemas
     
         [System.Runtime.Serialization.EnumMemberAttribute(Value="NoColorProcessing")]
         NoColorProcessing = 1,
-    }
-
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-    public enum Action
-    {
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="bind")]
-        Bind = 0,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="connect")]
-        Connect = 1,
     }
 
 
@@ -2803,6 +2659,11 @@ namespace AindJustFramesSchemas
             return Process<HarpBehavior>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<NetworkConfig> source)
+        {
+            return Process<NetworkConfig>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<Rect> source)
         {
             return Process<Rect>(source);
@@ -2832,16 +2693,6 @@ namespace AindJustFramesSchemas
         {
             return Process<VideoWriterOpenCv>(source);
         }
-
-        public System.IObservable<string> Process(System.IObservable<ZmqConnection> source)
-        {
-            return Process<ZmqConnection>(source);
-        }
-
-        public System.IObservable<string> Process(System.IObservable<ZmqPubSub> source)
-        {
-            return Process<ZmqPubSub>(source);
-        }
     }
 
 
@@ -2857,14 +2708,13 @@ namespace AindJustFramesSchemas
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<BaseModel>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<CameraControllerSpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpBehavior>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<NetworkConfig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Rect>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SatelliteRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterOpenCv>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ZmqConnection>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ZmqPubSub>))]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
     {
     
