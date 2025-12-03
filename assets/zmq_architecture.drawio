@@ -1,0 +1,78 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram name="Page-1" id="InW7aUrkfGbfT_UlUlEm">
+    <mxGraphModel dx="2377" dy="1403" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" background="light-dark(#ffffff, #412232)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-16" value="@ binds&lt;div&gt;&amp;gt; connects&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="680" y="130" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-53" value="Master" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="210" width="210" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-54" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;width=68;endSize=10.17;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="250" as="sourcePoint" />
+            <mxPoint x="810" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-62" value="&lt;span style=&quot;font-size: 12px; background-color: rgb(236, 236, 236);&quot;&gt;Trigger&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px; background-color: rgb(236, 236, 236);&quot;&gt;PubSocker -&amp;gt; @tcp://&amp;lt;*&amp;gt;:trigger_port&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="K-ItCHZruU8DJhyTVVRd-54">
+          <mxGeometry x="0.4447" y="-5" relative="1" as="geometry">
+            <mxPoint x="-66" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-70" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;width=29;endSize=9;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="678.03" y="510" as="sourcePoint" />
+            <mxPoint x="613.53" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-74" value="&lt;span style=&quot;font-size: 12px; background-color: rgb(236, 236, 236);&quot;&gt;Trigger&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px; background-color: rgb(236, 236, 236);&quot;&gt;SubSocket -&amp;gt; &amp;gt;tcp://master_ip:trigger_port&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="790" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-81" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fillColor=#ffe6cc;strokeColor=#d79b00;" edge="1" parent="1" source="K-ItCHZruU8DJhyTVVRd-80" target="K-ItCHZruU8DJhyTVVRd-53">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="300" y="280" as="sourcePoint" />
+            <mxPoint x="400" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-80" value="Slave" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="470" width="123.53" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-82" value="&lt;span style=&quot;font-size: 12px; background-color: rgb(236, 236, 236);&quot;&gt;Protocol&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(236, 236, 236); font-size: 12px; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Req/Resp-&amp;gt; &amp;gt;/@tcp://&amp;lt;slave_ip&amp;gt;:slave_specific_port&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="160" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-65" value="Slave" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="470" width="123.53" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-75" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fillColor=#ffe6cc;strokeColor=#d79b00;" edge="1" parent="1" source="K-ItCHZruU8DJhyTVVRd-65" target="K-ItCHZruU8DJhyTVVRd-53">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="680" y="280" as="sourcePoint" />
+            <mxPoint x="780" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-77" value="&lt;span style=&quot;font-size: 12px; background-color: rgb(236, 236, 236);&quot;&gt;Protocol&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(236, 236, 236); font-size: 12px; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Req/Resp-&amp;gt; &amp;gt;/@tcp://&amp;lt;slave_ip&amp;gt;:slave_specific_port&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="640" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-83" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;width=29;endSize=9;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="378.03" y="519.5" as="sourcePoint" />
+            <mxPoint x="313.53" y="519.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-84" value="" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.pc;" vertex="1" parent="1">
+          <mxGeometry x="90" y="80" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-85" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fillColor=#ffe6cc;strokeColor=#d79b00;" edge="1" parent="1" source="K-ItCHZruU8DJhyTVVRd-53">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="290" y="190" as="sourcePoint" />
+            <mxPoint x="200" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-ItCHZruU8DJhyTVVRd-86" value="&lt;span style=&quot;font-size: 12px; background-color: rgb(236, 236, 236);&quot;&gt;Protocol&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(236, 236, 236); font-size: 12px; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Req/Resp-&amp;gt; &amp;gt;/@tcp://&amp;lt;master_ip&amp;gt;:pc_port&lt;/span&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="400" y="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
