@@ -22,11 +22,14 @@ dependencies = [
 
 [project.optional-dependencies]
 
-launcher = ["aind-clabe[aind-services] >= 0.9 ,<0.10.0"]
+data = ["contraqctor >= 0.5.3 ,<0.6.0"]
+launcher = [
+    "aind-clabe[aind-services] >= 0.9 ,<0.10.0",
+    "aind_behavior_just_frames[data]",]
 
 [dependency-groups]
 
-dev = ["aind_behavior_just_frames[launcher]",
+dev = ["aind_behavior_just_frames[launcher, data]",
     "ruff",
     "codespell"
 ]

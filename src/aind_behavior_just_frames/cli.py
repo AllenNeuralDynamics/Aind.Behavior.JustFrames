@@ -4,6 +4,7 @@ from pydantic import Field, RootModel
 from pydantic_settings import BaseSettings, CliApp, CliSubCommand
 
 from aind_behavior_just_frames import __semver__, regenerate
+from aind_behavior_just_frames.data_qc import DataQcCli
 from aind_behavior_just_frames.launcher import ClabeCli
 
 
@@ -21,12 +22,13 @@ class DslRegenerateCli(RootModel):
         regenerate.main()
 
 
-class VrForagingCli(BaseSettings, cli_prog_name="vr-foraging", cli_kebab_case=True):
+class JustFramesCli(BaseSettings, cli_prog_name="just-frames", cli_kebab_case=True):
     version: CliSubCommand[VersionCli] = Field(
-        description="Print the version of the vr-foraging package.",
+        description="Print the version of the just-frames package.",
     )
+    data_qc: CliSubCommand[DataQcCli] = Field(description="Run data quality checks.")
     regenerate: CliSubCommand[DslRegenerateCli] = Field(
-        description="Regenerate the vr-foraging dsl dependencies.",
+        description="Regenerate the just-frames dsl dependencies.",
     )
     clabe: CliSubCommand[ClabeCli] = Field(
         description="Run the Clabe CLI.",
@@ -37,7 +39,7 @@ class VrForagingCli(BaseSettings, cli_prog_name="vr-foraging", cli_kebab_case=Tr
 
 
 def main():
-    CliApp().run(VrForagingCli)
+    CliApp().run(JustFramesCli)
 
 
 if __name__ == "__main__":
