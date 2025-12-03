@@ -14,7 +14,6 @@ class ZmqPubSub(BaseModel):
 
 class SatelliteRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
-    computer_name: str = Field(description="Remote Computer name")
     zmq_connection: ZmqPubSub = Field(description="ZMQ connection for communication.")
     triggered_camera_controller_0: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
         default=None,
@@ -48,7 +47,7 @@ class AindJustFramesRig(AindBehaviorRigModel):
         description="Harp behavior board. Will be the source of triggers for the two camera controllers.",
     )
     satellite_rigs: list[SatelliteRig] = Field(
-        default_factory=list, min_length=1, description="List of satellite rigs."
+        default_factory=list, description="List of satellite rigs."
     )
     is_satellite: bool = Field(default=False)
     zmq_connection: Optional[ZmqPubSub] = Field(default=None, description="ZMQ connection for communication.")
@@ -60,4 +59,11 @@ class AindJustFramesRig(AindBehaviorRigModel):
                 raise ValueError("Satellite rigs must define a ZMQ connection.")
             if len(self.satellite_rigs) > 0:
                 raise ValueError("Master rigs with satellite rigs must define a ZMQ connection.")
+        return self
+
+    @model_validator(mode="after")
+    def verify_satellite_rigs(self):
+        for _r in self.satellite_rigs:
+            if not _r.is_satellite:
+                raise ValueError("All rigs in satellite_rigs must have is_satellite=True.")
         return self

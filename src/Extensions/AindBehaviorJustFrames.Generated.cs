@@ -1083,10 +1083,10 @@ namespace AindJustFramesSchemas
         }
     
         /// <summary>
-        /// Remote Computer name
+        /// Computer name
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("computer_name", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Remote Computer name")]
+        [Newtonsoft.Json.JsonPropertyAttribute("computer_name")]
+        [System.ComponentModel.DescriptionAttribute("Computer name")]
         public string ComputerName
         {
             get

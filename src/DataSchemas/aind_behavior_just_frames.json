@@ -168,7 +168,6 @@
           "items": {
             "$ref": "#/$defs/SatelliteRig"
           },
-          "minItems": 1,
           "title": "Satellite Rigs",
           "type": "array"
         },
@@ -353,7 +352,7 @@
           "type": "string"
         },
         "computer_name": {
-          "description": "Remote Computer name",
+          "description": "Computer name",
           "title": "Computer Name",
           "type": "string"
         },
@@ -403,7 +402,6 @@
         }
       },
       "required": [
-        "computer_name",
         "rig_name",
         "data_directory",
         "zmq_connection"
