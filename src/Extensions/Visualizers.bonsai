@@ -6,10 +6,12 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="WorkflowInput">
-        <Name>Source1</Name>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>0</Value>
+        </Combinator>
       </Expression>
-      <Expression xsi:type="rx:Sink">
+      <Expression xsi:type="rx:Visualizer">
         <Name>Visualizers</Name>
         <Workflow>
           <Nodes>

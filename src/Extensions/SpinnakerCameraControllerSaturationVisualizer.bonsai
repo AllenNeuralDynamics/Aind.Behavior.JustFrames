@@ -9,7 +9,6 @@
                  xmlns:p2="clr-namespace:AllenNeuralDynamics.Core.Design;assembly=AllenNeuralDynamics.Core.Design"
                  xmlns:gui="clr-namespace:Bonsai.Gui;assembly=Bonsai.Gui"
                  xmlns:p3="clr-namespace:AllenNeuralDynamics.VrForaging;assembly=AllenNeuralDynamics.Core.Design"
-                 xmlns:p4="clr-namespace:Bonsai.Vision.Design;assembly=Bonsai.Vision.Design"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -117,12 +116,12 @@
         <Selector>Value.Image</Selector>
       </Expression>
       <Expression xsi:type="p3:IplImageSaturationVisualizerBuilder">
-        <p3:Minimum>5</p3:Minimum>
-        <p3:Maximum>250</p3:Maximum>
+        <p3:Minimum>1</p3:Minimum>
+        <p3:Maximum>254</p3:Maximum>
         <p3:OverlayAlpha>1</p3:OverlayAlpha>
       </Expression>
       <Expression xsi:type="VisualizerMapping">
-        <VisualizerType xsi:type="TypeMapping" TypeArguments="p4:IplImageVisualizer" />
+        <VisualizerType xsi:type="TypeMapping" TypeArguments="p2:IplImageSaturationVisualizer" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="BooleanProperty">

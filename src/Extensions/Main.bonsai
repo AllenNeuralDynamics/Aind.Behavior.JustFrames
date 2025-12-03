@@ -1218,14 +1218,8 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:SubscribeWhen" />
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>0</Value>
-              </Combinator>
-            </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\Visualizers.bonsai" />
             <Expression xsi:type="ui:VisualizerWindow">
-              <ui:Text>JustFrames</ui:Text>
               <ui:Visible>true</ui:Visible>
               <ui:Location xsi:nil="true" />
               <ui:Size xsi:nil="true" />
@@ -1278,11 +1272,10 @@
             <Edge From="11" To="13" Label="Source1" />
             <Edge From="12" To="13" Label="Source2" />
             <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="16" To="17" Label="Source1" />
             <Edge From="17" To="18" Label="Source1" />
             <Edge From="18" To="19" Label="Source1" />
             <Edge From="19" To="20" Label="Source1" />
-            <Edge From="20" To="21" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
