@@ -6,9 +6,11 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 
 from . import __semver__
 
+
 class NetworkConfig(BaseModel):
     address: str = Field(description="Address for ZMQ connection.")
     port: int = Field(description="Port for ZMQ connection.", ge=1, le=65535)
+
 
 class SatelliteRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
@@ -47,7 +49,11 @@ class AindJustFramesRig(AindBehaviorRigModel):
     )
     satellite_rigs: list[SatelliteRig] = Field(default_factory=list, description="List of satellite rigs.")
     is_satellite: bool = Field(default=False)
-    zmq_protocol_config: NetworkConfig = Field(default=NetworkConfig(address="localhost", port=5555), description="ZMQ connection for communication.", validate_default=True)
+    zmq_protocol_config: NetworkConfig = Field(
+        default=NetworkConfig(address="localhost", port=5555),
+        description="ZMQ connection for communication.",
+        validate_default=True,
+    )
     zmq_trigger_config: Optional[NetworkConfig] = Field(
         default=None, description="ZMQ connection for trigger communication."
     )
