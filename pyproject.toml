@@ -16,7 +16,7 @@ version = "0.5.0rc0"
 readme = {file = "README.md", content-type = "text/markdown"}
 
 dependencies = [
-  "aind_behavior_services @git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@0bb8b68c83a4d97b5d972a8595cbef05c7ba4f39",
+  "aind_behavior_services @git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@90c77e682922288bc7779c4f8cde5d6f15115899",
   "pydantic-settings"
 ]
 

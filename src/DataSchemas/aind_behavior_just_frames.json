@@ -934,8 +934,44 @@
     },
     "ZmqConnection": {
       "properties": {
+        "protocol": {
+          "const": "Tcp",
+          "default": "Tcp",
+          "description": "The protocol to use for the ZMQ connection.",
+          "title": "Protocol",
+          "type": "string"
+        },
+        "address": {
+          "default": "localhost",
+          "description": "The address of the ZMQ socket.",
+          "title": "Address",
+          "type": "string"
+        },
+        "port": {
+          "default": 5556,
+          "description": "The port of the ZMQ socket.",
+          "title": "Port",
+          "type": "integer"
+        },
+        "action": {
+          "default": null,
+          "description": "Whether to bind or connect the socket.",
+          "oneOf": [
+            {
+              "enum": [
+                "bind",
+                "connect"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Action"
+        },
         "connection_string": {
-          "default": "@tcp://localhost:5556",
+          "default": "",
           "description": "The connection string for the ZMQ socket.",
           "title": "Connection String",
           "type": "string"

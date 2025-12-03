@@ -11,7 +11,6 @@ class ZmqPubSub(BaseModel):
     pub: rig.network.ZmqConnection = Field(description="ZMQ Publisher")
     sub: rig.network.ZmqConnection = Field(description="ZMQ Subscriber")
 
-
 class SatelliteRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
     zmq_connection: ZmqPubSub = Field(description="ZMQ connection for communication.")
@@ -46,9 +45,7 @@ class AindJustFramesRig(AindBehaviorRigModel):
     harp_behavior: rig.harp.HarpBehavior = Field(
         description="Harp behavior board. Will be the source of triggers for the two camera controllers.",
     )
-    satellite_rigs: list[SatelliteRig] = Field(
-        default_factory=list, description="List of satellite rigs."
-    )
+    satellite_rigs: list[SatelliteRig] = Field(default_factory=list, description="List of satellite rigs.")
     is_satellite: bool = Field(default=False)
     zmq_connection: Optional[ZmqPubSub] = Field(default=None, description="ZMQ connection for communication.")
 

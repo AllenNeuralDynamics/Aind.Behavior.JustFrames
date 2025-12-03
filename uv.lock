@@ -75,7 +75,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "aind-behavior-just-frames", extras = ["data"], marker = "extra == 'launcher'" },
-    { name = "aind-behavior-services", git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=0bb8b68c83a4d97b5d972a8595cbef05c7ba4f39" },
+    { name = "aind-behavior-services", git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=90c77e682922288bc7779c4f8cde5d6f15115899" },
     { name = "aind-clabe", extras = ["aind-services"], marker = "extra == 'launcher'", git = "https://github.com/AllenNeuralDynamics/clabe?rev=test-services-13" },
     { name = "contraqctor", marker = "extra == 'data'", specifier = ">=0.5.3,<0.6.0" },
     { name = "pydantic-settings" },
@@ -100,7 +100,7 @@ docs = [
 [[package]]
 name = "aind-behavior-services"
 version = "0.13.0rc0"
-source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=feat-update-session#0bb8b68c83a4d97b5d972a8595cbef05c7ba4f39" }
+source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=feat-update-session#90c77e682922288bc7779c4f8cde5d6f15115899" }
 dependencies = [
     { name = "aind-behavior-curriculum" },
     { name = "gitpython" },

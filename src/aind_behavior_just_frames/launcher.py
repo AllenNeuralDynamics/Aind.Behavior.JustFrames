@@ -29,8 +29,8 @@ def experiment(launcher: Launcher) -> None:
 
     picker = DefaultBehaviorPicker(launcher=launcher, settings=DefaultBehaviorPickerSettings())
     session = picker.pick_session(AindBehaviorSessionModel)
-    launcher.register_session(session)
     rig = picker.pick_rig(AindJustFramesRig)
+    launcher.register_session(session, rig.data_directory)
     bonsai_app = AindBehaviorServicesBonsaiApp(
         workflow=Path(r"./src/main.bonsai"),
         rig=rig,

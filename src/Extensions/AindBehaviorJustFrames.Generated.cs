@@ -2300,20 +2300,104 @@ namespace AindJustFramesSchemas
     public partial class ZmqConnection
     {
     
+        private string _protocol;
+    
+        private string _address;
+    
+        private int _port;
+    
+        private Action? _action;
+    
         private string _connectionString;
     
         private string _topic;
     
         public ZmqConnection()
         {
-            _connectionString = "@tcp://localhost:5556";
+            _protocol = "Tcp";
+            _address = "localhost";
+            _port = 5556;
+            _connectionString = "";
             _topic = "";
         }
     
         protected ZmqConnection(ZmqConnection other)
         {
+            _protocol = other._protocol;
+            _address = other._address;
+            _port = other._port;
+            _action = other._action;
             _connectionString = other._connectionString;
             _topic = other._topic;
+        }
+    
+        /// <summary>
+        /// The protocol to use for the ZMQ connection.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("protocol")]
+        [System.ComponentModel.DescriptionAttribute("The protocol to use for the ZMQ connection.")]
+        public string Protocol
+        {
+            get
+            {
+                return _protocol;
+            }
+            set
+            {
+                _protocol = value;
+            }
+        }
+    
+        /// <summary>
+        /// The address of the ZMQ socket.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("address")]
+        [System.ComponentModel.DescriptionAttribute("The address of the ZMQ socket.")]
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                _address = value;
+            }
+        }
+    
+        /// <summary>
+        /// The port of the ZMQ socket.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("port")]
+        [System.ComponentModel.DescriptionAttribute("The port of the ZMQ socket.")]
+        public int Port
+        {
+            get
+            {
+                return _port;
+            }
+            set
+            {
+                _port = value;
+            }
+        }
+    
+        /// <summary>
+        /// Whether to bind or connect the socket.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("action")]
+        [System.ComponentModel.DescriptionAttribute("Whether to bind or connect the socket.")]
+        public Action? Action
+        {
+            get
+            {
+                return _action;
+            }
+            set
+            {
+                _action = value;
+            }
         }
     
         /// <summary>
@@ -2358,6 +2442,10 @@ namespace AindJustFramesSchemas
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
+            stringBuilder.Append("Protocol = " + _protocol + ", ");
+            stringBuilder.Append("Address = " + _address + ", ");
+            stringBuilder.Append("Port = " + _port + ", ");
+            stringBuilder.Append("Action = " + _action + ", ");
             stringBuilder.Append("ConnectionString = " + _connectionString + ", ");
             stringBuilder.Append("Topic = " + _topic);
             return true;
@@ -2478,6 +2566,19 @@ namespace AindJustFramesSchemas
     
         [System.Runtime.Serialization.EnumMemberAttribute(Value="NoColorProcessing")]
         NoColorProcessing = 1,
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    public enum Action
+    {
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="bind")]
+        Bind = 0,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="connect")]
+        Connect = 1,
     }
 
 
