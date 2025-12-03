@@ -22,8 +22,7 @@ dependencies = [
 
 [project.optional-dependencies]
 
-launcher = ["aind-clabe[aind-services] >= 0.8.2 ,<0.9.0"]
-
+launcher = ["aind-clabe[aind-services] >= 0.9 ,<0.10.0"]
 
 [dependency-groups]
 
