@@ -1,5 +1,210 @@
 {
-  "definitions": {
+  "$defs": {
+    "AindBehaviorSessionModel": {
+      "properties": {
+        "aind_behavior_services_pkg_version": {
+          "default": "0.13.0-rc0",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "title": "aind_behavior_services package version",
+          "type": "string"
+        },
+        "version": {
+          "const": "0.13.0-rc0",
+          "default": "0.13.0-rc0",
+          "title": "Version",
+          "type": "string"
+        },
+        "experiment": {
+          "default": null,
+          "description": "Name of the experiment",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Experiment"
+        },
+        "experimenter": {
+          "default": [],
+          "description": "Name of the experimenter",
+          "items": {
+            "type": "string"
+          },
+          "title": "Experimenter",
+          "type": "array"
+        },
+        "date": {
+          "description": "Date of the experiment",
+          "format": "date-time",
+          "title": "Date",
+          "type": "string"
+        },
+        "session_name": {
+          "default": null,
+          "description": "Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Session Name"
+        },
+        "subject": {
+          "description": "Name of the subject",
+          "title": "Subject",
+          "type": "string"
+        },
+        "notes": {
+          "default": null,
+          "description": "Notes about the experiment",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Notes"
+        },
+        "commit_hash": {
+          "default": null,
+          "description": "Commit hash of the repository",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Commit Hash"
+        },
+        "allow_dirty_repo": {
+          "default": false,
+          "description": "Allow running from a dirty repository",
+          "title": "Allow Dirty Repo",
+          "type": "boolean"
+        },
+        "skip_hardware_validation": {
+          "default": false,
+          "description": "Skip hardware validation",
+          "title": "Skip Hardware Validation",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "subject"
+      ],
+      "title": "AindBehaviorSessionModel",
+      "type": "object"
+    },
+    "AindJustFramesRig": {
+      "properties": {
+        "aind_behavior_services_pkg_version": {
+          "default": "0.13.0-rc0",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "title": "aind_behavior_services package version",
+          "type": "string"
+        },
+        "version": {
+          "const": "0.5.0-rc0",
+          "default": "0.5.0-rc0",
+          "title": "Version",
+          "type": "string"
+        },
+        "computer_name": {
+          "description": "Computer name",
+          "title": "Computer Name",
+          "type": "string"
+        },
+        "rig_name": {
+          "description": "Rig name",
+          "title": "Rig Name",
+          "type": "string"
+        },
+        "data_directory": {
+          "description": "Directory where data will be saved to",
+          "format": "path",
+          "title": "Data Directory",
+          "type": "string"
+        },
+        "triggered_camera_controller_0": {
+          "default": null,
+          "description": "Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/CameraController_SpinnakerCamera_"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "triggered_camera_controller_1": {
+          "default": null,
+          "description": "Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/CameraController_SpinnakerCamera_"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "harp_behavior": {
+          "$ref": "#/$defs/HarpBehavior",
+          "description": "Harp behavior board. Will be the source of triggers for the two camera controllers."
+        },
+        "satellite_rigs": {
+          "description": "List of satellite rigs.",
+          "items": {
+            "$ref": "#/$defs/SatelliteRig"
+          },
+          "title": "Satellite Rigs",
+          "type": "array"
+        },
+        "is_satellite": {
+          "default": false,
+          "title": "Is Satellite",
+          "type": "boolean"
+        },
+        "zmq_protocol_config": {
+          "$ref": "#/$defs/NetworkConfig",
+          "default": {
+            "address": "localhost",
+            "port": 5555
+          },
+          "description": "ZMQ connection for communication."
+        },
+        "zmq_trigger_config": {
+          "default": null,
+          "description": "ZMQ connection for trigger communication.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NetworkConfig"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "rig_name",
+        "data_directory",
+        "harp_behavior"
+      ],
+      "title": "AindJustFramesRig",
+      "type": "object"
+    },
     "BaseModel": {
       "properties": {},
       "title": "BaseModel",
@@ -13,24 +218,12 @@
           "title": "Device Type",
           "type": "string"
         },
-        "additional_settings": {
-          "default": null,
-          "description": "Additional settings",
-          "oneOf": [
-            {
-              "$ref": "#/definitions/BaseModel"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "calibration": {
           "default": null,
-          "description": "Calibration",
+          "description": "Calibration for the device.",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -39,7 +232,7 @@
         },
         "cameras": {
           "additionalProperties": {
-            "$ref": "#/definitions/SpinnakerCamera"
+            "$ref": "#/$defs/SpinnakerCamera"
           },
           "description": "Cameras to be instantiated",
           "title": "Cameras",
@@ -74,24 +267,12 @@
           "title": "Device Type",
           "type": "string"
         },
-        "additional_settings": {
-          "default": null,
-          "description": "Additional settings",
-          "oneOf": [
-            {
-              "$ref": "#/definitions/BaseModel"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "calibration": {
           "default": null,
-          "description": "Calibration",
+          "description": "Calibration for the device.",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -129,7 +310,30 @@
       "title": "HarpBehavior",
       "type": "object"
     },
+    "NetworkConfig": {
+      "properties": {
+        "address": {
+          "description": "Address for ZMQ connection.",
+          "title": "Address",
+          "type": "string"
+        },
+        "port": {
+          "description": "Port for ZMQ connection.",
+          "maximum": 65535,
+          "minimum": 1,
+          "title": "Port",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "address",
+        "port"
+      ],
+      "title": "NetworkConfig",
+      "type": "object"
+    },
     "Rect": {
+      "description": "Represents a rectangle defined by its top-left corner, width, and height.",
       "properties": {
         "x": {
           "default": 0,
@@ -163,33 +367,98 @@
       "title": "Rect",
       "type": "object"
     },
-    "SpinnakerCamera": {
+    "SatelliteRig": {
       "properties": {
-        "device_type": {
-          "const": "SpinnakerCamera",
-          "default": "SpinnakerCamera",
-          "description": "Device type",
-          "title": "Device Type",
+        "aind_behavior_services_pkg_version": {
+          "default": "0.13.0-rc0",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "title": "aind_behavior_services package version",
           "type": "string"
         },
-        "additional_settings": {
+        "version": {
+          "const": "0.5.0-rc0",
+          "default": "0.5.0-rc0",
+          "title": "Version",
+          "type": "string"
+        },
+        "computer_name": {
+          "description": "Computer name",
+          "title": "Computer Name",
+          "type": "string"
+        },
+        "rig_name": {
+          "description": "Rig name",
+          "title": "Rig Name",
+          "type": "string"
+        },
+        "data_directory": {
+          "description": "Directory where data will be saved to",
+          "format": "path",
+          "title": "Data Directory",
+          "type": "string"
+        },
+        "zmq_protocol_config": {
+          "$ref": "#/$defs/NetworkConfig",
+          "description": "ZMQ connection for communication."
+        },
+        "zmq_trigger_config": {
+          "$ref": "#/$defs/NetworkConfig",
+          "description": "ZMQ connection for trigger communication."
+        },
+        "triggered_camera_controller_0": {
           "default": null,
-          "description": "Additional settings",
+          "description": "Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/CameraController_SpinnakerCamera_"
             },
             {
               "type": "null"
             }
           ]
         },
-        "calibration": {
+        "triggered_camera_controller_1": {
           "default": null,
-          "description": "Calibration",
+          "description": "Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/CameraController_SpinnakerCamera_"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "is_satellite": {
+          "default": true,
+          "title": "Is Satellite",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "rig_name",
+        "data_directory",
+        "zmq_protocol_config",
+        "zmq_trigger_config"
+      ],
+      "title": "SatelliteRig",
+      "type": "object"
+    },
+    "SpinnakerCamera": {
+      "description": "Spinnaker camera device configuration.",
+      "properties": {
+        "device_type": {
+          "const": "SpinnakerCamera",
+          "default": "SpinnakerCamera",
+          "title": "Device Type",
+          "type": "string"
+        },
+        "calibration": {
+          "default": null,
+          "description": "Calibration for the device.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -228,7 +497,7 @@
         "gain": {
           "default": 0,
           "description": "Gain",
-          "minimum": 0.0,
+          "minimum": 0,
           "title": "Gain",
           "type": "number"
         },
@@ -237,7 +506,7 @@
           "description": "Gamma. If None, will disable gamma correction.",
           "oneOf": [
             {
-              "minimum": 0.0,
+              "minimum": 0,
               "type": "number"
             },
             {
@@ -251,7 +520,7 @@
           "description": "ADC bit depth. If None will be left as default.",
           "oneOf": [
             {
-              "$ref": "#/definitions/SpinnakerCameraAdcBitDepth"
+              "$ref": "#/$defs/SpinnakerCameraAdcBitDepth"
             },
             {
               "type": "null"
@@ -263,7 +532,7 @@
           "description": "Pixel format. If None will be left as default.",
           "oneOf": [
             {
-              "$ref": "#/definitions/SpinnakerCameraPixelFormat"
+              "$ref": "#/$defs/SpinnakerCameraPixelFormat"
             },
             {
               "type": "null"
@@ -271,7 +540,7 @@
           ]
         },
         "region_of_interest": {
-          "$ref": "#/definitions/Rect",
+          "$ref": "#/$defs/Rect",
           "default": {
             "x": 0,
             "y": 0,
@@ -285,7 +554,7 @@
           "description": "Video writer. If not provided, no video will be saved.",
           "oneOf": [
             {
-              "$ref": "#/definitions/VideoWriter"
+              "$ref": "#/$defs/VideoWriter"
             },
             {
               "type": "null"
@@ -300,6 +569,7 @@
       "type": "object"
     },
     "SpinnakerCameraAdcBitDepth": {
+      "description": "ADC bit depth options for Spinnaker cameras.",
       "enum": [
         0,
         1,
@@ -314,6 +584,7 @@
       ]
     },
     "SpinnakerCameraPixelFormat": {
+      "description": "Pixel format options for Spinnaker cameras.",
       "enum": [
         0,
         1,
@@ -612,21 +883,22 @@
     "VideoWriter": {
       "discriminator": {
         "mapping": {
-          "FFMPEG": "#/definitions/VideoWriterFfmpeg",
-          "OPENCV": "#/definitions/VideoWriterOpenCv"
+          "FFMPEG": "#/$defs/VideoWriterFfmpeg",
+          "OPENCV": "#/$defs/VideoWriterOpenCv"
         },
         "propertyName": "video_writer_type"
       },
       "oneOf": [
         {
-          "$ref": "#/definitions/VideoWriterFfmpeg"
+          "$ref": "#/$defs/VideoWriterFfmpeg"
         },
         {
-          "$ref": "#/definitions/VideoWriterOpenCv"
+          "$ref": "#/$defs/VideoWriterOpenCv"
         }
       ]
     },
     "VideoWriterFfmpeg": {
+      "description": "FFMPEG video writer configuration.",
       "properties": {
         "video_writer_type": {
           "const": "FFMPEG",
@@ -664,6 +936,7 @@
       "type": "object"
     },
     "VideoWriterOpenCv": {
+      "description": "OpenCV video writer configuration.",
       "properties": {
         "video_writer_type": {
           "const": "OPENCV",
@@ -694,63 +967,5 @@
       "title": "VideoWriterOpenCv",
       "type": "object"
     }
-  },
-  "properties": {
-    "aind_behavior_services_pkg_version": {
-      "default": "0.10.2",
-      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-      "title": "aind_behavior_services package version",
-      "type": "string"
-    },
-    "version": {
-      "const": "0.2.1",
-      "default": "0.2.1",
-      "title": "Version",
-      "type": "string"
-    },
-    "computer_name": {
-      "description": "Computer name",
-      "title": "Computer Name",
-      "type": "string"
-    },
-    "rig_name": {
-      "description": "Rig name",
-      "title": "Rig Name",
-      "type": "string"
-    },
-    "triggered_camera_controller_0": {
-      "default": null,
-      "description": "Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/CameraController_SpinnakerCamera_"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
-    "triggered_camera_controller_1": {
-      "default": null,
-      "description": "Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/CameraController_SpinnakerCamera_"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
-    "harp_behavior": {
-      "$ref": "#/definitions/HarpBehavior",
-      "description": "Harp behavior board. Will be the source of triggers for the two camera controllers."
-    }
-  },
-  "required": [
-    "rig_name",
-    "harp_behavior"
-  ],
-  "title": "AindVideoEncodingBenchmarksRig",
-  "type": "object"
+  }
 }

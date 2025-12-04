@@ -6,11 +6,9 @@ from typing import Generic, List, Optional, TypeVar, Union
 
 from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_services.utils import run_bonsai_process
-from aind_behavior_video_encoding_benchmarks.rig import AindVideoEncodingBenchmarksRig
-from aind_behavior_video_encoding_benchmarks.task_logic import (
-    AindVideoEncodingBenchmarksTaskLogic,
-)
 from pydantic import ValidationError
+
+from aind_behavior_just_frames.rig import AindJustFramesRig
 
 sys.path.append(".")
 from examples import examples  # isort:skip # pylint: disable=wrong-import-position
@@ -19,8 +17,7 @@ from tests import JSON_ROOT  # isort:skip # pylint: disable=wrong-import-positio
 TModel = TypeVar(
     "TModel",
     bound=Union[
-        AindVideoEncodingBenchmarksRig,
-        AindVideoEncodingBenchmarksTaskLogic,
+        AindJustFramesRig,
         AindBehaviorSessionModel,
     ],
 )
@@ -39,12 +36,7 @@ class BonsaiTests(unittest.TestCase):
             TestModel(
                 bonsai_property="RigPath",
                 json_root=JSON_ROOT,
-                model=AindVideoEncodingBenchmarksRig,
-            ),
-            TestModel(
-                bonsai_property="TaskLogicPath",
-                json_root=JSON_ROOT,
-                model=AindVideoEncodingBenchmarksTaskLogic,
+                model=AindJustFramesRig,
             ),
         ]
 

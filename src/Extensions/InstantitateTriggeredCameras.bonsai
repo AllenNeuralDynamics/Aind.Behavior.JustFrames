@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.5"
+<WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -385,6 +385,16 @@
               <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="IntProperty">
+                <Value>0</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Boolean">
               <rx:Name>TriggeredCamerasInitialized</rx:Name>
             </Expression>
@@ -392,6 +402,9 @@
               <Combinator xsi:type="IntProperty">
                 <Value>1</Value>
               </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="rx:Accumulate" />
             <Expression xsi:type="SubscribeSubject">
@@ -498,19 +511,22 @@
             <Edge From="46" To="47" Label="Source1" />
             <Edge From="47" To="48" Label="Source1" />
             <Edge From="49" To="50" Label="Source1" />
-            <Edge From="50" To="51" Label="Source1" />
-            <Edge From="51" To="56" Label="Source1" />
-            <Edge From="52" To="53" Label="Source1" />
+            <Edge From="50" To="53" Label="Source1" />
+            <Edge From="51" To="52" Label="Source1" />
+            <Edge From="52" To="53" Label="Source2" />
             <Edge From="53" To="54" Label="Source1" />
-            <Edge From="54" To="55" Label="Source1" />
-            <Edge From="55" To="56" Label="Source2" />
+            <Edge From="54" To="59" Label="Source1" />
+            <Edge From="55" To="56" Label="Source1" />
             <Edge From="56" To="57" Label="Source1" />
-            <Edge From="57" To="59" Label="Source1" />
+            <Edge From="57" To="58" Label="Source1" />
             <Edge From="58" To="59" Label="Source2" />
             <Edge From="59" To="60" Label="Source1" />
-            <Edge From="60" To="61" Label="Source1" />
-            <Edge From="61" To="62" Label="Source1" />
+            <Edge From="60" To="62" Label="Source1" />
+            <Edge From="61" To="62" Label="Source2" />
             <Edge From="62" To="63" Label="Source1" />
+            <Edge From="63" To="64" Label="Source1" />
+            <Edge From="64" To="65" Label="Source1" />
+            <Edge From="65" To="66" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>

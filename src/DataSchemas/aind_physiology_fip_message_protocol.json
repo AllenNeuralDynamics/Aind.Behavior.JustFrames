@@ -1,0 +1,341 @@
+{
+  "$defs": {
+    "HeartbeatPayload": {
+      "description": "Payload for heartbeat messages indicating system health status.\n\nHeartbeat messages are used to monitor the health and availability\nof system components. They include a status indicator and optional\ncontext information.\n\nAttributes:\n    context: Optional additional data about the system state\n    status: Current health status of the component\n\nExamples:\n    ```python\n    heartbeat = HeartbeatPayload(\n        status=HeartbeatStatus.OK,\n        context={\"cpu_usage\": 0.25, \"memory_usage\": 0.60}\n    )\n    print(heartbeat.status)  # HeartbeatStatus.OK\n\n    warning_heartbeat = HeartbeatPayload(\n        status=HeartbeatStatus.WARNING,\n        context={\"disk_space_low\": True}\n    )\n    ```",
+      "properties": {
+        "payload_type": {
+          "const": "HeartbeatPayload",
+          "default": "HeartbeatPayload",
+          "title": "Payload Type",
+          "type": "string"
+        },
+        "context": {
+          "default": null,
+          "description": "Additional context for the heartbeat message.",
+          "oneOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Context"
+        },
+        "status": {
+          "$ref": "#/$defs/HeartbeatStatus",
+          "description": "The status of the heartbeat message"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "HeartbeatPayload",
+      "type": "object"
+    },
+    "HeartbeatStatus": {
+      "description": "Enumeration of possible heartbeat status values.\n\nRepresents the health status of a system component,\nwith higher values indicating more severe issues.\n\nExamples:\n    ```python\n    HeartbeatStatus.OK                            # <HeartbeatStatus.OK: 0>\n    HeartbeatStatus.CRITICAL > HeartbeatStatus.WARNING  # True\n    int(HeartbeatStatus.ERROR)                    # 2\n    ```",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "HeartbeatStatus",
+      "type": "integer",
+      "x-enumNames": [
+        "Ok",
+        "Warning",
+        "Error",
+        "Critical"
+      ]
+    },
+    "LogLevel": {
+      "description": "Enumeration of log levels for the logging system.\n\nFollows standard Python logging levels with integer values\nthat allow for easy comparison and filtering.\n\nExamples:\n    ```python\n    LogLevel.ERROR > LogLevel.WARNING  # True\n    LogLevel.DEBUG.value               # 10\n    str(LogLevel.INFO)                 # 'LogLevel.INFO'\n    ```",
+      "enum": [
+        50,
+        40,
+        30,
+        20,
+        10,
+        0
+      ],
+      "title": "LogLevel",
+      "type": "integer",
+      "x-enumNames": [
+        "Critical",
+        "Error",
+        "Warning",
+        "Info",
+        "Debug",
+        "Notset"
+      ]
+    },
+    "LogPayload": {
+      "description": "Payload for log messages containing logging information.\n\nThis payload carries log data including the message content,\nseverity level, optional context, and application version.\n\nAttributes:\n    message: The actual log message text\n    level: Severity level of the log entry\n    context: Optional additional data related to the log\n    application_version: Version of the application generating the log\n\nExamples:\n    ```python\n    log_payload = LogPayload(\n        message=\"System startup complete\",\n        level=LogLevel.INFO,\n        context={\"operator\": \"John Doe\"},\n        application_version=\"1.0.0\"\n    )\n    print(log_payload.level)  # LogLevel.INFO\n    ```",
+      "properties": {
+        "payload_type": {
+          "const": "LogPayload",
+          "default": "LogPayload",
+          "title": "Payload Type",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message of the log",
+          "title": "Message",
+          "type": "string"
+        },
+        "level": {
+          "$ref": "#/$defs/LogLevel",
+          "default": 10,
+          "description": "The level of the log message"
+        },
+        "context": {
+          "default": null,
+          "description": "Additional context for the log message",
+          "oneOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Context"
+        },
+        "application_version": {
+          "default": null,
+          "description": "The version of the application",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Application Version"
+        }
+      },
+      "required": [
+        "message"
+      ],
+      "title": "LogPayload",
+      "type": "object"
+    },
+    "Message": {
+      "$ref": "#/$defs/_Message_Any_",
+      "title": "Message"
+    },
+    "MessageType": {
+      "description": "Enumeration of possible message types in the protocol.\n\nExamples:\n    ```python\n    MessageType.REQUEST  # 'request'\n    MessageType.REPLY    # 'reply'\n    MessageType.EVENT    # 'event'\n    ```",
+      "enum": [
+        "request",
+        "reply",
+        "event"
+      ],
+      "title": "MessageType",
+      "type": "string"
+    },
+    "RegisteredMessages": {
+      "properties": {
+        "message_type": {
+          "$ref": "#/$defs/MessageType"
+        },
+        "protocol_version": {
+          "const": 0,
+          "default": 0,
+          "title": "Protocol Version",
+          "type": "integer"
+        },
+        "timestamp": {
+          "description": "The timestamp of the message",
+          "oneOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Timestamp"
+        },
+        "payload": {
+          "$ref": "#/$defs/RegisteredPayload",
+          "description": "The payload of the message"
+        },
+        "process_id": {
+          "description": "Process that created the message",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Process Id"
+        },
+        "hostname": {
+          "description": "Hostname that created the message",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hostname"
+        },
+        "rig_name": {
+          "description": "Rig name that created the message",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rig Name"
+        }
+      },
+      "required": [
+        "message_type",
+        "timestamp",
+        "payload",
+        "process_id",
+        "hostname",
+        "rig_name"
+      ],
+      "title": "RegisteredMessages",
+      "type": "object"
+    },
+    "RegisteredPayload": {
+      "discriminator": {
+        "mapping": {
+          "HeartbeatPayload": "#/$defs/HeartbeatPayload",
+          "LogPayload": "#/$defs/LogPayload",
+          "Start": "#/$defs/StartPayload",
+          "Stop": "#/$defs/StopPayload"
+        },
+        "propertyName": "payload_type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/StartPayload"
+        },
+        {
+          "$ref": "#/$defs/StopPayload"
+        },
+        {
+          "$ref": "#/$defs/LogPayload"
+        },
+        {
+          "$ref": "#/$defs/HeartbeatPayload"
+        }
+      ],
+      "title": "RegisteredPayload",
+      "x-abstract": true
+    },
+    "StartPayload": {
+      "properties": {
+        "payload_type": {
+          "const": "Start",
+          "default": "Start",
+          "title": "Payload Type",
+          "type": "string"
+        }
+      },
+      "title": "StartPayload",
+      "type": "object"
+    },
+    "StopPayload": {
+      "properties": {
+        "payload_type": {
+          "const": "Stop",
+          "default": "Stop",
+          "title": "Payload Type",
+          "type": "string"
+        }
+      },
+      "title": "StopPayload",
+      "type": "object"
+    },
+    "_Message_Any_": {
+      "properties": {
+        "message_type": {
+          "$ref": "#/$defs/MessageType"
+        },
+        "protocol_version": {
+          "const": 0,
+          "default": 0,
+          "title": "Protocol Version",
+          "type": "integer"
+        },
+        "timestamp": {
+          "description": "The timestamp of the message",
+          "oneOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Timestamp"
+        },
+        "payload": {
+          "description": "The payload of the message",
+          "title": "Payload"
+        },
+        "process_id": {
+          "description": "Process that created the message",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Process Id"
+        },
+        "hostname": {
+          "description": "Hostname that created the message",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hostname"
+        },
+        "rig_name": {
+          "description": "Rig name that created the message",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rig Name"
+        }
+      },
+      "required": [
+        "message_type",
+        "timestamp",
+        "payload",
+        "process_id",
+        "hostname",
+        "rig_name"
+      ],
+      "title": "_Message[Any]",
+      "type": "object"
+    }
+  },
+  "x-abstract": true
+}
