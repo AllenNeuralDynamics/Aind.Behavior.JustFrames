@@ -18,19 +18,20 @@ logger = logging.getLogger(__name__)
 
 
 def experiment(launcher: Launcher) -> None:
+    picker = DefaultBehaviorPicker(launcher=launcher, settings=DefaultBehaviorPickerSettings())
+    session = picker.pick_session(AindBehaviorSessionModel)
+    rig = picker.pick_rig(AindJustFramesRig)
+    launcher.register_session(session, rig.data_directory)
+
     monitor = resource_monitor.ResourceMonitor(
         constrains=[
-            resource_monitor.available_storage_constraint_factory(launcher.settings.data_dir, 2e11),
+            resource_monitor.available_storage_constraint_factory(launcher.data_directory, 2e11),
         ]
     )
 
     # Validate resources
     monitor.run()
 
-    picker = DefaultBehaviorPicker(launcher=launcher, settings=DefaultBehaviorPickerSettings())
-    session = picker.pick_session(AindBehaviorSessionModel)
-    rig = picker.pick_rig(AindJustFramesRig)
-    launcher.register_session(session, rig.data_directory)
     bonsai_app = AindBehaviorServicesBonsaiApp(
         workflow=Path(r"./src/main.bonsai"),
         rig=rig,
@@ -57,7 +58,9 @@ def experiment(launcher: Launcher) -> None:
             logger.error("Failed to run data QC: %s", e)
 
     launcher.copy_logs()
-    robocopy.RobocopyService(source=launcher.session_directory, settings=robocopy.RobocopySettings()).transfer()
+    settings = robocopy.RobocopySettings()
+    settings.destination = Path(settings.destination) / launcher.session.subject / launcher.session.session_name
+    robocopy.RobocopyService(source=launcher.session_directory, settings=settings).transfer()
     return
 
 

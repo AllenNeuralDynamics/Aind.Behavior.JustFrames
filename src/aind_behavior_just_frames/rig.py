@@ -2,7 +2,7 @@ from typing import Literal, Optional
 
 import aind_behavior_services.rig as rig
 from aind_behavior_services.rig import AindBehaviorRigModel
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 from . import __semver__
 
@@ -25,13 +25,6 @@ class SatelliteRig(AindBehaviorRigModel):
         description="Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
     )
     is_satellite: bool = Field(default=True)
-
-    @field_validator("zmq_protocol_config", mode="after")
-    @classmethod
-    def validate_zmq_protocol_config(cls, value: rig.network.ZmqConnection):
-        if isinstance(value, rig.network.ZmqConnection):
-            value.topic = ""
-        return value
 
 
 class AindJustFramesRig(AindBehaviorRigModel):

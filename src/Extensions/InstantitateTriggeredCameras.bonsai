@@ -372,7 +372,7 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Timer">
                 <rx:DueTime>PT0S</rx:DueTime>
-                <rx:Period>PT0.1S</rx:Period>
+                <rx:Period>PT0.5S</rx:Period>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
