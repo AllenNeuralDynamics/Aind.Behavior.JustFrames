@@ -317,7 +317,7 @@ namespace AindJustFramesSchemas
         public AindJustFramesRig()
         {
             _aindBehaviorServicesPkgVersion = "0.13.0-rc0";
-            _version = "0.5.0-rc1";
+            _version = "0.5.0-rc2";
             _harpBehavior = new HarpBehavior();
             _satelliteRigs = new System.Collections.Generic.List<SatelliteRig>();
             _isSatellite = false;
@@ -1149,7 +1149,7 @@ namespace AindJustFramesSchemas
         public SatelliteRig()
         {
             _aindBehaviorServicesPkgVersion = "0.13.0-rc0";
-            _version = "0.5.0-rc1";
+            _version = "0.5.0-rc2";
             _zmqProtocolConfig = new NetworkConfig();
             _zmqTriggerConfig = new NetworkConfig();
             _isSatellite = true;
