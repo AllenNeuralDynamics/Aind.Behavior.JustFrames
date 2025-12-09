@@ -320,7 +320,7 @@
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>StartExperiment</Name>
+                    <Name>EnableExperiment</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:SubscribeWhen" />
