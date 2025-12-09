@@ -65,7 +65,7 @@
               <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="rx:CreateObservable">
-              <Name>CreateRequestToSatalite</Name>
+              <Name>CreateRequestToSatellite</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="WorkflowInput">
@@ -155,7 +155,7 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
+              <Combinator xsi:type="rx:Zip" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>RigSchema</Name>
