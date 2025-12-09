@@ -175,8 +175,8 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="zmq:Response">
-                <zmq:ConnectionString>@tcp://*:5557</zmq:ConnectionString>
+              <Combinator xsi:type="zmq:Router">
+                <zmq:ConnectionString>tcp://localhost:5557</zmq:ConnectionString>
               </Combinator>
             </Expression>
             <Expression xsi:type="zmq:SendResponse">
@@ -474,8 +474,8 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="zmq:Response">
-                <zmq:ConnectionString>@tcp://localhost:5557</zmq:ConnectionString>
+              <Combinator xsi:type="zmq:Router">
+                <zmq:ConnectionString>tcp://localhost:5557</zmq:ConnectionString>
               </Combinator>
             </Expression>
             <Expression xsi:type="zmq:SendResponse">
