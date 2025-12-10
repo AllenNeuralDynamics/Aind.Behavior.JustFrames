@@ -1,7 +1,6 @@
 from typing import Literal, Optional
 
-import aind_behavior_services.rig as rig
-from aind_behavior_services.rig import AindBehaviorRigModel
+from aind_behavior_services.rig import AindBehaviorRigModel, cameras, harp
 from pydantic import BaseModel, Field, model_validator
 
 from . import __semver__
@@ -16,11 +15,11 @@ class SatelliteRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
     zmq_protocol_config: NetworkConfig = Field(description="ZMQ connection for communication.")
     zmq_trigger_config: NetworkConfig = Field(description="ZMQ connection for trigger communication.")
-    triggered_camera_controller_0: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    triggered_camera_controller_0: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
     )
-    triggered_camera_controller_1: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    triggered_camera_controller_1: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
     )
@@ -29,15 +28,15 @@ class SatelliteRig(AindBehaviorRigModel):
 
 class AindJustFramesRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
-    triggered_camera_controller_0: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    triggered_camera_controller_0: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
     )
-    triggered_camera_controller_1: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    triggered_camera_controller_1: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
     )
-    harp_behavior: rig.harp.HarpBehavior = Field(
+    harp_behavior: harp.HarpBehavior = Field(
         description="Harp behavior board. Will be the source of triggers for the two camera controllers.",
     )
     satellite_rigs: list[SatelliteRig] = Field(default_factory=list, description="List of satellite rigs.")

@@ -75,7 +75,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "aind-behavior-just-frames", extras = ["data"], marker = "extra == 'launcher'" },
-    { name = "aind-behavior-services", git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=90c77e682922288bc7779c4f8cde5d6f15115899" },
+    { name = "aind-behavior-services" },
     { name = "aind-clabe", extras = ["aind-services"], marker = "extra == 'launcher'", git = "https://github.com/AllenNeuralDynamics/clabe?rev=test-services-13" },
     { name = "contraqctor", marker = "extra == 'data'", specifier = ">=0.5.3,<0.6.0" },
     { name = "pydantic-settings" },
@@ -100,7 +100,7 @@ docs = [
 [[package]]
 name = "aind-behavior-services"
 version = "0.13.0rc0"
-source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=feat-update-session#90c77e682922288bc7779c4f8cde5d6f15115899" }
+source = { git = "https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?rev=feat-update-session#29eaea12f97d6db31c782c74ee9f1828069db48e" }
 dependencies = [
     { name = "aind-behavior-curriculum" },
     { name = "gitpython" },
@@ -112,7 +112,7 @@ dependencies = [
 [[package]]
 name = "aind-clabe"
 version = "0.9.1rc1"
-source = { git = "https://github.com/AllenNeuralDynamics/clabe?rev=test-services-13#dfa2668ef278a57bc11f0ac9c643a54c9e9bda27" }
+source = { git = "https://github.com/AllenNeuralDynamics/clabe?rev=test-services-13#ece91c8984b61ae85a49a81488bd0df7ec76bb21" }
 dependencies = [
     { name = "aind-behavior-services" },
     { name = "gitpython" },
@@ -169,7 +169,7 @@ wheels = [
 
 [[package]]
 name = "aind-data-transfer-service"
-version = "1.22.0"
+version = "1.23.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-data-schema-models" },
@@ -177,9 +177,9 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e3/59/280af29afa129f6a58c43e9bb0f1dfc2654f24759b278940e0a5508b56af/aind_data_transfer_service-1.22.0.tar.gz", hash = "sha256:e7ec917fd3df1ee52979a4b78a74f24ae3fd3a5f4294dbf00c1d08a62bceab68", size = 38564, upload-time = "2025-11-24T23:39:06.299Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/84/8e/903f431572c7fe7c98c170fd928110a2212f496274050daa01815bd01fc1/aind_data_transfer_service-1.23.0.tar.gz", hash = "sha256:eb462c642ac9a05576f9f8057a010012afd252e040feef688559a3646982f603", size = 38579, upload-time = "2025-12-09T00:25:50.425Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/43/f9/6256bb5b80bc7e51120a038a34a22b8368b6f76f0a340e55408d21c497fb/aind_data_transfer_service-1.22.0-py3-none-any.whl", hash = "sha256:436276434634aecbc4afa0fe25ba4b384151394824e57263d0b9f4f73f8d6a0b", size = 23972, upload-time = "2025-11-24T23:39:05.249Z" },
+    { url = "https://files.pythonhosted.org/packages/8c/9d/1d242e2d1fb2ecc198ab8000fc22ddf7ce29927a9b6b6ccdf02baf4a1bd3/aind_data_transfer_service-1.23.0-py3-none-any.whl", hash = "sha256:a77abb077970c26f196b8eeb4b70e984163679095a4c412889d25917791ed60e", size = 24009, upload-time = "2025-12-09T00:25:49.263Z" },
 ]
 
 [[package]]
@@ -1257,9 +1257,9 @@ name = "msal"
 version = "1.34.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cryptography", marker = "(platform_machine != 'aarch64' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux')" },
-    { name = "pyjwt", extra = ["crypto"], marker = "(platform_machine != 'aarch64' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux')" },
-    { name = "requests", marker = "(platform_machine != 'aarch64' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux')" },
+    { name = "cryptography" },
+    { name = "pyjwt", extra = ["crypto"] },
+    { name = "requests" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/cf/0e/c857c46d653e104019a84f22d4494f2119b4fe9f896c92b4b864b3b045cc/msal-1.34.0.tar.gz", hash = "sha256:76ba83b716ea5a6d75b0279c0ac353a0e05b820ca1f6682c0eb7f45190c43c2f", size = 153961, upload-time = "2025-09-22T23:05:48.989Z" }
 wheels = [
@@ -1787,7 +1787,7 @@ wheels = [
 
 [package.optional-dependencies]
 crypto = [
-    { name = "cryptography", marker = "(platform_machine != 'aarch64' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux')" },
+    { name = "cryptography" },
 ]
 
 [[package]]
@@ -2368,11 +2368,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.6.0"
+version = "2.6.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/1c/43/554c2569b62f49350597348fc3ac70f786e3c32e7f19d266e19817812dd3/urllib3-2.6.0.tar.gz", hash = "sha256:cb9bcef5a4b345d5da5d145dc3e30834f58e8018828cbc724d30b4cb7d4d49f1", size = 432585, upload-time = "2025-12-05T15:08:47.885Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5e/1d/0f3a93cca1ac5e8287842ed4eebbd0f7a991315089b1a0b01c7788aa7b63/urllib3-2.6.1.tar.gz", hash = "sha256:5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f", size = 432678, upload-time = "2025-12-08T15:25:26.773Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/56/1a/9ffe814d317c5224166b23e7c47f606d6e473712a2fad0f704ea9b99f246/urllib3-2.6.0-py3-none-any.whl", hash = "sha256:c90f7a39f716c572c4e3e58509581ebd83f9b59cced005b7db7ad2d22b0db99f", size = 131083, upload-time = "2025-12-05T15:08:45.983Z" },
+    { url = "https://files.pythonhosted.org/packages/bc/56/190ceb8cb10511b730b564fb1e0293fa468363dbad26145c34928a60cb0c/urllib3-2.6.1-py3-none-any.whl", hash = "sha256:e67d06fe947c36a7ca39f4994b08d73922d40e6cca949907be05efa6fd75110b", size = 131138, upload-time = "2025-12-08T15:25:25.51Z" },
 ]
 
 [[package]]
