@@ -68,9 +68,25 @@ async def my_experiment(launcher: Launcher) -> None:
         session=session,
     )
 
-    tasks = [satellite.xml_rpc_executor.run_async(satellite.bonsai_app.command) for satellite in satellites.values()]
-    tasks.append(bonsai_app.run_async())
-    await asyncio.gather(*tasks)
+    tasks = {
+        satellite.rig.rig_name: satellite.xml_rpc_executor.run_async(satellite.bonsai_app.command)
+        for satellite in satellites.values()
+    }
+    tasks[rig.rig_name] = bonsai_app.run_async()
+    results = await asyncio.gather(*tasks.values())
+
+    for rig_id, result in dict(zip(tasks.keys(), results)).items():
+        if result.exit_code != 0:
+            logger.error(
+                "RigId %s 's, App exited with error code %d. With stdout %s and stderr %s",
+                rig_id,
+                result.exit_code,
+                result.stdout,
+                result.stderr,
+            )
+        else:
+            logger.info("RigId %s 's, App completed successfully with stdout %s", rig_id, result.stdout)
+            logger.debug("RigId %s 's, App completed successfully with stderr %s", rig_id, result.stderr)
 
     # Run data qc
     if picker.ui_helper.prompt_yes_no_question("Would you like to generate a qc report?"):
@@ -95,11 +111,6 @@ async def my_experiment(launcher: Launcher) -> None:
     settings.destination = Path(settings.destination) / launcher.session.subject / launcher.session.session_name
     robocopy.RobocopyService(source=launcher.session_directory, settings=settings).transfer()
     return
-
-
-@experiment(name="second_experiment")
-async def my_second_experiment(launcher: Launcher) -> None:
-    pass
 
 
 @dataclasses.dataclass
