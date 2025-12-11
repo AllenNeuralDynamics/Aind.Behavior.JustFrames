@@ -18,16 +18,21 @@ public class VerifyBroadcastResponse
         set { throwOnMismatch = value; }
     }
     
+    public IObservable<bool> Process(IObservable<Tuple<IList<RegisteredMessages>, RegisteredPayload>> source)
+    {
+        return Process(source.Select(tuple => Tuple.Create(tuple.Item2, tuple.Item1)));
+    }
+
     public IObservable<bool> Process(IObservable<Tuple<RegisteredPayload, IList<RegisteredMessages>>> source)
     {
         return source.Select(value =>
         {
             var request = value.Item1;
             var responses = value.Item2;
-            var expectedPayloadType = GetPayloadType(request);
+            var expectedPayloadType = request.GetType().Name;
             foreach(var response in responses)
             {
-                var responsePayloadType = GetPayloadType(response.Payload);
+                var responsePayloadType = response.Payload.GetType().Name;
                 if (responsePayloadType != expectedPayloadType)
                 {
                     if (ThrowOnMismatch){
@@ -41,18 +46,5 @@ public class VerifyBroadcastResponse
             }
             return true;
         });
-    }
-
-
-    static string GetPayloadType(RegisteredPayload payload)
-    {
-        var type = payload.GetType();
-        var payloadTypeProp = type.GetProperty("payload_type");
-        var value = payloadTypeProp != null ? payloadTypeProp.GetValue(payload, null) as string : null;
-        if (value == null)
-        {
-            throw new InvalidOperationException("The payload does not contain a 'payload_type' property.");
-        }
-        return value;
     }
 }
