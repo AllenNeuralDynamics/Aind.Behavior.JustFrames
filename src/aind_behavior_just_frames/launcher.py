@@ -21,11 +21,11 @@ def experiment(launcher: Launcher) -> None:
     picker = DefaultBehaviorPicker(launcher=launcher, settings=DefaultBehaviorPickerSettings())
     session = picker.pick_session(AindBehaviorSessionModel)
     rig = picker.pick_rig(AindJustFramesRig)
-    launcher.register_session(session, rig.data_directory)
+    launcher.register_session(session)
 
     monitor = resource_monitor.ResourceMonitor(
         constrains=[
-            resource_monitor.available_storage_constraint_factory(launcher.data_directory, 2e11),
+            resource_monitor.available_storage_constraint_factory(rig.data_directory, 2e11),
         ]
     )
 

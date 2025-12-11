@@ -15,6 +15,7 @@ from aind_behavior_just_frames import data_contract
 from aind_behavior_just_frames.rig import AindJustFramesRig, SatelliteRig
 
 logger = logging.getLogger(__name__)
+# TODO: This is currently not working and requires an unreleased version of clabe
 
 
 @experiment(name="just_frames_with_satellites")

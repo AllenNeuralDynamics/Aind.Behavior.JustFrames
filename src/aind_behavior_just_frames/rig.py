@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Literal, Optional
 
 from aind_behavior_services.rig import AindBehaviorRigModel, cameras, harp
@@ -13,6 +14,7 @@ class NetworkConfig(BaseModel):
 
 class SatelliteRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
+    data_directory: Path = Field(description="Directory where data will be saved to")
     zmq_protocol_config: NetworkConfig = Field(description="ZMQ connection for communication.")
     zmq_trigger_config: NetworkConfig = Field(description="ZMQ connection for trigger communication.")
     triggered_camera_controller_0: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
@@ -28,6 +30,7 @@ class SatelliteRig(AindBehaviorRigModel):
 
 class AindJustFramesRig(AindBehaviorRigModel):
     version: Literal[__semver__] = __semver__
+    data_directory: Path = Field(description="Directory where data will be saved to")
     triggered_camera_controller_0: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
