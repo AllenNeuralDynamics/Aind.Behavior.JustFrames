@@ -24,7 +24,7 @@ dependencies = [
 
 data = ["contraqctor >= 0.5.3 ,<0.6.0"]
 launcher = [
-    "aind-clabe[aind-services]>=0.10.0rc0",
+    "aind-clabe[aind-services]>=0.10.0rc2",
     "aind-watchdog-service>=0.1.6.dev8",
     "aind_behavior_just_frames[data]",]
 

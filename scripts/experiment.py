@@ -39,7 +39,9 @@ async def my_experiment(launcher: Launcher) -> None:
         SATELLITE_UPLOAD_ROOT = "."
         for s in rig.satellite_rigs:
             xml_client = clabe.xml_rpc.XmlRpcClient(
-                settings=clabe.xml_rpc.XmlRpcClientSettings(server_url=f"{s.zmq_protocol_config.address}:8000")
+                settings=clabe.xml_rpc.XmlRpcClientSettings(
+                    token="just-frames", server_url=f"{s.zmq_protocol_config.address}:8000"
+                )
             )
             this_session = xml_client.upload_model(
                 session, SATELLITE_UPLOAD_ROOT / f"{session.session_name}_session.json"
@@ -109,8 +111,16 @@ async def my_experiment(launcher: Launcher) -> None:
 
     launcher.copy_logs()
     settings = robocopy.RobocopySettings()
+    assert launcher.session.session_name is not None, "Session name is None"
     settings.destination = Path(settings.destination) / launcher.session.subject / launcher.session.session_name
-    robocopy.RobocopyService(source=launcher.session_directory, settings=settings).transfer()
+    robocopy_tasks = {
+        satellite.rig.rig_name: satellite.xml_rpc_executor.run_async(
+            _make_robocopy_from_rig(settings, satellite.rig, launcher.session.session_name).command
+        )
+        for satellite in satellites.values()
+    }
+    robocopy_tasks[rig.rig_name] = _make_robocopy_from_rig(settings, rig, launcher.session.session_name).run_async()
+    await asyncio.gather(*robocopy_tasks.values())
     return
 
 
@@ -120,3 +130,9 @@ class SatelliteRigConnection:
     xml_rpc_client: clabe.xml_rpc.XmlRpcClient
     xml_rpc_executor: clabe.xml_rpc.XmlRpcExecutor
     bonsai_app: BonsaiApp
+
+
+def _make_robocopy_from_rig(
+    robocopy_settings: robocopy.RobocopySettings, rig: AindJustFramesRig | SatelliteRig, session_name: str
+) -> robocopy.RobocopyService:
+    return robocopy.RobocopyService(source=rig.data_directory / session_name, settings=robocopy_settings)
