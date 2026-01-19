@@ -16,7 +16,7 @@ version = "0.5.0rc2"
 readme = {file = "README.md", content-type = "text/markdown"}
 
 dependencies = [
-  "aind_behavior_services >= 0.12.5, <0.13.0",
+  "aind_behavior_services>=0.13.0rc0",
   "pydantic-settings"
 ]
 
@@ -24,7 +24,8 @@ dependencies = [
 
 data = ["contraqctor >= 0.5.3 ,<0.6.0"]
 launcher = [
-    "aind-clabe[aind-services]",
+    "aind-clabe[aind-services]>=0.10.0rc0",
+    "aind-watchdog-service>=0.1.6.dev8",
     "aind_behavior_just_frames[data]",]
 
 [dependency-groups]
