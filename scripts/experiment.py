@@ -91,25 +91,9 @@ async def my_experiment(launcher: Launcher) -> None:
             logger.info("RigId %s 's, App completed successfully with stdout %s", rig_id, result.stdout)
             logger.debug("RigId %s 's, App completed successfully with stderr %s", rig_id, result.stderr)
 
-    # Run data qc
-    if picker.ui_helper.prompt_yes_no_question("Would you like to generate a qc report?"):
-        try:
-            import webbrowser
-
-            from contraqctor.qc.reporters import HtmlReporter
-
-            from ..src.aind_behavior_just_frames.data_qc.data_qc import make_qc_runner
-
-            _dataset = data_contract.dataset(launcher.session_directory)
-            runner = make_qc_runner(_dataset)
-            qc_path = launcher.session_directory / "Behavior" / "Logs" / "qc_report.html"
-            reporter = HtmlReporter(output_path=qc_path)
-            runner.run_all_with_progress(reporter=reporter)
-            webbrowser.open(qc_path.as_uri(), new=2)
-        except Exception as e:
-            logger.error("Failed to run data QC: %s", e)
 
     launcher.copy_logs()
+
     settings = robocopy.RobocopySettings()
     assert launcher.session.session_name is not None, "Session name is None"
     settings.destination = Path(settings.destination) / launcher.session.subject / launcher.session.session_name
@@ -119,7 +103,9 @@ async def my_experiment(launcher: Launcher) -> None:
         )
         for satellite in satellites.values()
     }
-    robocopy_tasks[rig.rig_name] = _make_robocopy_from_rig(settings, rig, launcher.session.session_name).run_async()
+    robocopy_tasks[rig.rig_name] = robocopy.RobocopyService(
+        source=rig.data_directory / launcher.session.session_name, settings=settings
+    ).run_async()
     await asyncio.gather(*robocopy_tasks.values())
     return
 
@@ -135,4 +121,14 @@ class SatelliteRigConnection:
 def _make_robocopy_from_rig(
     robocopy_settings: robocopy.RobocopySettings, rig: AindJustFramesRig | SatelliteRig, session_name: str
 ) -> robocopy.RobocopyService:
-    return robocopy.RobocopyService(source=rig.data_directory / session_name, settings=robocopy_settings)
+    # For videos, we flatten everything in the behavior-videos directory
+    # Everything else gets dumped in the behavior directory under .satellites/rig_name/
+    source = {
+        rig.data_directory / session_name / "behavior-videos": Path(robocopy_settings.destination) / "behavior-videos",
+        rig.data_directory / session_name / "behavior": Path(robocopy_settings.destination)
+        / "behavior"
+        / "satellites"
+        / rig.rig_name,
+    }
+    settings = robocopy_settings.model_copy(update={"destination": None})  # we will set destination per-path
+    return robocopy.RobocopyService(source=source, settings=settings)
