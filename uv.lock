@@ -71,7 +71,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "aind-behavior-just-frames", extras = ["data"], marker = "extra == 'launcher'" },
-    { name = "aind-behavior-services", specifier = ">=0.13.0rc0" },
+    { name = "aind-behavior-services", specifier = ">=0.13.0rc1" },
     { name = "aind-clabe", extras = ["aind-services"], marker = "extra == 'launcher'", specifier = ">=0.10.0rc2" },
     { name = "aind-watchdog-service", marker = "extra == 'launcher'", specifier = ">=0.1.6.dev8" },
     { name = "contraqctor", marker = "extra == 'data'", specifier = ">=0.5.3,<0.6.0" },
@@ -112,7 +112,7 @@ wheels = [
 
 [[package]]
 name = "aind-clabe"
-version = "0.10.0rc2"
+version = "0.10.0rc3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-services" },
@@ -124,9 +124,9 @@ dependencies = [
     { name = "rich" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4b/17/527b7ca1a699e75a27c8cb1883823516564af83df0d8ede17293314da7f2/aind_clabe-0.10.0rc2.tar.gz", hash = "sha256:53ba1b36202cb6271c0fc4070cbd95e4f678776188dcb6626cfaecb3217d5f4b", size = 69128, upload-time = "2026-01-19T04:06:31.624Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/16/11/7124565041462236830ca8182a957b9166ece65360b603c3b8f12aa96aad/aind_clabe-0.10.0rc3.tar.gz", hash = "sha256:fb2bdfde7aee173e88c7571b1c10603b25e15dd7fa9c81fc534acff559b58699", size = 69120, upload-time = "2026-01-20T20:32:54.921Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/24/ec/b930a0ebf1d3c2685c79de392fa45adab68e387bc4ec029e2b1b782ead25/aind_clabe-0.10.0rc2-py3-none-any.whl", hash = "sha256:6107b227861c64a8cc4a37a4a608d24078d954e4f1305e9813b9d72292de9edb", size = 92166, upload-time = "2026-01-19T04:06:30.241Z" },
+    { url = "https://files.pythonhosted.org/packages/db/bd/af8837fe6f87cd7240499b4698a00b583f18dd3df111576049c019e44b17/aind_clabe-0.10.0rc3-py3-none-any.whl", hash = "sha256:02959ba423852d3f817b6db619fd691dab17907843c15a982f8a34731b3ac2d0", size = 92171, upload-time = "2026-01-20T20:32:54.047Z" },
 ]
 
 [package.optional-dependencies]
@@ -159,16 +159,16 @@ wheels = [
 
 [[package]]
 name = "aind-data-schema-models"
-version = "5.1.1"
+version = "5.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "importlib-resources" },
     { name = "pydantic" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/00/49/16f0ab33ad39e476ec1b6b2bbb0308003f6ba2dc2bb82b93e5c812a7d328/aind_data_schema_models-5.1.1.tar.gz", hash = "sha256:8470875575dbf910707a43af0d1b7c3f79b2779b0a17ea89ce6cac5fec1b4300", size = 338612, upload-time = "2026-01-14T21:59:44.688Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2e/dc/360e3b97f7b05b6e08962be87dab53e2fc842beaf1329a1687c70898e552/aind_data_schema_models-5.2.1.tar.gz", hash = "sha256:11b68393119b329425f9d7f215b0a35ae82327cb3f781228e61a72bc85ac2e7f", size = 339089, upload-time = "2026-01-20T20:12:25.773Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/4f/9bb3f089659fb5e55165296c10e8c6c99bfce94f7dd21afa05b070a317d2/aind_data_schema_models-5.1.1-py3-none-any.whl", hash = "sha256:2fcc7a0bbb13e959c2c9e0490e0652aa6b136ca88f541839b182e7233c789698", size = 307401, upload-time = "2026-01-14T21:59:43.566Z" },
+    { url = "https://files.pythonhosted.org/packages/f4/6e/b1369e14ad5baaed63ee27a16856e6d374cf4b7a7e84d9636f1e908f888f/aind_data_schema_models-5.2.1-py3-none-any.whl", hash = "sha256:701bfb3e1bf14b0bbd9ec71cbda83e2c95719e6cd7e6222ad59bc718165c7c2d", size = 308599, upload-time = "2026-01-20T20:12:24.306Z" },
 ]
 
 [[package]]
@@ -2159,11 +2159,11 @@ wheels = [
 
 [[package]]
 name = "soupsieve"
-version = "2.8.2"
+version = "2.8.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/93/f2/21d6ca70c3cf35d01ae9e01be534bf6b6b103c157a728082a5028350c310/soupsieve-2.8.2.tar.gz", hash = "sha256:78a66b0fdee2ab40b7199dc3e747ee6c6e231899feeaae0b9b98a353afd48fd8", size = 118601, upload-time = "2026-01-18T16:21:31.09Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/ae/2d9c981590ed9999a0d91755b47fc74f74de286b0f5cee14c9269041e6c4/soupsieve-2.8.3.tar.gz", hash = "sha256:3267f1eeea4251fb42728b6dfb746edc9acaffc4a45b27e19450b676586e8349", size = 118627, upload-time = "2026-01-20T04:27:02.457Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a6/9a/b4450ccce353e2430621b3bb571899ffe1033d5cd72c9e065110f95b1a63/soupsieve-2.8.2-py3-none-any.whl", hash = "sha256:0f4c2f6b5a5fb97a641cf69c0bd163670a0e45e6d6c01a2107f93a6a6f93c51a", size = 37016, upload-time = "2026-01-18T16:21:29.7Z" },
+    { url = "https://files.pythonhosted.org/packages/46/2c/1462b1d0a634697ae9e55b3cecdcb64788e8b7d63f54d923fcd0bb140aed/soupsieve-2.8.3-py3-none-any.whl", hash = "sha256:ed64f2ba4eebeab06cc4962affce381647455978ffc1e36bb79a545b91f45a95", size = 37016, upload-time = "2026-01-20T04:27:01.012Z" },
 ]
 
 [[package]]
