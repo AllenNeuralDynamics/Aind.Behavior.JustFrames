@@ -7,9 +7,8 @@ from clabe.apps import (
     AindBehaviorServicesBonsaiApp,
 )
 from clabe.data_transfer import robocopy
-from clabe.launcher import Launcher, LauncherCliArgs
+from clabe.launcher import Launcher, LauncherCliArgs, experiment
 from clabe.pickers import DefaultBehaviorPicker, DefaultBehaviorPickerSettings
-from pydantic_settings import CliApp
 
 from aind_behavior_just_frames import data_contract
 from aind_behavior_just_frames.rig import AindJustFramesRig
@@ -17,20 +16,18 @@ from aind_behavior_just_frames.rig import AindJustFramesRig
 logger = logging.getLogger(__name__)
 
 
-def experiment(launcher: Launcher) -> None:
+@experiment()
+def just_frames_experiment(launcher: Launcher) -> None:
     picker = DefaultBehaviorPicker(launcher=launcher, settings=DefaultBehaviorPickerSettings())
     session = picker.pick_session(AindBehaviorSessionModel)
     rig = picker.pick_rig(AindJustFramesRig)
-    launcher.register_session(session)
+    launcher.register_session(session, rig.data_directory)
 
-    monitor = resource_monitor.ResourceMonitor(
+    resource_monitor.ResourceMonitor(
         constrains=[
             resource_monitor.available_storage_constraint_factory(rig.data_directory, 2e11),
         ]
-    )
-
-    # Validate resources
-    monitor.run()
+    ).run()
 
     bonsai_app = AindBehaviorServicesBonsaiApp(
         workflow=Path(r"./src/main.bonsai"),
@@ -46,7 +43,7 @@ def experiment(launcher: Launcher) -> None:
 
             from contraqctor.qc.reporters import HtmlReporter
 
-            from .data_qc.data_qc import make_qc_runner
+            from aind_behavior_just_frames.data_qc.data_qc import make_qc_runner
 
             _dataset = data_contract.dataset(launcher.session_directory)
             runner = make_qc_runner(_dataset)
@@ -64,16 +61,6 @@ def experiment(launcher: Launcher) -> None:
     return
 
 
-class ClabeCli(LauncherCliArgs):
-    def cli_cmd(self):
-        launcher = Launcher(settings=self)
-        launcher.run_experiment(experiment)
-        return None
-
-
-def main() -> None:
-    CliApp().run(ClabeCli)
-
-
 if __name__ == "__main__":
-    main()
+    launcher = Launcher(settings=LauncherCliArgs())
+    launcher.run_experiment(just_frames_experiment)

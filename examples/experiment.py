@@ -11,7 +11,6 @@ from clabe.data_transfer import robocopy
 from clabe.launcher import Launcher, experiment
 from clabe.pickers import DefaultBehaviorPicker, DefaultBehaviorPickerSettings
 
-from aind_behavior_just_frames import data_contract
 from aind_behavior_just_frames.rig import AindJustFramesRig, SatelliteRig
 
 logger = logging.getLogger(__name__)
@@ -90,7 +89,6 @@ async def my_experiment(launcher: Launcher) -> None:
         else:
             logger.info("RigId %s 's, App completed successfully with stdout %s", rig_id, result.stdout)
             logger.debug("RigId %s 's, App completed successfully with stderr %s", rig_id, result.stderr)
-
 
     launcher.copy_logs()
 
