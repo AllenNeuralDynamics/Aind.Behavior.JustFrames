@@ -4,7 +4,7 @@ import logging
 from pathlib import Path
 
 import clabe.xml_rpc
-from aind_behavior_services.session import AindBehaviorSessionModel
+from aind_behavior_services.session import Session
 from clabe import resource_monitor
 from clabe.apps import AindBehaviorServicesBonsaiApp, BonsaiApp
 from clabe.data_transfer import robocopy
@@ -14,13 +14,12 @@ from clabe.pickers import DefaultBehaviorPicker, DefaultBehaviorPickerSettings
 from aind_behavior_just_frames.rig import AindJustFramesRig, SatelliteRig
 
 logger = logging.getLogger(__name__)
-# TODO: This is currently not working and requires an unreleased version of clabe
 
 
 @experiment(name="just_frames_with_satellites")
 async def my_experiment(launcher: Launcher) -> None:
     picker = DefaultBehaviorPicker(launcher=launcher, settings=DefaultBehaviorPickerSettings())
-    session = picker.pick_session(AindBehaviorSessionModel)
+    session = picker.pick_session(Session)
     rig = picker.pick_rig(AindJustFramesRig)
     launcher.register_session(session, rig.data_directory)
 

@@ -2,8 +2,8 @@ from pathlib import Path
 from typing import Union
 
 import pydantic
-from aind_behavior_services.session import AindBehaviorSessionModel
-from aind_behavior_services.utils import BonsaiSgenSerializers, convert_pydantic_to_bonsai
+from aind_behavior_services.schema import BonsaiSgenSerializers, convert_pydantic_to_bonsai
+from aind_behavior_services.session import Session
 
 from aind_behavior_just_frames.message_protocol import MessageProtocol
 from aind_behavior_just_frames.rig import AindJustFramesRig
@@ -16,7 +16,7 @@ NAMESPACE_PREFIX = "AindJustFramesSchemas"
 def main():
     models = [
         AindJustFramesRig,
-        AindBehaviorSessionModel,
+        Session,
     ]
     model = pydantic.RootModel[Union[tuple(models)]]
 

@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Literal, Optional
 
-from aind_behavior_services.rig import AindBehaviorRigModel, cameras, harp
+from aind_behavior_services.rig import Rig, cameras, harp
 from pydantic import BaseModel, Field, model_validator
 
 from . import __semver__
@@ -12,7 +12,7 @@ class NetworkConfig(BaseModel):
     port: int = Field(description="Port for ZMQ connection.", ge=1, le=65535)
 
 
-class SatelliteRig(AindBehaviorRigModel):
+class SatelliteRig(Rig):
     version: Literal[__semver__] = __semver__
     data_directory: Path = Field(description="Directory where data will be saved to")
     zmq_protocol_config: NetworkConfig = Field(description="ZMQ connection for communication.")
@@ -28,7 +28,7 @@ class SatelliteRig(AindBehaviorRigModel):
     is_satellite: bool = Field(default=True)
 
 
-class AindJustFramesRig(AindBehaviorRigModel):
+class AindJustFramesRig(Rig):
     version: Literal[__semver__] = __semver__
     data_directory: Path = Field(description="Directory where data will be saved to")
     triggered_camera_controller_0: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
