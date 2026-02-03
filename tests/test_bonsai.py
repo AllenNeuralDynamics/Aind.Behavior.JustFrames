@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from typing import Generic, List, Optional, TypeVar, Union
 
-from aind_behavior_services.session import AindBehaviorSessionModel
+from aind_behavior_services.session import Session
 from aind_behavior_services.utils import run_bonsai_process
 from pydantic import ValidationError
 
@@ -18,7 +18,7 @@ TModel = TypeVar(
     "TModel",
     bound=Union[
         AindJustFramesRig,
-        AindBehaviorSessionModel,
+        Session,
     ],
 )
 
@@ -31,7 +31,7 @@ class BonsaiTests(unittest.TestCase):
             TestModel(
                 bonsai_property="SessionPath",
                 json_root=JSON_ROOT,
-                model=AindBehaviorSessionModel,
+                model=Session,
             ),
             TestModel(
                 bonsai_property="RigPath",

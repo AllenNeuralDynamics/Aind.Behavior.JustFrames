@@ -1,7 +1,7 @@
+from pathlib import Path
 from typing import Literal, Optional
 
-import aind_behavior_services.rig as rig
-from aind_behavior_services.rig import AindBehaviorRigModel
+from aind_behavior_services.rig import Rig, cameras, harp
 from pydantic import BaseModel, Field, model_validator
 
 from . import __semver__
@@ -12,32 +12,34 @@ class NetworkConfig(BaseModel):
     port: int = Field(description="Port for ZMQ connection.", ge=1, le=65535)
 
 
-class SatelliteRig(AindBehaviorRigModel):
+class SatelliteRig(Rig):
     version: Literal[__semver__] = __semver__
+    data_directory: Path = Field(description="Directory where data will be saved to")
     zmq_protocol_config: NetworkConfig = Field(description="ZMQ connection for communication.")
     zmq_trigger_config: NetworkConfig = Field(description="ZMQ connection for trigger communication.")
-    triggered_camera_controller_0: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    triggered_camera_controller_0: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
     )
-    triggered_camera_controller_1: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    triggered_camera_controller_1: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
     )
     is_satellite: bool = Field(default=True)
 
 
-class AindJustFramesRig(AindBehaviorRigModel):
+class AindJustFramesRig(Rig):
     version: Literal[__semver__] = __semver__
-    triggered_camera_controller_0: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    data_directory: Path = Field(description="Directory where data will be saved to")
+    triggered_camera_controller_0: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
     )
-    triggered_camera_controller_1: Optional[rig.cameras.CameraController[rig.cameras.SpinnakerCamera]] = Field(
+    triggered_camera_controller_1: Optional[cameras.CameraController[cameras.SpinnakerCamera]] = Field(
         default=None,
         description="Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
     )
-    harp_behavior: rig.harp.HarpBehavior = Field(
+    harp_behavior: harp.HarpBehavior = Field(
         description="Harp behavior board. Will be the source of triggers for the two camera controllers.",
     )
     satellite_rigs: list[SatelliteRig] = Field(default_factory=list, description="List of satellite rigs.")

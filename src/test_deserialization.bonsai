@@ -15,7 +15,7 @@
       <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:ReadSchemas.bonsai">
         <TaskLogicPath>C:\git\AllenNeuralDynamics\aind-vr-foraging\local\AindVrForagingTaskLogic.json</TaskLogicPath>
         <RigPath>C:\git\AllenNeuralDynamics\aind-vr-foraging\local\AindVrForagingRig.json</RigPath>
-        <SessionPath>C:\git\AllenNeuralDynamics\aind-vr-foraging\local\AindBehaviorSessionModel.json</SessionPath>
+        <SessionPath>C:\git\AllenNeuralDynamics\aind-vr-foraging\local\Session.json</SessionPath>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>LoadSchemas</Name>
@@ -25,7 +25,7 @@
               <Name>RawSessionSchema</Name>
             </Expression>
             <Expression xsi:type="p1:DeserializeFromJson">
-              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:AindBehaviorSessionModel" />
+              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Session" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Take">

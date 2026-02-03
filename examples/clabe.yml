@@ -6,3 +6,6 @@ default_behavior_picker:
 
 robocopy:
   destination: '\\allen\aind\scratch\data'
+
+xml_rpc_client:
+  token: '42'

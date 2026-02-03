@@ -41,7 +41,7 @@
               <Name>RawSessionSchema</Name>
             </Expression>
             <Expression xsi:type="p1:DeserializeFromJson">
-              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:AindBehaviorSessionModel" />
+              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Session" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Zip" />

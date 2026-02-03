@@ -16,16 +16,18 @@ version = "0.5.0rc2"
 readme = {file = "README.md", content-type = "text/markdown"}
 
 dependencies = [
-  "aind_behavior_services @git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@90c77e682922288bc7779c4f8cde5d6f15115899",
+  "aind_behavior_services>=0.13",
   "pydantic-settings"
 ]
 
 [project.optional-dependencies]
 
-data = ["contraqctor >= 0.5.3 ,<0.6.0"]
+data = ["contraqctor >=0.5.3, <0.6.0"]
+
 launcher = [
-    "aind-clabe[aind-services] @ git+https://github.com/AllenNeuralDynamics/clabe@test-services-13",
-    "aind_behavior_just_frames[data]",]
+    "aind-clabe[aind-services]>=0.10.0",
+    "aind_behavior_just_frames[data]"
+    ]
 
 [dependency-groups]
 

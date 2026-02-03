@@ -5,7 +5,6 @@ from pydantic_settings import BaseSettings, CliApp, CliSubCommand
 
 from aind_behavior_just_frames import __semver__, regenerate
 from aind_behavior_just_frames.data_qc import DataQcCli
-from aind_behavior_just_frames.launcher import ClabeCli
 
 
 class VersionCli(RootModel):
@@ -29,9 +28,6 @@ class JustFramesCli(BaseSettings, cli_prog_name="just-frames", cli_kebab_case=Tr
     data_qc: CliSubCommand[DataQcCli] = Field(description="Run data quality checks.")
     regenerate: CliSubCommand[DslRegenerateCli] = Field(
         description="Regenerate the just-frames dsl dependencies.",
-    )
-    clabe: CliSubCommand[ClabeCli] = Field(
-        description="Run the Clabe CLI.",
     )
 
     def cli_cmd(self):

@@ -1,114 +1,9 @@
 {
   "$defs": {
-    "AindBehaviorSessionModel": {
-      "properties": {
-        "aind_behavior_services_pkg_version": {
-          "default": "0.13.0-rc0",
-          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-          "title": "aind_behavior_services package version",
-          "type": "string"
-        },
-        "version": {
-          "const": "0.13.0-rc0",
-          "default": "0.13.0-rc0",
-          "title": "Version",
-          "type": "string"
-        },
-        "experiment": {
-          "default": null,
-          "description": "Name of the experiment",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Experiment"
-        },
-        "experimenter": {
-          "default": [],
-          "description": "Name of the experimenter",
-          "items": {
-            "type": "string"
-          },
-          "title": "Experimenter",
-          "type": "array"
-        },
-        "date": {
-          "description": "Date of the experiment",
-          "format": "date-time",
-          "title": "Date",
-          "type": "string"
-        },
-        "session_name": {
-          "default": null,
-          "description": "Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Session Name"
-        },
-        "subject": {
-          "description": "Name of the subject",
-          "title": "Subject",
-          "type": "string"
-        },
-        "notes": {
-          "default": null,
-          "description": "Notes about the experiment",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Notes"
-        },
-        "commit_hash": {
-          "default": null,
-          "description": "Commit hash of the repository",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Commit Hash"
-        },
-        "allow_dirty_repo": {
-          "default": false,
-          "description": "Allow running from a dirty repository",
-          "title": "Allow Dirty Repo",
-          "type": "boolean"
-        },
-        "skip_hardware_validation": {
-          "default": false,
-          "description": "Skip hardware validation",
-          "title": "Skip Hardware Validation",
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "subject"
-      ],
-      "title": "AindBehaviorSessionModel",
-      "type": "object"
-    },
     "AindJustFramesRig": {
       "properties": {
         "aind_behavior_services_pkg_version": {
-          "default": "0.13.0-rc0",
+          "default": "0.13.0",
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
           "title": "aind_behavior_services package version",
           "type": "string"
@@ -198,6 +93,7 @@
         }
       },
       "required": [
+        "computer_name",
         "rig_name",
         "data_directory",
         "harp_behavior"
@@ -370,7 +266,7 @@
     "SatelliteRig": {
       "properties": {
         "aind_behavior_services_pkg_version": {
-          "default": "0.13.0-rc0",
+          "default": "0.13.0",
           "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
           "title": "aind_behavior_services package version",
           "type": "string"
@@ -436,12 +332,118 @@
         }
       },
       "required": [
+        "computer_name",
         "rig_name",
         "data_directory",
         "zmq_protocol_config",
         "zmq_trigger_config"
       ],
       "title": "SatelliteRig",
+      "type": "object"
+    },
+    "Session": {
+      "properties": {
+        "aind_behavior_services_pkg_version": {
+          "default": "0.13.0",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "title": "aind_behavior_services package version",
+          "type": "string"
+        },
+        "version": {
+          "const": "0.13.0",
+          "default": "0.13.0",
+          "title": "Version",
+          "type": "string"
+        },
+        "experiment": {
+          "default": null,
+          "description": "Name of the experiment",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Experiment"
+        },
+        "experimenter": {
+          "default": [],
+          "description": "Name of the experimenter",
+          "items": {
+            "type": "string"
+          },
+          "title": "Experimenter",
+          "type": "array"
+        },
+        "date": {
+          "description": "Date of the experiment",
+          "format": "date-time",
+          "title": "Date",
+          "type": "string"
+        },
+        "session_name": {
+          "default": null,
+          "description": "Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Session Name"
+        },
+        "subject": {
+          "description": "Name of the subject",
+          "title": "Subject",
+          "type": "string"
+        },
+        "notes": {
+          "default": null,
+          "description": "Notes about the experiment",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Notes"
+        },
+        "commit_hash": {
+          "default": null,
+          "description": "Commit hash of the repository",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Commit Hash"
+        },
+        "allow_dirty_repo": {
+          "default": false,
+          "description": "Allow running from a dirty repository",
+          "title": "Allow Dirty Repo",
+          "type": "boolean"
+        },
+        "skip_hardware_validation": {
+          "default": false,
+          "description": "Skip hardware validation",
+          "title": "Skip Hardware Validation",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "subject"
+      ],
+      "title": "Session",
       "type": "object"
     },
     "SpinnakerCamera": {
