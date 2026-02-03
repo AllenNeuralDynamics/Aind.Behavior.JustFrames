@@ -157,8 +157,7 @@ jobs:
     runs-on: windows-latest
     name: Prepare files for public release
     needs: tests
-    if: false
-    # if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch'
     outputs:
       version: ${{ steps.get_version.outputs.version }}
       is_prerelease: ${{ steps.check_prerelease.outputs.prerelease }}
