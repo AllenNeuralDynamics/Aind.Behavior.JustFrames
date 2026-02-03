@@ -9,8 +9,8 @@
           "type": "string"
         },
         "version": {
-          "const": "0.5.0-rc2",
-          "default": "0.5.0-rc2",
+          "const": "0.5.0-rc3",
+          "default": "0.5.0-rc3",
           "title": "Version",
           "type": "string"
         },
@@ -272,8 +272,8 @@
           "type": "string"
         },
         "version": {
-          "const": "0.5.0-rc2",
-          "default": "0.5.0-rc2",
+          "const": "0.5.0-rc3",
+          "default": "0.5.0-rc3",
           "title": "Version",
           "type": "string"
         },
