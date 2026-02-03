@@ -41,7 +41,7 @@ wheels = [
 
 [[package]]
 name = "aind-behavior-just-frames"
-version = "0.5.0rc3"
+version = "0.5.0"
 source = { editable = "." }
 dependencies = [
     { name = "aind-behavior-services" },
