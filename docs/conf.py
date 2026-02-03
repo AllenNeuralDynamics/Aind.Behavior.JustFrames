@@ -6,10 +6,6 @@
 import os
 import sys
 
-import aind_behavior_just_frames.task_logic
-
-import aind_behavior_just_frames.rig
-
 sys.path.insert(0, os.path.abspath("../src/DataSchemas"))
 import aind_behavior_just_frames
 
