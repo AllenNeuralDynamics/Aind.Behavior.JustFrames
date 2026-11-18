@@ -315,8 +315,9 @@
                   <Expression xsi:type="SubscribeSubject">
                     <Name>RigSchema</Name>
                   </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>IsSatellite</Selector>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Name>SkipSatelliteWait</scr:Name>
+                    <scr:Expression>IsSatellite || SatelliteRigs.Count == 0</scr:Expression>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>IsAllSatellitesStarted</Name>
